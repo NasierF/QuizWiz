@@ -2,93 +2,124 @@
 #include <sys/util.h>
 #include <graphx.h>
 #include <keypadc.h>
+#include <string.h>
+#include <debug.h>
 
 #include <fontlibc.h>
 
 #include "fonts/fonts.h"
 
+struct question 
+{
+	char myQuestion[256];
+};
+struct answer 
+{
+	char myAnswer[256];
+};
+
 void blink_cursor_frame(int* frame_ctr, int* prev_cursor_x, int *prev_cursor_y);
 
 int main(void)
 {
+	const char *chars = "\0\0\0\0\0\0\0\0\0\0\"WRMH\0\0?[VQLG\0\0:ZUPKFC\0 YTOJEB\0\0XSNIDA\0\0\0\0\0\0\0\0";
+	const char *lower_chars = "\0\0\0\0\0\0\0\0\0\0\"wrmh\0\0?[vqlg\0\0:zupkfc\0 ytojeb\0\0xsnida\0\0\0\0\0\0\0\0";
     /* Initialize graphics drawing */
     gfx_Begin();
 	gfx_SetDrawBuffer();
 
 
-	/* Clear the screen */
-	/* gfx_FillScreen(0x08); */
-	gfx_FillScreen(0xff);
+	fontlib_SetFont(test_font, 0);
+	fontlib_SetLineSpacing(2, 2);
+	fontlib_SetWindow(10, 30, 280, GFX_LCD_HEIGHT-50);
+	fontlib_SetColors(0x0, 0xFF);
+	fontlib_SetTransparency(true);
+	fontlib_SetNewlineOptions(FONTLIB_ENABLE_AUTO_WRAP | FONTLIB_AUTO_CLEAR_TO_EOL | FONTLIB_PRECLEAR_NEWLINE);
 
-	gfx_SetColor(0x0A);
-	gfx_Line(0, 20, 5+320, 20);
-	gfx_SetColor(0x1A);
-	gfx_Line(0, GFX_LCD_HEIGHT - 20, 320, GFX_LCD_HEIGHT - 20);
+	int num_questions = 9;
+	struct question questions[num_questions];
+    struct answer answers[num_questions];
 
-	/* fontlib_SetFont(test_font, 0); */
+	strcpy(questions[0].myQuestion, "A string in C is an array of ___");
+    strcpy(answers[0].myAnswer, "character");
+    
+    strcpy(questions[1].myQuestion, "a step-by-step procedure for solving a problem");
+    strcpy(answers[1].myAnswer, "algorithm");
+    
+    strcpy(questions[2].myQuestion, "finding and correcting errors");
+    strcpy(answers[2].myAnswer, "debug");
 
-	/* /1* First, we'll display centered text in a window *1/ */
-	/* /1* Add some vertical padding around our text *1/ */
-	/* fontlib_SetLineSpacing(2, 2); */
-	/* fontlib_SetWindow(25, 40, 240, 200); */
-	/* fontlib_SetCursorPosition(25, 42); */
-	/* /1* Set some random (and ugly) colors *1/ */
-	/* fontlib_SetColors(0x0, 0xFF); */
-	/* /1* This is a crazy combination of settings that you probably don't want to use in any real program, but we're using */
-	/* it here for testing purposes. *1/ */
-	/* fontlib_SetTransparency(true); */
-	/* fontlib_SetNewlineOptions(FONTLIB_ENABLE_AUTO_WRAP | FONTLIB_AUTO_CLEAR_TO_EOL | FONTLIB_PRECLEAR_NEWLINE); */
-	/* /1* It's not as generic as Hello, world! *1/ */
-	/* /1* fontlib_DrawString("The quick brown fox jumps over the lazy dog kjdkfjdkljflkdjfa;s jksdjflkdjf  jdkfjldskjfkd fkdjlfksjdlkfjakfl df ."); *1/ */
-	/* fontlib_DrawString(buffer); */
+    strcpy(questions[3].myQuestion, "provide a computer or other machine with coded instructions for the automatic performance of a particular task");
+    strcpy(answers[3].myAnswer, "program");
 
-	const char *chars = "\0\0\0\0\0\0\0\0\0\0\"WRMH\0\0?[VQLG\0\0:ZUPKFC\0 YTOJEB\0\0XSNIDA\0\0\0\0\0\0\0\0";
-	const char *lower_chars = "\0\0\0\0\0\0\0\0\0\0\"wrmh\0\0?[vqlg\0\0:zupkfc\0 ytojeb\0\0xsnida\0\0\0\0\0\0\0\0";
-	uint8_t key, i = 0;
-	char buffer[30];
+    strcpy(questions[4].myQuestion, "the programs and other operating information used by a computer.");
+    strcpy(answers[4].myAnswer, "software");
 
+    strcpy(questions[5].myQuestion, "identify the most relevant information needed to solve the problem and eliminate or hide the extraneous details");
+    strcpy(answers[5].myAnswer, "abstraction");
+
+    strcpy(questions[6].myQuestion, "to repeat");
+    strcpy(answers[6].myAnswer, "iterate");
+
+    strcpy(questions[7].myQuestion, "a diagram that shows step-by-step progression through a procedure using connecting lines and a set of symbols");
+    strcpy(answers[7].myAnswer, "flowchart");
+
+    strcpy(questions[8].myQuestion, "a high-level description of the actions of a program or algorithm, using a mixture of English and informal programming language syntax");
+    strcpy(answers[8].myAnswer, "pseudocode");
 
 	int curr_question = 0;
-	int num_questions = 20;
+	char buffer[30];
 
-	/* gfx_SetTextFGColor(0xff); */
+	for (; curr_question < 9; curr_question++) {
+		/* Clear the screen */
+		gfx_FillScreen(0xff);
 
-	gfx_SetTextXY(GFX_LCD_WIDTH/2, 10);
-	gfx_PrintInt(curr_question, 1);
-	gfx_PrintChar('/');
-	gfx_PrintInt(num_questions, 1);
+		gfx_SetColor(0x8c);
+		gfx_FillRectangle(0, 20, 320, 4);
+		gfx_SetColor(0x1A);
+		gfx_FillRectangle(10, GFX_LCD_HEIGHT - 30, GFX_LCD_WIDTH-20, 4);
 
-	gfx_SetTextFGColor(0x8c);
-	gfx_PrintStringXY("TYPE THE TERM", 5, GFX_LCD_HEIGHT-10);
+		gfx_SetTextXY(GFX_LCD_WIDTH/2, 10);
+		gfx_PrintInt(curr_question, 1);
+		gfx_PrintChar('/');
+		gfx_PrintInt(num_questions - 1, 1);
 
-	gfx_SetTextFGColor(0x0);
-	gfx_SetTextXY(5, GFX_LCD_HEIGHT/2);
-	char* term = "blue";
-	gfx_PrintString(term);
+		gfx_SetTextFGColor(0x8c);
+		gfx_PrintStringXY("TYPE THE TERM", 10, GFX_LCD_HEIGHT-20);
 
-	gfx_SetTextXY(5, GFX_LCD_HEIGHT-30);
-	gfx_SwapDraw();
+		gfx_SetTextFGColor(0x0);
+		gfx_SetTextXY(10, GFX_LCD_HEIGHT/2);
 
-	int frame_ctr = 0;
-	int prev_cursor_x = -1, prev_cursor_y = -1;
+		fontlib_SetCursorPosition(10, 30);
+		fontlib_DrawString(questions[curr_question].myQuestion);
 
-	key = os_GetCSC();
-	while(key != sk_Enter && i < sizeof buffer) {
-		gfx_BlitScreen();
-		// Remove previous cursor
-		if (prev_cursor_x != -1 && prev_cursor_y != -1) {
-			gfx_SetColor(0xff);
-			gfx_Line(prev_cursor_x + 1, prev_cursor_y, prev_cursor_x + 1, prev_cursor_y+8);
-		}
-		if(chars[key]) {
-			buffer[i++] = lower_chars[key];
-			gfx_PrintChar(lower_chars[key]);
-		}
-		blink_cursor_frame(&frame_ctr, &prev_cursor_x, &prev_cursor_y);
-
+		gfx_SetTextXY(10, GFX_LCD_HEIGHT-40);
+		/* fontlib_SetCursorPosition(10, GFX_LCD_HEIGHT-40); */
 		gfx_SwapDraw();
 
+		int frame_ctr = 0;
+		int prev_cursor_x = -1, prev_cursor_y = -1;
+
+		uint8_t key, i = 0;
+
 		key = os_GetCSC();
+		while(key != sk_Enter && i < sizeof buffer) {
+			gfx_BlitScreen();
+			// Remove previous cursor
+			if (prev_cursor_x != -1 && prev_cursor_y != -1) {
+				gfx_SetColor(0xff);
+				gfx_Line(prev_cursor_x + 1, prev_cursor_y, prev_cursor_x + 1, prev_cursor_y+8);
+			}
+			if (chars[key]) {
+				buffer[i++] = lower_chars[key];
+				gfx_PrintChar(lower_chars[key]);
+			}
+			blink_cursor_frame(&frame_ctr, &prev_cursor_x, &prev_cursor_y);
+
+			gfx_SwapDraw();
+
+			key = os_GetCSC();
+		}
 	}
 
     while (!os_GetCSC());

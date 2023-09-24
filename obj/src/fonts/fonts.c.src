@@ -1,554 +1,454 @@
 	section	.text,"ax",@progbits
 	assume	adl = 1
-	section	.text,"ax",@progbits
-	public	_main
-_main:
-	ld	hl, -2333
-	call	__frameset
-	call	_gfx_Begin
-	ld	hl, 1
-	push	hl
-	call	_gfx_SetDraw
-	pop	hl
-	ld	hl, (_test_font)
-	ld	de, 0
-	push	de
-	push	hl
-	call	_fontlib_SetFont
-	pop	hl
-	pop	hl
-	ld	hl, 2
-	push	hl
-	push	hl
-	call	_fontlib_SetLineSpacing
-	pop	hl
-	pop	hl
-	ld	hl, -66
-	push	hl
-	ld	hl, 280
-	push	hl
-	ld	hl, 30
-	push	hl
-	ld	hl, 10
-	push	hl
-	call	_fontlib_SetWindow
-	pop	hl
-	pop	hl
-	pop	hl
-	pop	hl
-	scf
-	sbc	hl, hl
-	push	hl
-	inc	hl
-	push	hl
-	call	_fontlib_SetColors
-	pop	hl
-	pop	hl
-	ld	hl, 1
-	push	hl
-	call	_fontlib_SetTransparency
-	pop	hl
-	ld	hl, 7
-	push	hl
-	call	_fontlib_SetNewlineOptions
-	pop	hl
-	ld	bc, -2319
-	lea	iy, ix
-	add	iy, bc
-	lea	de, iy
-	ld	hl, _.str.2
-	ld	bc, 33
-	ldir
-	ld	de, 256
-	lea	hl, iy
-	add	hl, de
-	ex	de, hl
-	ld	hl, _.str.4
-	ld	bc, 47
-	ldir
-	ld	de, 512
-	lea	hl, iy
-	add	hl, de
-	ex	de, hl
-	ld	hl, _.str.6
-	ld	bc, 30
-	ldir
-	ld	de, 768
-	lea	hl, iy
-	add	hl, de
-	ex	de, hl
-	ld	hl, _.str.8
-	ld	bc, 111
-	ldir
-	ld	de, 1024
-	lea	hl, iy
-	add	hl, de
-	ex	de, hl
-	ld	hl, _.str.10
-	ld	bc, 65
-	ldir
-	ld	de, 1280
-	lea	hl, iy
-	add	hl, de
-	ex	de, hl
-	ld	hl, _.str.12
-	ld	bc, 112
-	ldir
-	ld	de, 1536
-	lea	hl, iy
-	add	hl, de
-	ex	de, hl
-	ld	hl, _.str.14
-	ld	bc, 10
-	ldir
-	ld	de, 1792
-	lea	hl, iy
-	add	hl, de
-	ex	de, hl
-	ld	hl, _.str.16
-	ld	bc, 110
-	ldir
-	ld	de, 2048
-	ld	bc, -2325
-	lea	hl, ix
-	add	hl, bc
-	ld	(hl), iy
-	add	iy, de
-	lea	de, iy
-	ld	hl, _.str.18
-	ld	bc, 135
-	ldir
-	ld	de, 9
-	ld	bc, 0
-BB0_1:
-	push	bc
-	pop	hl
-	or	a, a
-	sbc	hl, de
-	jp	z, BB0_12
-	scf
-	sbc	hl, hl
-	push	hl
-	ld	de, -2322
-	lea	hl, ix
-	add	hl, de
-	ld	(hl), bc
-	call	_gfx_FillScreen
-	pop	hl
-	ld	hl, -116
-	push	hl
-	call	_gfx_SetColor
-	pop	hl
-	ld	hl, 4
-	push	hl
-	ld	hl, 320
-	push	hl
-	ld	hl, 20
-	push	hl
-	or	a, a
-	sbc	hl, hl
-	push	hl
-	call	_gfx_FillRectangle
-	pop	hl
-	pop	hl
-	pop	hl
-	pop	hl
-	ld	hl, 26
-	push	hl
-	call	_gfx_SetColor
-	pop	hl
-	ld	hl, 4
-	push	hl
-	ld	hl, 300
-	push	hl
-	ld	hl, 210
-	push	hl
-	ld	hl, 10
-	push	hl
-	call	_gfx_FillRectangle
-	pop	hl
-	pop	hl
-	pop	hl
-	pop	hl
-	ld	hl, 10
-	push	hl
-	ld	hl, 160
-	push	hl
-	call	_gfx_SetTextXY
-	pop	hl
-	pop	hl
-	ld	hl, 1
-	push	hl
-	ld	bc, -2322
-	lea	hl, ix
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	call	_gfx_PrintInt
-	pop	hl
-	pop	hl
-	ld	hl, 47
-	push	hl
-	call	_gfx_PrintChar
-	pop	hl
-	ld	hl, 1
-	push	hl
-	ld	hl, 8
-	push	hl
-	call	_gfx_PrintInt
-	pop	hl
-	pop	hl
-	ld	hl, -116
-	push	hl
-	call	_gfx_SetTextFGColor
-	pop	hl
-	ld	hl, 220
-	push	hl
-	ld	hl, 10
-	push	hl
-	ld	hl, _.str.20
-	push	hl
-	call	_gfx_PrintStringXY
-	pop	hl
-	pop	hl
-	pop	hl
-	or	a, a
-	sbc	hl, hl
-	push	hl
-	call	_gfx_SetTextFGColor
-	pop	hl
-	ld	hl, 120
-	push	hl
-	ld	hl, 10
-	push	hl
-	call	_gfx_SetTextXY
-	pop	hl
-	pop	hl
-	ld	hl, 30
-	push	hl
-	ld	hl, 10
-	push	hl
-	call	_fontlib_SetCursorPosition
-	pop	hl
-	pop	hl
-	ld	de, -2322
-	lea	hl, ix
-	add	hl, de
-	ld	hl, (hl)
-	ld	c, 8
-	call	__ishl
-	push	hl
-	pop	de
-	ld	(ix - 3), bc
-	ld	bc, -2325
-	lea	iy, ix
-	add	iy, bc
-	ld	hl, (iy)
-	add	hl, de
-	push	hl
-	ld	bc, (ix - 3)
-	call	_fontlib_DrawString
-	pop	hl
-	ld	hl, 200
-	push	hl
-	ld	hl, 10
-	push	hl
-	call	_gfx_SetTextXY
-	pop	hl
-	pop	hl
-	call	_gfx_SwapDraw
-	or	a, a
-	sbc	hl, hl
-	ld	(ix - 9), hl
-	dec	hl
-	ld	(ix - 12), hl
-	ld	(ix - 15), hl
-	xor	a, a
-	ld	bc, -2326
-	lea	hl, ix
-	add	hl, bc
-	ld	(hl), a
-BB0_3:
-	call	_os_GetCSC
-	ld	l, a
-	cp	a, 9
-	jp	z, BB0_11
-	ld	bc, -2326
-	lea	iy, ix
-	add	iy, bc
-	ld	a, (iy)
-	cp	a, 30
-	jp	nc, BB0_11
-	ld	bc, -2327
-	lea	iy, ix
-	add	iy, bc
-	ld	(iy), l
-	or	a, a
-	sbc	hl, hl
-	push	hl
-	call	_gfx_Blit
-	pop	hl
-	ld	bc, (ix - 12)
-	push	bc
-	pop	hl
-	ld	de, -1
-	or	a, a
-	sbc	hl, de
-	jr	z, BB0_8
-	ld	iy, (ix - 15)
-	lea	hl, iy
-	ld	de, -1
-	or	a, a
-	sbc	hl, de
-	jr	z, BB0_8
-	scf
-	sbc	hl, hl
-	push	hl
-	ld	de, -2333
-	lea	hl, ix
-	add	hl, de
-	ld	(hl), bc
-	push	ix
-	ld	bc, -2330
-	add	ix, bc
-	ld	(ix), iy
-	pop	ix
-	call	_gfx_SetColor
-	pop	hl
-	ld	de, -2333
-	lea	hl, ix
-	add	hl, de
-	ld	bc, (hl)
-	inc	bc
-	ld	de, -2330
-	lea	iy, ix
-	add	iy, de
-	ld	iy, (iy)
-	lea	hl, iy
-	ld	de, 8
-	add	hl, de
-	push	hl
-	push	bc
-	push	iy
-	push	bc
-	call	_gfx_Line
-	pop	hl
-	pop	hl
-	pop	hl
-	pop	hl
-BB0_8:
-	ld	de, 0
-	ld	bc, -2327
-	lea	hl, ix
-	add	hl, bc
-	ld	e, (hl)
-	ld	hl, _.str
-	add	hl, de
-	ld	a, (hl)
-	or	a, a
-	jr	z, BB0_10
-	ld	hl, _.str.1
-	add	hl, de
-	ld	bc, -2326
-	lea	iy, ix
-	add	iy, bc
-	ld	a, (iy)
-	inc	a
-	push	ix
-	add	ix, bc
-	ld	(ix), a
-	pop	ix
-	ld	l, (hl)
-	push	hl
-	call	_gfx_PrintChar
-	pop	hl
-BB0_10:
-	pea	ix - 15
-	pea	ix - 12
-	pea	ix - 9
-	call	_blink_cursor_frame
-	pop	hl
-	pop	hl
-	pop	hl
-	call	_gfx_SwapDraw
-	jp	BB0_3
-BB0_11:
-	ld	de, -2322
-	lea	hl, ix
-	add	hl, de
-	ld	bc, (hl)
-	inc	bc
-	ld	de, 9
-	jp	BB0_1
-BB0_12:
-	call	_os_GetCSC
-	or	a, a
-	jr	z, BB0_12
-	call	_gfx_End
-	or	a, a
-	sbc	hl, hl
-	ld	sp, ix
-	pop	ix
-	ret
-	section	.text,"ax",@progbits
-
-	section	.text,"ax",@progbits
-	public	_blink_cursor_frame
-_blink_cursor_frame:
-	ld	hl, -9
-	call	__frameset
-	ld	hl, (ix + 6)
-	ld	bc, 30
-	ld	hl, (hl)
-	call	__irems
-	add	hl, bc
-	or	a, a
-	sbc	hl, bc
-	jr	z, BB1_2
-	ld	hl, 1
-	push	hl
-	call	_gfx_SetColor
-	pop	hl
-	call	_gfx_GetTextX
-	inc	hl
-	ld	(ix - 3), hl
-	call	_gfx_GetTextY
-	ld	(ix - 6), hl
-	call	_gfx_GetTextX
-	inc	hl
-	ld	(ix - 9), hl
-	call	_gfx_GetTextY
-	ld	de, 8
-	add	hl, de
-	push	hl
-	ld	hl, (ix - 9)
-	push	hl
-	ld	hl, (ix - 6)
-	push	hl
-	ld	hl, (ix - 3)
-	push	hl
-	call	_gfx_Line
-	pop	hl
-	pop	hl
-	pop	hl
-	pop	hl
-BB1_2:
-	call	_gfx_GetTextX
-	ld	iy, (ix + 9)
-	ld	(iy), hl
-	call	_gfx_GetTextY
-	ld	iy, (ix + 12)
-	ld	(iy), hl
-	ld	hl, (ix + 6)
-	push	hl
-	pop	iy
-	ld	hl, (iy)
-	inc	hl
-	ld	(iy), hl
-	ld	sp, ix
-	pop	ix
-	ret
-	section	.text,"ax",@progbits
-
+	file	0 "/home/jshin/QuizWiz" "src/fonts/fonts.c" md5 0xa9246eb32ab8ab1931b5e22c2914a26e
+	file	1 "/home/jshin" "CEdev/include/stdint.h" md5 0x6e1e418db59a513b9b4298147e26150f
+	file	2 "/home/jshin" "CEdev/include/fontlibc.h" md5 0x20863c50b26fb9732d340c6a13c4e64d
 	section	.rodata,"a",@progbits
 	private	_test_font_data
 _test_font_data:
 	db	0, "", 0, 0, "", 0, 0, "", 0, 0, "¿", 0, "																									", 10, "													", 10, "", 10, "																										-IeÅùπ’Ò", 13, ")Ea}ôµ—Ì	%A]yï∞æÃ€ˆ .<JYtÇêû¨∫»÷‰Ú", 0, "*8FTbp~åö®∂ƒ“‡Ó˝&4BP^mâ§≤¿Œ›˘	0	?	Z	h	w	ì	Æ	Ω	Ÿ	ı	", 10, ",", 10, ":", 10, "H", 10, "V", 10, "d", 10, "r", 10, "Ä", 10, "é", 10, "ú", 10, "™", 10, "∏", 10, "∆", 10, "‘", 10, "‚", 10, "", 10, "˛", 10, "", 26, ")DR`n|äò¶¥√ﬁÏ˙$2A\jxÜî¢∞æÃ€ˆ", 13, "", 13, ".", 13, "=", 13, "Y", 13, "t", 13, "Ç", 13, "ê", 13, "û", 13, "¨", 13, "∫", 13, "»", 13, "◊", 13, "Ú", 13, 0, "+FTc~åö©≈·˝&4BP^lzàñ§≤¿Œ‹Î""0>MiÖ†Æº ÿÊÙ,:HVdrÄéùπ’Ò", 13, ")E`oãß√ﬂ˚$2@N\jxá¢∞æÃ⁄Ëˆ .<JXftÇë¨∫»÷‰Ú", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "™", 0, "U", 0, "™", 0, "U", 0, "™", 0, "U", 0, "™", 0, "U", 0, "™", 0, "U", 0, "™", 0, "U", 0, "™", 0, 0, 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ˇ", 0, "ˇ", 0, "ˇ", 0, 0, 0, "ˇ", 0, "ˇ", 0, "ˇ", 0, "ˇ", 0, "ˇ", 0, "ˇ", 0, "ˇ", 0, "ˇ", 0, "ˇ", 0, "ˇ", 0, "ˇ", 0, "ˇ", 0, "ˇ", 0, 0, 0, "ˇ", 0, "ˇ", 0, "Á", 0, "√", 0, "Å", 0, "Á", 0, "Á", 0, "Á", 0, "Á", 0, "Á", 0, "Á", 0, "ˇ", 0, "ˇ", 0, 0, 0, "ˇ", 0, "ˇ", 0, "Á", 0, "√", 0, "ô", 0, "ô", 0, "Å", 0, "ô", 0, "ô", 0, "ô", 0, "ô", 0, "ˇ", 0, "ˇ", 0, 0, 0, "ˇ", 0, "ˇ", 0, "ˇ", 0, "ˇ", 0, "√", 0, "˘", 0, "¡", 0, "ô", 0, "ô", 0, "ô", 0, "¡", 0, "ˇ", 0, "ˇ", 0, 0, 0, "ˇ", 0, "√", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "√", 0, "ˇ", 0, 0, 0, "ˇ", 0, "√", 0, "", 0, "<", 0, "~", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "√", 0, "ˇ", 0, 0, 0, "ˇ", 0, "√", 0, "", 0, "<", 0, "f", 0, "f", 0, "~", 0, "f", 0, "f", 0, "f", 0, 0, 0, "√", 0, "ˇ", 0, 0, 0, "ˇ", 0, "√", 0, 0, 0, 0, 0, "<", 0, "", 0, ">", 0, "f", 0, "f", 0, ">", 0, 0, 0, "√", 0, "ˇ", 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, ">", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, ">", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "", 0, "", 0, "?", 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "`", 0, "p", 0, "x", 0, "|", 0, "~", 0, "|", 0, "x", 0, "p", 0, "`", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "<", 0, "~", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "~", 0, "<", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "0", 0, "", 0, "0", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "$", 0, "f", 0, "ˇ", 0, "f", 0, "$", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, """", 0, "A", 0, "A", 0, "A", 0, """", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, ">", 0, "", 0, "", 0, "", 0, ">", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "ÿ", 0, "ÿ", 0, "p", 0, 0, "˛~˛", 0, 0, 0, 0, 0, "∆∆∆˛lll88", 0, 0, 0, 0, 0, 0, 0, "00", 0, 0, "ÃÃ", 0, 0, 0, 0, 0, 0, "¿", 0, "¿", 0, "ÄÄÄ", 0, "", 0, "„", 0, "„", 0, "6", 0, "6", 0, "", 0, "", 0, 0, 0, 0, 0, 0, "p¿p", 0, "¸", 0, 0, 0, 0, 0, 0, 0, "`¥`¥", 0, 0, 0, 0, 0, 0, 0, 0, "‡88‡", 0, "¸", 0, 0, 0, 0, 0, 0, "¸00¸``", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¿¿¿¿¿¿", 0, "¿¿", 0, 0, 0, 0, "ÿÿÿP", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "Ä", 0, "6", 0, "6", 0, "6", 0, "ˇ", 0, "l", 0, "l", 0, 0, 0, 0, 0, 0, "|÷“–|ñ÷|00", 0, 0, 0, "ÃÃ0``ÃÃ", 0, 0, 0, 0, 0, "8ll8v‹ÃÃv", 0, 0, 0, 0, "```¿", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "0``¿¿¿¿``0", 0, 0, 0, 0, "¿``0000``¿", 0, 0, 0, " ®¯p¯® ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "00¸00", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "```¿", 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¿¿", 0, 0, 0, 0, 0, "0``¿¿", 0, 0, 0, 0, 0, "xÃÃ‹¸ÏÃÃx", 0, 0, 0, 0, 0, "0p00000¸", 0, 0, 0, 0, 0, "xÃ0`¿Ã¸", 0, 0, 0, 0, 0, "xÃ8Ãx", 0, 0, 0, 0, 0, "8xÿÿ¸", 0, 0, 0, 0, 0, "¸¿¿¿¯Ãx", 0, 0, 0, 0, 0, "8`¿¿¯ÃÃÃx", 0, 0, 0, 0, 0, "¸000", 0, 0, 0, 0, 0, "xÃÃÃxÃÃÃx", 0, 0, 0, 0, 0, "xÃÃÃ|p", 0, 0, 0, 0, 0, 0, "¿¿", 0, 0, 0, "¿¿", 0, 0, 0, 0, 0, 0, 0, 0, "``", 0, 0, "``¿", 0, 0, 0, 0, 0, 0, 0, 0, "p¿p", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "‡88‡", 0, 0, 0, 0, 0, 0, "|∆∆", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, "~", 0, "√", 0, "√", 0, "œ", 0, "€", 0, "€", 0, "Œ", 0, "¿", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, "88lll˛∆∆∆", 0, 0, 0, 0, 0, "¸∆∆∆¸∆∆∆¸", 0, 0, 0, 0, 0, "<f¬¿¿¿¬f<", 0, 0, 0, 0, 0, "¯Ã∆∆∆∆∆Ã¯", 0, 0, 0, 0, 0, "˛¿¿¿¸¿¿¿˛", 0, 0, 0, 0, 0, "˛¿¿¿¸¿¿¿¿", 0, 0, 0, 0, 0, 0, 0, 0, ">", 0, "c", 0, "¿", 0, "¿", 0, "œ", 0, "√", 0, "√", 0, "c", 0, "=", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "√", 0, "√", 0, "√", 0, "√", 0, "ˇ", 0, "√", 0, "√", 0, "√", 0, "√", 0, 0, 0, 0, 0, 0, 0, 0, "¸0000000¸", 0, 0, 0, 0, 0, "ÃÃx", 0, 0, 0, 0, 0, "∆∆ÃÃ¯ÃÃ∆∆", 0, 0, 0, 0, 0, "¿¿¿¿¿¿¿¿˛", 0, 0, 0, 0, 0, 0, 0, "¿¿¿·¿·¿Û¿“¿ﬁ¿Ã¿Ã¿¿", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "√", 0, "√", 0, "„", 0, "Û", 0, "€", 0, "œ", 0, "«", 0, "√", 0, "√", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<", 0, "f", 0, "√", 0, "√", 0, "√", 0, "√", 0, "√", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, 0, "¸∆∆∆¸¿¿¿¿", 0, 0, 0, 0, 0, 0, 0, 0, "<", 0, "f", 0, "√", 0, "√", 0, "√", 0, "”", 0, "€", 0, "n", 0, "<", 0, "", 0, "", 0, 0, 0, 0, "¸∆∆∆¸Ã∆∆∆", 0, 0, 0, 0, 0, "|∆∆`8∆∆|", 0, 0, 0, 0, 0, 0, 0, 0, "ˇ", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "√", 0, "√", 0, "√", 0, "√", 0, "√", 0, "√", 0, "√", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, 0, "∆∆∆∆lll88", 0, 0, 0, 0, 0, 0, 0, "¿¿¿¿¿ÃÄmÄmÄm", 0, "?", 0, "3", 0, "3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "√", 0, "√", 0, "f", 0, "<", 0, "", 0, "<", 0, "f", 0, "√", 0, "√", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "√", 0, "√", 0, "f", 0, "f", 0, "<", 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ˇ", 0, "", 0, "", 0, "", 0, "", 0, "0", 0, "`", 0, "¿", 0, "ˇ", 0, 0, 0, 0, 0, 0, 0, 0, "¿¿¿¿¿¿¿¿", 0, 0, 0, 0, "¿¿``0", 0, 0, 0, 0, 0, "00000000", 0, 0, "8l∆", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "˛", 0, "¿¿`", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "x|ÃÃ|", 0, 0, 0, 0, 0, "¿¿¿ÿÃÃÃ¯", 0, 0, 0, 0, 0, 0, 0, 0, "xÃ¿¿Ãx", 0, 0, 0, 0, 0, "<lÃÃÃ|", 0, 0, 0, 0, 0, 0, 0, 0, "xÃ¸¿Ãx", 0, 0, 0, 0, 0, "8l``````", 0, 0, 0, 0, 0, 0, 0, 0, "l‹ÃÃÃ|Ãx", 0, 0, "¿¿¿ÿÏÃÃÃÃ", 0, 0, 0, 0, 0, "¿¿", 0, "¿¿¿¿¿¿", 0, 0, 0, 0, 0, "", 0, "8ÿÿp", 0, 0, 0, "¿¿¿ÃÿÿÃÃ", 0, 0, 0, 0, 0, "¿¿¿¿¿¿¿¿¿", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Ê", 0, "ˇ", 0, "€", 0, "€", 0, "€", 0, "€", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ÿÏÃÃÃÃ", 0, 0, 0, 0, 0, 0, 0, 0, "xÃÃÃÃx", 0, 0, 0, 0, 0, 0, 0, 0, "ÿÏÃÃÃ¯¿¿¿", 0, 0, 0, 0, 0, "l‹ÃÃÃ|", 0, 0, 0, 0, 0, "ÿÏÃ¿¿¿", 0, 0, 0, 0, 0, 0, 0, 0, "xÃ`Ãx", 0, 0, 0, 0, 0, "```````0", 0, 0, 0, 0, 0, 0, 0, 0, "ÃÃÃÃ‹l", 0, 0, 0, 0, 0, 0, 0, 0, "∆∆ll8", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "√", 0, "√", 0, "€", 0, "€", 0, "ˇ", 0, "f", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "∆l88l∆", 0, 0, 0, 0, 0, 0, 0, 0, "ÃÃÃÃÃ|p", 0, 0, 0, 0, 0, "¯0`¿¯", 0, 0, 0, 0, "8````¿````8", 0, 0, 0, 0, "¿¿¿¿¿¿¿¿¿¿", 0, 0, 0, "‡00000000‡", 0, 0, 0, 0, 0, 0, 0, "v‹", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "wÄÕÄŸ", 0, "w", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "2`¯`¯`2", 0, 0, 0, 0, 0, 0, 0, "˛llllll", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "‡``¿", 0, 0, 0, 0, 0, 0, "xƒp¿Ãx", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸llÿ", 0, 0, 0, 0, 0, 0, "vÃÃÃÃv", 0, 0, 0, 0, "00¸00000", 0, 0, 0, 0, 0, 0, "00¸00¸00", 0, 0, 0, 0, 0, 0, 0, "˛¿¿¿¿¿¿¿¿", 0, 0, 0, 0, 0, 0, 0, 0, "Ã", 0, "Ã", 0, "", 0, "", 0, "0", 0, "`", 0, "`ÄÕÄÕ", 0, 0, 0, 0, 0, 0, "l8|∆∆p∆∆|", 0, 0, 0, 0, 0, 0, 0, "0`¿`0", 0, 0, 0, 0, 0, 0, 0, 0, 0, "‡?", 0, "f", 0, "∆", 0, "∆¿«", 0, "∆", 0, "∆", 0, "f‡?", 0, 0, 0, 0, 0, 0, 0, 0, "˛¿`00`¿˛", 0, 0, 0, 0, "6", 0, "", 0, "", 0, "ˇ", 0, "", 0, "", 0, "", 0, "", 0, "0", 0, "`", 0, "ˇ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Œ", 0, "€", 0, "€", 0, "€", 0, "€", 0, "~", 0, "", 0, "", 0, "", 0, 0, "˛∆∆∆∆∆∆∆∆", 0, 0, 0, 0, "`¿¿‡", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "‡``¿", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "lÿÿ¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸llÿ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "``", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¯", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ˇ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "∆∆ll88000", 0, 0, "¯`¿¿x¿¿¿x8", 0, "Ãx0", 0, "xÃ`Ãx", 0, 0, 0, 0, 0, 0, 0, "¿`0`¿", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Ä¿Ã¿œ", 0, "Ã¿ÃÄ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ÃÃÃÃx", 0, 0, 0, 0, "ÿp ", 0, "¯0`¿¯", 0, 0, 0, 0, "f", 0, "f", 0, 0, 0, "√", 0, "√", 0, "f", 0, "f", 0, "<", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¿¿", 0, "¿¿¿¿¿¿", 0, 0, 0, 0, 0, "|÷––÷|00", 0, 0, 0, 0, "<", 0, "f", 0, "b", 0, "`", 0, "", 0, "`", 0, "`", 0, "`", 0, "Û", 0, "ﬁ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "√", 0, "~", 0, "$", 0, "$", 0, "~", 0, "√", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<", 0, "f", 0, "√", 0, "√", 0, "√", 0, "√", 0, "f", 0, "f", 0, "Á", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "f", 0, "√", 0, "€", 0, "€", 0, "ˇ", 0, "f", 0, 0, 0, 0, 0, 0, 0, "|∆`8l∆∆l8∆|", 0, 0, 0, "88lll∆∆∆∆", 0, 0, 0, 0, 0, 0, 0, 0, "ÿÏÃÃÃÃ", 0, "x|Ã|", 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "6lÿl6", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "88lll∆∆∆˛", 0, 0, 0, 0, 0, "¸`0xÃÃÃÃx", 0, 0, 0, 0, "xÃÃÃx", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "00¸00", 0, "¸", 0, 0, 0, 0, "‡0`¿", 0, 0, 0, 0, 0, 0, 0, 0, 0, "‡0‡0‡", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "|∆∆∆˛∆∆∆|", 0, 0, 0, 0, 0, 0, 0, 0, "ÃÃÃÃÃ˙¿¿¿", 0, 0, 0, 0, 0, "", 0, "€", 0, "€", 0, "€", 0, "{", 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¿¿", 0, 0, 0, 0, 0, 0, 0, 0, "pp<ll∆∆", 0, 0, 0, 0, "`‡``", 0, 0, 0, 0, 0, 0, 0, 0, 0, "xÃÃÃx", 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ÿl6lÿ", 0, 0, 0, 0, 0, 0, 0, 0, "`", 0, "‡", 0, "c", 0, "f", 0, "l", 0, "", 0, "0", 0, "{", 0, "€", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, "`", 0, "‡", 0, "c", 0, "f", 0, "l", 0, "", 0, "0", 0, "n", 0, "√", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, "‡", 0, "0", 0, "c", 0, "6", 0, "Ï", 0, "", 0, "0", 0, "{", 0, "€", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, "00", 0, "00`∆∆|", 0, 0, "0", 0, "88ll∆˛∆∆", 0, 0, 0, "0", 0, "88ll∆˛∆∆", 0, 0, 0, "8l∆88ll∆˛∆∆", 0, 0, 0, "v‹", 0, "88ll∆˛∆∆", 0, 0, 0, "ll", 0, "88ll∆˛∆∆", 0, 0, 0, "8l88ll∆˛∆∆", 0, 0, 0, 0, 0, 0, 0, "‡", 0, "6", 0, "6", 0, "f¿g", 0, "~", 0, "∆", 0, "∆‡«", 0, 0, 0, 0, 0, 0, 0, 0, "<f¬¿¿¿¬f<8`0", 0, "˛¿¿¸¿¿˛", 0, 0, 0, "0`", 0, "˛¿¿¸¿¿˛", 0, 0, 0, "0xÃ", 0, "˛¿¿¸¿¿˛", 0, 0, 0, "∆∆", 0, "˛¿¿¸¿¿¿˛", 0, 0, 0, "`0", 0, "¸00000¸", 0, 0, 0, "0`", 0, "¸00000¸", 0, 0, 0, "0xÃ", 0, "¸00000¸", 0, 0, 0, 0, "ÃÃ", 0, "¸00000¸", 0, 0, 0, 0, 0, 0, 0, 0, "|", 0, "f", 0, "c", 0, "c", 0, "Û", 0, "c", 0, "c", 0, "f", 0, "|", 0, 0, 0, 0, 0, 0, 0, "s", 0, "Œ", 0, 0, 0, "√", 0, "„", 0, "Û", 0, "€", 0, "œ", 0, "«", 0, "√", 0, "√", 0, 0, 0, 0, 0, 0, 0, "0", 0, "", 0, 0, 0, "<", 0, "f", 0, "√", 0, "√", 0, "√", 0, "√", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, 0, 0, "<", 0, "f", 0, "√", 0, "√", 0, "√", 0, "√", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "", 0, "<", 0, "f", 0, "<", 0, "f", 0, "√", 0, "√", 0, "√", 0, "√", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "s", 0, "Œ", 0, 0, 0, "<", 0, "f", 0, "√", 0, "√", 0, "√", 0, "√", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "f", 0, "f", 0, 0, 0, "<", 0, "f", 0, "√", 0, "√", 0, "√", 0, "√", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "∆l8l∆", 0, 0, 0, 0, 0, 0, 0, 0, 0, "Ä", 0, "Ä=", 0, "c", 0, "g", 0, "o", 0, "{", 0, "s", 0, "c", 0, "ﬁ", 0, "Ä", 0, 0, 0, 0, 0, "0", 0, "", 0, "À", 0, "√", 0, "√", 0, "√", 0, "√", 0, "√", 0, "√", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "”", 0, "√", 0, "√", 0, "√", 0, "√", 0, "√", 0, "√", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "", 0, "<", 0, "f", 0, 0, 0, "√", 0, "√", 0, "√", 0, "√", 0, "√", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "√", 0, "√", 0, 0, 0, "√", 0, "√", 0, "√", 0, "√", 0, "√", 0, "√", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "”", 0, "√", 0, "f", 0, "f", 0, "<", 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, "¿¸∆∆∆∆∆¸¿", 0, 0, 0, 0, 0, "xÃ∆∆‹Ã∆Ê‹¿", 0, 0, 0, "`0", 0, "x|ÃÃ|", 0, 0, 0, 0, "0`", 0, "x|ÃÃ|", 0, 0, 0, 0, "0xÃ", 0, "x|ÃÃ|", 0, 0, 0, 0, 0, "v‹", 0, "x|ÃÃ|", 0, 0, 0, 0, 0, "ÃÃ", 0, "x|ÃÃ|", 0, 0, 0, 0, "8l8", 0, "x|ÃÃ|", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Ä¿¿", 0, "Ã¿ÃÄ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "xÃ¿¿Ãxx", 0, "`0", 0, "xÃ¸¿Ãx", 0, 0, 0, 0, "0`", 0, "xÃ¸¿Ãx", 0, 0, 0, 0, "0xÃ", 0, "xÃ¸¿Ãx", 0, 0, 0, 0, 0, "ÃÃ", 0, "xÃ¸¿Ãx", 0, 0, 0, 0, "Ä¿`", 0, "¿¿¿¿¿¿", 0, 0, 0, 0, " `¿", 0, "¿¿¿¿¿¿", 0, 0, 0, 0, "`ê", 0, "``````", 0, 0, 0, 0, 0, "ÃÃ", 0, "000000", 0, 0, 0, 0, "–`∞xÃÃÃÃx", 0, 0, 0, 0, 0, "v‹", 0, "ÿÏÃÃÃÃ", 0, 0, 0, 0, "`0", 0, "xÃÃÃÃx", 0, 0, 0, 0, "0`", 0, "xÃÃÃÃx", 0, 0, 0, 0, "0xÃ", 0, "xÃÃÃÃx", 0, 0, 0, 0, 0, "v‹", 0, "xÃÃÃÃx", 0, 0, 0, 0, 0, "ÃÃ", 0, "xÃÃÃÃx", 0, 0, 0, 0, 0, 0, "00", 0, "¸", 0, "00", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Ä", 0, ";", 0, "g", 0, "o", 0, "{", 0, "s", 0, "n", 0, "¿", 0, 0, 0, 0, 0, "`0", 0, "ÃÃÃÃ‹l", 0, 0, 0, 0, "0`", 0, "ÃÃÃÃ‹l", 0, 0, 0, 0, "0xÃ", 0, "ÃÃÃÃ‹l", 0, 0, 0, 0, 0, "ÃÃ", 0, "ÃÃÃÃ‹l", 0, 0, 0, 0, "0`", 0, "ÃÃÃÃÃ|p", 0, 0, "¿¿¯ÃÃÃ¯¿¿", 0, 0, 0, 0, 0, "ÃÃ", 0, "ÃÃÃÃÃ|p"
-
-	section	.rodata,"a",@progbits
-	private	_.str
-_.str:
-	db	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, """WRMH", 0, 0, "?[VQLG", 0, 0, ":ZUPKFC", 0, " YTOJEB", 0, 0, "XSNIDA", 0, 0, 0, 0, 0, 0, 0, 0, 0
-
-	section	.rodata,"a",@progbits
-	private	_.str.1
-_.str.1:
-	db	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, """wrmh", 0, 0, "?[vqlg", 0, 0, ":zupkfc", 0, " ytojeb", 0, 0, "xsnida", 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 	section	.data,"aw",@progbits
 	public	_test_font
 _test_font:
 	dl	_test_font_data
 
-	section	.rodata,"a",@progbits
-	private	_.str.2
-_.str.2:
-	db	"A string in C is an array of ___", 0
+	section	.debug_abbrev,"",@progbits
+	private	abbrev_start0
+abbrev_start0:
+	db	1
+	db	17
+	db	1
+	db	37
+	db	37
+	db	19
+	db	5
+	db	3
+	db	37
+	db	114
+	db	23
+	db	16
+	db	23
+	db	27
+	db	37
+	db	115
+	db	23
+	db	0
+	db	0
+	db	2
+	db	52
+	db	0
+	db	3
+	db	37
+	db	73
+	db	19
+	db	63
+	db	25
+	db	58
+	db	11
+	db	59
+	db	11
+	db	2
+	db	24
+	db	0
+	db	0
+	db	3
+	db	15
+	db	0
+	db	73
+	db	19
+	db	0
+	db	0
+	db	4
+	db	38
+	db	0
+	db	73
+	db	19
+	db	0
+	db	0
+	db	5
+	db	22
+	db	0
+	db	73
+	db	19
+	db	3
+	db	37
+	db	58
+	db	11
+	db	59
+	db	11
+	db	0
+	db	0
+	db	6
+	db	19
+	db	1
+	db	3
+	db	37
+	db	11
+	db	11
+	db	58
+	db	11
+	db	59
+	db	11
+	db	0
+	db	0
+	db	7
+	db	13
+	db	0
+	db	3
+	db	37
+	db	73
+	db	19
+	db	58
+	db	11
+	db	59
+	db	11
+	db	56
+	db	11
+	db	0
+	db	0
+	db	8
+	db	36
+	db	0
+	db	3
+	db	37
+	db	62
+	db	11
+	db	11
+	db	11
+	db	0
+	db	0
+	db	9
+	db	52
+	db	0
+	db	3
+	db	37
+	db	73
+	db	19
+	db	58
+	db	11
+	db	59
+	db	11
+	db	2
+	db	24
+	db	0
+	db	0
+	db	10
+	db	1
+	db	1
+	db	73
+	db	19
+	db	0
+	db	0
+	db	11
+	db	33
+	db	0
+	db	73
+	db	19
+	db	55
+	db	5
+	db	0
+	db	0
+	db	12
+	db	36
+	db	0
+	db	3
+	db	37
+	db	11
+	db	11
+	db	62
+	db	11
+	db	0
+	db	0
+	db	0
+	section	.debug_info,"",@progbits
+	private	cu_begin0
+cu_begin0:
+	dd	debug_info_end0-debug_info_start0
+	private	debug_info_start0
+debug_info_start0:
+	dw	5
+	db	1
+	db	3
+	dd	abbrev_start0
+	db	1
+	db	0
+	dw	12
+	db	1
+	dd	str_offsets_base0
+	dd	line_table_start0
+	db	2
+	dd	addr_table_base0
+	db	2
+	db	3
+	dd	41
 
-	section	.rodata,"a",@progbits
-	private	_.str.4
-_.str.4:
-	db	"a step-by-step procedure for solving a problem", 0
-
-	section	.rodata,"a",@progbits
-	private	_.str.6
-_.str.6:
-	db	"finding and correcting errors", 0
-
-	section	.rodata,"a",@progbits
-	private	_.str.8
-_.str.8:
-	db	"provide a computer or other machine with coded instructions for the automatic performance of a particular task", 0
-
-	section	.rodata,"a",@progbits
-	private	_.str.10
-_.str.10:
-	db	"the programs and other operating information used by a computer.", 0
-
-	section	.rodata,"a",@progbits
-	private	_.str.12
-_.str.12:
-	db	"identify the most relevant information needed to solve the problem and eliminate or hide the extraneous details", 0
-
-	section	.rodata,"a",@progbits
-	private	_.str.14
-_.str.14:
-	db	"to repeat", 0
-
-	section	.rodata,"a",@progbits
-	private	_.str.16
-_.str.16:
-	db	"a diagram that shows step-by-step progression through a procedure using connecting lines and a set of symbols", 0
-
-	section	.rodata,"a",@progbits
-	private	_.str.18
-_.str.18:
-	db	"a high-level description of the actions of a program or algorithm, using a mixture of English and informal programming language syntax", 0
-
-	section	.rodata,"a",@progbits
-	private	_.str.20
-_.str.20:
-	db	"TYPE THE TERM", 0
-
+	db	0
+	db	12
+	db	2
+	db	161
+	db	0
+	db	3
+	dd	46
+	db	4
+	dd	51
+	db	5
+	dd	59
+	db	22
+	db	2
+	db	235
+	db	6
+	db	22
+	db	18
+	db	2
+	db	172
+	db	7
+	db	4
+	dd	191
+	db	2
+	db	177
+	db	0
+	db	7
+	db	7
+	dd	191
+	db	2
+	db	181
+	db	1
+	db	7
+	db	8
+	dd	191
+	db	2
+	db	186
+	db	2
+	db	7
+	db	9
+	dd	191
+	db	2
+	db	191
+	db	3
+	db	7
+	db	10
+	dd	203
+	db	2
+	db	197
+	db	4
+	db	7
+	db	13
+	dd	203
+	db	2
+	db	203
+	db	7
+	db	7
+	db	14
+	dd	191
+	db	2
+	db	209
+	db	10
+	db	7
+	db	15
+	dd	191
+	db	2
+	db	216
+	db	11
+	db	7
+	db	16
+	dd	191
+	db	2
+	db	217
+	db	12
+	db	7
+	db	17
+	dd	191
+	db	2
+	db	222
+	db	13
+	db	7
+	db	18
+	dd	191
+	db	2
+	db	227
+	db	14
+	db	7
+	db	19
+	dd	191
+	db	2
+	db	232
+	db	15
+	db	7
+	db	20
+	dd	191
+	db	2
+	db	233
+	db	16
+	db	7
+	db	21
+	dd	191
+	db	2
+	db	234
+	db	17
+	db	0
+	db	5
+	dd	199
+	db	6
+	db	1
+	db	11
+	db	8
+	db	5
+	db	8
+	db	1
+	db	5
+	dd	211
+	db	12
+	db	1
+	db	55
+	db	8
+	db	11
+	db	5
+	db	3
+	db	9
+	db	23
+	dd	226
+	db	0
+	db	4
+	db	2
+	db	161
+	db	1
+	db	10
+	dd	239
+	db	11
+	dd	244
+	dw	5392
+	db	0
+	db	4
+	dd	199
+	db	12
+	db	24
+	db	8
+	db	7
+	db	0
+	private	debug_info_end0
+debug_info_end0:
+	section	.debug_str_offsets,"",@progbits
+	dd	104
+	dw	5
+	dw	0
+	private	str_offsets_base0
+str_offsets_base0:
+	section	.debug_str,"MS",@progbits,1
+	private	info_string0
+info_string0:
+	db	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 5f8512f22751066573aa48ac848a6d2195838ac3)", 0
+	private	info_string1
+info_string1:
+	db	"src/fonts/fonts.c", 0
+	private	info_string2
+info_string2:
+	db	"/home/jshin/QuizWiz", 0
+	private	info_string3
+info_string3:
+	db	"test_font", 0
+	private	info_string4
+info_string4:
+	db	"fontVersion", 0
+	private	info_string5
+info_string5:
+	db	"unsigned char", 0
+	private	info_string6
+info_string6:
+	db	"uint8_t", 0
+	private	info_string7
+info_string7:
+	db	"height", 0
+	private	info_string8
+info_string8:
+	db	"total_glyphs", 0
+	private	info_string9
+info_string9:
+	db	"first_glyph", 0
+	private	info_string10
+info_string10:
+	db	"widths_table", 0
+	private	info_string11
+info_string11:
+	db	"int", 0
+	private	info_string12
+info_string12:
+	db	"int24_t", 0
+	private	info_string13
+info_string13:
+	db	"bitmaps", 0
+	private	info_string14
+info_string14:
+	db	"italic_space_adjust", 0
+	private	info_string15
+info_string15:
+	db	"space_above", 0
+	private	info_string16
+info_string16:
+	db	"space_below", 0
+	private	info_string17
+info_string17:
+	db	"weight", 0
+	private	info_string18
+info_string18:
+	db	"style", 0
+	private	info_string19
+info_string19:
+	db	"cap_height", 0
+	private	info_string20
+info_string20:
+	db	"x_height", 0
+	private	info_string21
+info_string21:
+	db	"baseline_height", 0
+	private	info_string22
+info_string22:
+	db	"fontlib_font_t", 0
+	private	info_string23
+info_string23:
+	db	"test_font_data", 0
+	private	info_string24
+info_string24:
+	db	"__ARRAY_SIZE_TYPE__", 0
+	section	.debug_str_offsets,"",@progbits
+	dd	info_string0
+	dd	info_string1
+	dd	info_string2
+	dd	info_string3
+	dd	info_string4
+	dd	info_string5
+	dd	info_string6
+	dd	info_string7
+	dd	info_string8
+	dd	info_string9
+	dd	info_string10
+	dd	info_string11
+	dd	info_string12
+	dd	info_string13
+	dd	info_string14
+	dd	info_string15
+	dd	info_string16
+	dd	info_string17
+	dd	info_string18
+	dd	info_string19
+	dd	info_string20
+	dd	info_string21
+	dd	info_string22
+	dd	info_string23
+	dd	info_string24
+	section	.debug_addr,"",@progbits
+	dd	debug_addr_end0-debug_addr_start0
+	private	debug_addr_start0
+debug_addr_start0:
+	dw	5
+	db	3
+	db	0
+	private	addr_table_base0
+addr_table_base0:
+	dl	_test_font
+	dl	_test_font_data
+	private	debug_addr_end0
+debug_addr_end0:
 	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 5f8512f22751066573aa48ac848a6d2195838ac3)"
-	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 5f8512f22751066573aa48ac848a6d2195838ac3)"
-	extern	__Unwind_SjLj_Register
-	extern	_gfx_PrintChar
-	extern	_fontlib_SetTransparency
-	extern	__frameset
-	extern	_gfx_SetTextFGColor
-	extern	_gfx_Begin
-	extern	_gfx_Line
-	extern	_fontlib_DrawString
-	extern	_fontlib_SetNewlineOptions
-	extern	_fontlib_SetColors
-	extern	_fontlib_SetFont
-	extern	_gfx_SwapDraw
-	extern	__ishl
-	extern	_fontlib_SetWindow
-	extern	_gfx_PrintInt
-	extern	_gfx_SetDraw
-	extern	_gfx_GetTextX
-	extern	_gfx_GetTextY
-	extern	_gfx_FillScreen
-	extern	__Unwind_SjLj_Unregister
-	extern	_gfx_Blit
-	extern	__irems
-	extern	_gfx_FillRectangle
-	extern	_fontlib_SetLineSpacing
-	extern	_gfx_SetColor
-	extern	_fontlib_SetCursorPosition
-	extern	_gfx_PrintStringXY
-	extern	_os_GetCSC
-	extern	_gfx_End
-	extern	_gfx_SetTextXY
+	section	.debug_line,"",@progbits
+line_table_start0:
