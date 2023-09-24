@@ -12,7 +12,7 @@
 /* Function Prototypes */
 struct question 
 {
-    char myQuestion[100];
+    char myQuestion[150];
 };
 struct answer 
 {
@@ -38,7 +38,7 @@ int main(void)
 
     /* First, we'll display centered text in a window */
     /* Add some vertical padding around our text */
-    fontlib_SetWindow(25, 40, 240, 200);
+    fontlib_SetWindow(42, 40, 240, 200);
     fontlib_SetLineSpacing(2, 2);
     /* Set some random (and ugly) colors */
     fontlib_SetColors(0x2, 0xFF);
@@ -117,12 +117,12 @@ int main(void)
 
 		if(displayQuestion)
 		{
-            gfx_Sprite_NoClip(FlashCardSprite, 35, 40);
+            gfx_Sprite_NoClip(FlashCardSprite, 35, 55);
 			PrintCentered(questions[count].myQuestion);
 		}
 		else
 		{
-            gfx_Sprite_NoClip(FlashCardSprite, 35, 40);
+            gfx_Sprite_NoClip(FlashCardSprite, 35, 55);
 			PrintCentered(answers[count].myAnswer);
 		}
 		gfx_SwapDraw();

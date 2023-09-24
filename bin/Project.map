@@ -7,9 +7,9 @@ Section          Base   Top    High   Length
 .init.reruncheck D1AA65 D1AA65             0h
 .init            D1AA65 D1AA85            20h
 .fini            D1AA85 D1AAB9            34h
-.text            D1AAB9 D1B028           56Fh
-.data            D1B028 D248AA          9882h
-.rodata          D248AA D260FB          1851h
+.text            D1AAB9 D1B03C           583h
+.data            D1B03C D248BE          9882h
+.rodata          D248BE D2610F          1851h
 .init_array      000000 000000             0h
 .ctors           000000 000000             0h
 .dtors           000000 000000             0h
@@ -39,10 +39,10 @@ __setflag                   = 000218
 __ultof                     = 000280
 _os_DisableHomeTextBuffer   = D1AB38
 _os_EnableHomeTextBuffer    = D1AB4A
-.missingappvar              = D248AA
-.libloadname                = D248AF
+.missingappvar              = D248BE
+.libloadname                = D248C3
 .libloadnamelen             = 000007
-.webaddress                 = D248B7
+.webaddress                 = D248CB
 __start                     = D1AA65
 ___exithl                   = D1AA85
 skip._exit                  = D1AA85
@@ -52,29 +52,29 @@ _exit.sp                    = D1AA86
 _exit.flash_wait_states     = D1AA90
 _ClearKeyboardBuffer        = D1AB5C
 _main                       = D1AB6A
-_PrintCentered              = D1AFEC
-_test_font_data             = D248CC
-_test_font                  = D1B028
-_global_palette             = D1B02B
-_.str                       = D25DDC
-_.str.1                     = D25DFD
-_.str.2                     = D25E07
-_.str.3                     = D25E36
-_.str.4                     = D25E40
-_.str.5                     = D25E5E
-_.str.6                     = D25E64
-_.str.8                     = D25ED3
-_.str.9                     = D25F14
-_.str.10                    = D25F1D
-_.str.11                    = D25F8D
-_.str.12                    = D25F99
-_.str.14                    = D25FA3
-_.str.15                    = D26011
-_.str.16                    = D2601B
-_.str.17                    = D260A2
-_.str.18                    = D260AD
-_.str.19                    = D260C1
-_FlashCardSprite_data       = D1B041
+_PrintCentered              = D1B000
+_test_font_data             = D248E0
+_test_font                  = D1B03C
+_global_palette             = D1B03F
+_.str                       = D25DF0
+_.str.1                     = D25E11
+_.str.2                     = D25E1B
+_.str.3                     = D25E4A
+_.str.4                     = D25E54
+_.str.5                     = D25E72
+_.str.6                     = D25E78
+_.str.8                     = D25EE7
+_.str.9                     = D25F28
+_.str.10                    = D25F31
+_.str.11                    = D25FA1
+_.str.12                    = D25FAD
+_.str.14                    = D25FB7
+_.str.15                    = D26025
+_.str.16                    = D2602F
+_.str.17                    = D260B6
+_.str.18                    = D260C1
+_.str.19                    = D260D5
+_FlashCardSprite_data       = D1B055
 lib.LibLoad                 = D1A9F5
 _#fontlib_SetWindow         = D1AA0A
 _#fontlib_SetCursorPosition = D1AA0E
