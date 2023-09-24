@@ -1,61 +1,318 @@
-Section          Base   Top    High   Length
----------------- ------ ------ ------ -------
-.icon            D1A882 D1A99D           11Bh
-.init.libs       D1A99D D1A9F5            58h
-.libs            D1A9F5 D1AA0D            18h
-.init.clock      D1AA0D D1AA0D             0h
-.init.reruncheck D1AA0D D1AA0D             0h
-.init            D1AA0D D1AA2D            20h
-.fini            D1AA2D D1AA61            34h
-.text            D1AA61 D1ACD0           26Fh
-.data            D1ACD0 D1ACD0             0h
-.rodata          D1ACD0 D1AD53            83h
-.init_array      000000 000000             0h
-.ctors           000000 000000             0h
-.dtors           000000 000000             0h
-.fini_array      000000 000000             0h
-.bss             D052C6 D052C6 D13FD8      0h
-.header          D1A87F D1A882             3h
+Section                Base   Top    High   Length
+---------------------- ------ ------ ------ -------
+.comment               000000 002AA8          2AA8h
+.debug_abbrev          000000 00023B           23Bh
+.debug_addr            000000 00006D            6Dh
+.debug_aranges         000000 000000             0h
+.debug_frame           000000 00005C            5Ch
+.debug_info            000000 0004AA           4AAh
+.debug_line            000000 000210           210h
+.debug_line_str        000000 000000             0h
+.debug_loc             000000 000000             0h
+.debug_loclists        000000 000098            98h
+.debug_macinfo         000000 000000             0h
+.debug_macro           000000 000000             0h
+.debug_names           000000 000000             0h
+.debug_pubnames        000000 000000             0h
+.debug_pubtypes        000000 000000             0h
+.debug_ranges          000000 000000             0h
+.debug_rnglists        000000 000000             0h
+.debug_str             000000 00055A           55Ah
+.debug_str_offsets     000000 000174           174h
+.debug_sup             000000 000000             0h
+.debug_types           000000 000000             0h
+.debug_abbrev.dwo      000000 000000             0h
+.debug_info.dwo        000000 000000             0h
+.debug_line.dwo        000000 000000             0h
+.debug_loclists.dwo    000000 000000             0h
+.debug_macro.dwo       000000 000000             0h
+.debug_rnglists.dwo    000000 000000             0h
+.debug_str.dwo         000000 000000             0h
+.debug_str_offsets.dwo 000000 000000             0h
+.debug_cu_index        000000 000000             0h
+.debug_tu_index        000000 000000             0h
+.icon                  D1A882 D1A99D           11Bh
+.init.libs             D1A99D D1A9F5            58h
+.libs                  D1A9F5 D1AA61            6Ch
+.init.clock            D1AA61 D1AA61             0h
+.init.reruncheck       D1AA61 D1AA61             0h
+.init                  D1AA61 D1AA81            20h
+.fini                  D1AA81 D1AAB5            34h
+.text                  D1AAB5 D1CB90          20DBh
+.data                  D1CB90 D1CB93             3h
+.rodata                D1CB93 D1E261          16CEh
+.init_array            000000 000000             0h
+.ctors                 000000 000000             0h
+.dtors                 000000 000000             0h
+.fini_array            000000 000000             0h
+.bss                   D052C6 D052C6 D13FD8      0h
+.header                D1A87F D1A882             3h
 
-Label                       Value
--------------------------   ------
-___low_bss                = D052C6
-___len_bss                = 000000
-___heaptop                = D13FD8
-___heapbot                = D052C6
-___libs                   = D1A9F5
-___init_array_count       = 000000
-___ctors_count            = 000000
-___dtors_count            = 000000
-___fini_array_count       = 000000
-__stack                   = D1A87E
-__frameset                = D1AA61
-__imulu                   = D1AA6F
-_os_DisableHomeTextBuffer = D1AA9F
-_os_EnableHomeTextBuffer  = D1AAB1
-_os_NewLine               = 0207F0
-_os_ClrLCD                = 02080C
-_os_HomeUp                = 020828
-_os_DrawStatusBar         = 021A3C
-_os_PutStrFull            = 021D2C
-.missingappvar            = D1ACD0
-.libloadname              = D1ACD5
-.libloadnamelen           = 000007
-.webaddress               = D1ACDD
-__start                   = D1AA0D
-___exithl                 = D1AA2D
-skip._exit                = D1AA2D
-skip.__Exit               = D1AA2D
-skip._abort               = D1AA2D
-_exit.sp                  = D1AA2E
-_exit.flash_wait_states   = D1AA38
-_main                     = D1AAC3
-_.str                     = D1ACF2
-_.str.1                   = D1AD05
-_.str.2                   = D1AD0E
-_.str.4                   = D1AD21
-_.str.5                   = D1AD26
-_.str.6                   = D1AD33
-_.str.7                   = D1AD44
-lib.LibLoad               = D1A9F5
-_#kb_Scan                 = D1AA09
+Label                         Value
+---------------------------   ------
+___low_bss                  = D052C6
+___len_bss                  = 000000
+___heaptop                  = D13FD8
+___heapbot                  = D052C6
+___libs                     = D1A9F5
+___init_array_count         = 000000
+___ctors_count              = 000000
+___dtors_count              = 000000
+___fini_array_count         = 000000
+__stack                     = D1A87E
+__frameset                  = D1AAB5
+__frameset0                 = D1AAC3
+__iand                      = D1AACE
+__imulu                     = D1AAE7
+__indcallhl                 = D1AB17
+__ineg                      = D1AB18
+__ior                       = D1AB21
+__ishl                      = D1AB3A
+__ishru                     = D1AB60
+__ixor                      = D1ABA1
+__ladd                      = D1ABBA
+__land                      = D1ABC0
+__lcmpu                     = D1ABDB
+__lcmpzero                  = D1ABE3
+__lladd                     = D1ABEB
+__lland                     = D1AC0F
+__llcmpu                    = D1AC4C
+__llcmpzero                 = D1AC76
+__llctlz                    = D1AC8B
+__lldivs                    = D1ACA3
+__lldivu                    = D1ACF3
+__lldvrmu                   = D1AD07
+__lldvrmu.hijack            = D1AD0E
+__llmulu                    = D1AD65
+__llneg                     = D1ADBA
+__llshl                     = D1ADD3
+__llshrs.hijack_llshru      = D1AE01
+__llshrs.finish             = D1AE20
+__llshru                    = D1AE24
+__llsub                     = D1AE3E
+__lshrs.hijack_lshru        = D1AE6C
+__lshru                     = D1AE7B
+__fcmp                      = 000274
+__ftol                      = 00027C
+__ftoul                     = 00027C
+__ltof                      = 000284
+__setflag                   = 000218
+__ultof                     = 000280
+_os_DisableHomeTextBuffer   = D1AE8B
+_os_EnableHomeTextBuffer    = D1AE9D
+_npf_vpprintf               = D1AEAF
+JTI0_0                      = D1CB93
+JTI0_1                      = D1CBB1
+JTI0_2                      = D1CBF6
+JTI0_3                      = D1CC17
+JTI0_4                      = D1CC2F
+JTI0_5                      = D1CC47
+_npf_utoa_rev               = D1C619
+__printf_c                  = D1C6E1
+__vsnprintf_c               = D1C700
+_npf_bufputc                = D1C786
+_npf_bufputc_nop            = D1C7AB
+__snprintf_c                = D1C7B2
+__vsprintf_c                = D1C7DA
+__vprintf_c                 = D1C7F9
+_npf_putc_std               = D1C819
+__sprintf_c                 = D1C829
+_.str                       = D1CC5F
+_.str.1                     = D1CC63
+_.str.2                     = D1CC67
+_outchar                    = D1C852
+_sprintf                    = D1C829
+_vprintf                    = D1C7F9
+_vsnprintf                  = D1C700
+.missingappvar              = D1CC6B
+.libloadname                = D1CC70
+.libloadnamelen             = 000007
+.webaddress                 = D1CC78
+__start                     = D1AA61
+___exithl                   = D1AA81
+skip._exit                  = D1AA81
+skip.__Exit                 = D1AA81
+skip._abort                 = D1AA81
+_exit.sp                    = D1AA82
+_exit.flash_wait_states     = D1AA8C
+_test_font_data             = D1CC8D
+_test_font                  = D1CB90
+abbrev_start0               = 000000
+debug_info_start0           = 000004
+debug_info_end0             = 0000F9
+str_offsets_base0           = 000008
+info_string0                = 000000
+info_string1                = 000069
+info_string2                = 00007B
+info_string3                = 00008F
+info_string4                = 000099
+info_string5                = 0000A5
+info_string6                = 0000B3
+info_string7                = 0000BB
+info_string8                = 0000C2
+info_string9                = 0000CF
+info_string10               = 0000DB
+info_string11               = 0000E8
+info_string12               = 0000EC
+info_string13               = 0000F4
+info_string14               = 0000FC
+info_string15               = 000110
+info_string16               = 00011C
+info_string17               = 000128
+info_string18               = 00012F
+info_string19               = 000135
+info_string20               = 000140
+info_string21               = 000149
+info_string22               = 000159
+info_string23               = 000168
+info_string24               = 000177
+debug_addr_start0           = 000004
+addr_table_base0            = 000008
+debug_addr_end0             = 00000E
+_ClearKeyboardBuffer        = D1C868
+func_begin0                 = D1C868
+tmp0                        = D1C86C
+tmp2                        = D1C873
+func_end0                   = D1C876
+_main                       = D1C876
+func_begin1                 = D1C876
+tmp6                        = D1C8A9
+tmp9                        = D1C8C2
+tmp10                       = D1C8D1
+tmp11                       = D1C8EB
+tmp12                       = D1C8F9
+tmp13                       = D1C905
+tmp14                       = D1C910
+tmp15                       = D1C91A
+tmp16                       = D1C91B
+tmp17                       = D1C9F4
+tmp18                       = D1C9F8
+tmp20                       = D1CA0A
+tmp21                       = D1CA14
+tmp24                       = D1CA29
+tmp25                       = D1CA2A
+tmp26                       = D1CA34
+tmp27                       = D1CA38
+tmp29                       = D1CA48
+tmp30                       = D1CA50
+tmp32                       = D1CA7E
+tmp35                       = D1CAA3
+tmp37                       = D1CAA8
+tmp39                       = D1CABE
+tmp45                       = D1CB0A
+tmp50                       = D1CB2E
+tmp51                       = D1CB32
+tmp52                       = D1CB36
+func_end1                   = D1CB3E
+_PrintCentered              = D1CB3E
+func_begin2                 = D1CB3E
+tmp55                       = D1CB4C
+tmp56                       = D1CB50
+tmp57                       = D1CB57
+tmp59                       = D1CB80
+tmp60                       = D1CB85
+tmp61                       = D1CB90
+func_end2                   = D1CB90
+_.str                       = D1E19D
+_.str.1                     = D1E1B0
+_.str.2                     = D1E1B9
+_.str.4                     = D1E1CC
+_.str.5                     = D1E1FF
+_.str.6                     = D1E208
+_.str.7                     = D1E23A
+_.str.8                     = D1E24B
+debug_list_header_start0    = 000004
+loclists_table_base0        = 00000C
+debug_loc0                  = 000018
+debug_loc1                  = 000042
+debug_loc2                  = 000088
+debug_list_header_end0      = 000098
+abbrev_start0               = 000091
+debug_info_start0           = 0000FD
+debug_info_end0             = 0004AA
+str_offsets_base0           = 000074
+info_string0                = 00018B
+info_string1                = 0001F4
+info_string2                = 0001FF
+info_string3                = 000213
+info_string4                = 000218
+info_string5                = 00022C
+info_string6                = 000239
+info_string7                = 000244
+info_string8                = 00024F
+info_string9                = 00026B
+info_string10               = 000284
+info_string11               = 00029E
+info_string12               = 0002B7
+info_string13               = 0002CB
+info_string14               = 0002D9
+info_string15               = 0002E1
+info_string16               = 0002F0
+info_string17               = 0002F9
+info_string18               = 000303
+info_string19               = 00030B
+info_string20               = 000317
+info_string21               = 000327
+info_string22               = 00032D
+info_string23               = 000339
+info_string24               = 000340
+info_string25               = 00034D
+info_string26               = 000359
+info_string27               = 000366
+info_string28               = 00036A
+info_string29               = 000372
+info_string30               = 00037A
+info_string31               = 00038E
+info_string32               = 00039A
+info_string33               = 0003A6
+info_string34               = 0003AD
+info_string35               = 0003B3
+info_string36               = 0003BE
+info_string37               = 0003C7
+info_string38               = 0003D7
+info_string39               = 0003E6
+info_string40               = 0003FD
+info_string41               = 00040F
+info_string42               = 000426
+info_string43               = 000438
+info_string44               = 000450
+info_string45               = 00046A
+info_string46               = 000479
+info_string47               = 000486
+info_string48               = 00048E
+info_string49               = 0004A4
+info_string50               = 0004BA
+info_string51               = 0004D4
+info_string52               = 0004E8
+info_string53               = 0004ED
+info_string54               = 0004FB
+info_string55               = 000505
+info_string56               = 000510
+info_string57               = 000519
+info_string58               = 000521
+info_string59               = 00052A
+info_string60               = 000531
+info_string61               = 00053D
+info_string62               = 00054D
+info_string63               = 000553
+debug_addr_start0           = 000012
+addr_table_base0            = 000016
+debug_addr_end0             = 00006D
+lib.LibLoad                 = D1A9F5
+_#fontlib_SetWindow         = D1AA0A
+_#fontlib_GetWindowXMin     = D1AA0E
+_#fontlib_GetWindowYMin     = D1AA12
+_#fontlib_SetCursorPosition = D1AA16
+_#fontlib_SetFont           = D1AA1A
+_#fontlib_SetColors         = D1AA1E
+_#fontlib_SetTransparency   = D1AA22
+_#fontlib_SetLineSpacing    = D1AA26
+_#fontlib_DrawString        = D1AA2A
+_#fontlib_SetNewlineOptions = D1AA2E
+_#gfx_Begin                 = D1AA3B
+_#gfx_End                   = D1AA3F
+_#gfx_FillScreen            = D1AA43
+_#gfx_SetDraw               = D1AA47
+_#gfx_SwapDraw              = D1AA4B
+_#kb_Scan                   = D1AA59
+_#kb_AnyKey                 = D1AA5D
