@@ -1,0 +1,1834 @@
+	section	.text,"ax",@progbits
+	assume	adl = 1
+	section	.text,"ax",@progbits
+	public	_main
+_main:
+	ld	hl, -47
+	call	__frameset
+	ld	hl, ___const.main.str
+	ld	bc, 18
+	lea	de, ix - 18
+	lea	iy, ix - 33
+	ld	(ix - 44), de
+	ldir
+	ld	(ix - 47), iy
+	lea	de, iy
+	ld	hl, ___const.main.opt1
+	ld	bc, 15
+	ldir
+	ld	hl, 2108976
+	ld	(ix - 41), hl
+	ld	hl, 6912101
+	ld	(ix - 38), hl
+	ld.sis	hl, 116
+	ld	(ix - 35), l
+	ld	(ix - 34), h
+	call	_gfx_Begin
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	ld	hl, 512
+	push	hl
+	ld	hl, _global_palette
+	push	hl
+	call	_gfx_SetPalette
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, _QuizWiz_back_compressed
+	push	hl
+	ld	hl, -2883584
+	push	hl
+	call	_zx7_Decompress
+	pop	hl
+	pop	hl
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	call	_gfx_SetTransparentColor
+	pop	hl
+	ld	hl, 90
+	push	hl
+	ld	hl, 80
+	push	hl
+	ld	hl, _QuizWizTxt_data
+	push	hl
+	call	_gfx_Sprite_NoClip
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, 90
+	push	hl
+	ld	hl, 80
+	push	hl
+	ld	hl, _QuizWizTxt_data
+	push	hl
+	call	_gfx_TransparentSprite_NoClip
+	pop	hl
+	pop	hl
+	pop	hl
+BB0_1:
+	call	_os_GetCSC
+	or	a, a
+	jr	z, BB0_1
+BB0_2:
+	ld	hl, -56
+	push	hl
+	call	_gfx_FillScreen
+BB0_3:
+	pop	hl
+	ld	hl, -56
+BB0_4:
+	push	hl
+	call	_gfx_FillScreen
+	pop	hl
+	ld	hl, (ix - 47)
+	push	hl
+	call	_PrintMenuopt1
+	pop	hl
+	ld	hl, (ix - 44)
+	push	hl
+	call	_PrintedCentered
+	pop	hl
+	pea	ix - 41
+	call	_PrintMenuOpt3
+	pop	hl
+BB0_5:
+	call	_os_GetCSC
+	or	a, a
+	jr	z, BB0_5
+	call	_kb_Scan
+	ld	iy, -720874
+	ld	l, (iy)
+	ld	h, (iy + 1)
+	ld	a, l
+	cp	a, 2
+	jr	z, BB0_10
+	ld	l, (iy)
+	ld	h, (iy + 1)
+	ld	a, l
+	cp	a, 1
+	jr	z, BB0_11
+	ld	hl, -720872
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld	a, l
+	cp	a, 2
+	ld	hl, -56
+	jr	nz, BB0_4
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	ld	hl, 512
+	push	hl
+	ld	hl, -1900032
+	push	hl
+	call	_gfx_SetPalette
+	pop	hl
+	pop	hl
+	pop	hl
+	call	_Trivia
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	call	_gfx_SetDraw
+	pop	hl
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	ld	hl, 512
+	push	hl
+	ld	hl, _global_palette
+	push	hl
+	call	_gfx_SetPalette
+	pop	hl
+	pop	hl
+	jp	BB0_3
+BB0_10:
+	ld	hl, -56
+	push	hl
+	call	_gfx_FillScreen
+	pop	hl
+	call	_FlashCards
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	call	_gfx_SetDraw
+	pop	hl
+	jp	BB0_2
+BB0_11:
+	call	_gfx_End
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	call	_exit
+	pop	hl
+	section	.text,"ax",@progbits
+
+	section	.text,"ax",@progbits
+	public	_PrintMenuopt1
+_PrintMenuopt1:
+	call	__frameset0
+	ld	hl, (ix + 6)
+	push	hl
+	call	_gfx_GetStringWidth
+	push	hl
+	pop	de
+	pop	hl
+	ld	hl, 320
+	or	a, a
+	sbc	hl, de
+	ld	c, 1
+	call	__ishru
+	ld	de, 90
+	push	de
+	push	hl
+	ld	hl, (ix + 6)
+	push	hl
+	call	_gfx_PrintStringXY
+	ld	sp, ix
+	pop	ix
+	ret
+	section	.text,"ax",@progbits
+
+	section	.text,"ax",@progbits
+	public	_PrintedCentered
+_PrintedCentered:
+	call	__frameset0
+	ld	hl, (ix + 6)
+	push	hl
+	call	_gfx_GetStringWidth
+	push	hl
+	pop	de
+	pop	hl
+	ld	hl, 320
+	or	a, a
+	sbc	hl, de
+	ld	c, 1
+	call	__ishru
+	ld	de, 116
+	push	de
+	push	hl
+	ld	hl, (ix + 6)
+	push	hl
+	call	_gfx_PrintStringXY
+	ld	sp, ix
+	pop	ix
+	ret
+	section	.text,"ax",@progbits
+
+	section	.text,"ax",@progbits
+	public	_PrintMenuOpt3
+_PrintMenuOpt3:
+	call	__frameset0
+	ld	hl, (ix + 6)
+	push	hl
+	call	_gfx_GetStringWidth
+	push	hl
+	pop	de
+	pop	hl
+	ld	hl, 320
+	or	a, a
+	sbc	hl, de
+	ld	c, 1
+	call	__ishru
+	ld	de, 140
+	push	de
+	push	hl
+	ld	hl, (ix + 6)
+	push	hl
+	call	_gfx_PrintStringXY
+	ld	sp, ix
+	pop	ix
+	ret
+	section	.text,"ax",@progbits
+
+	section	.text,"ax",@progbits
+	public	_ClearKeyboardBuffer
+_ClearKeyboardBuffer:
+BB4_1:
+	call	_kb_AnyKey
+	or	a, a
+	jr	z, BB4_3
+	call	_kb_Scan
+	jr	BB4_1
+BB4_3:
+	ret
+	section	.text,"ax",@progbits
+
+	section	.text,"ax",@progbits
+	public	_FlashCards
+_FlashCards:
+	ld	hl, -2518
+	call	__frameset
+	ld	bc, -1906
+	lea	hl, ix
+	add	hl, bc
+	ld	bc, -2515
+	lea	iy, ix
+	add	iy, bc
+	ld	(iy), hl
+	ld	bc, -2206
+	lea	hl, ix
+	add	hl, bc
+	push	ix
+	ld	bc, -2518
+	add	ix, bc
+	ld	(ix), hl
+	pop	ix
+	ld	bc, -1506
+	lea	hl, ix
+	add	hl, bc
+	push	ix
+	ld	bc, -2509
+	add	ix, bc
+	ld	(ix), hl
+	pop	ix
+	ld	bc, -2506
+	lea	hl, ix
+	add	hl, bc
+	push	ix
+	ld	bc, -2512
+	add	ix, bc
+	ld	(ix), hl
+	pop	ix
+	ld	hl, 1
+	push	hl
+	call	_gfx_SetDraw
+	pop	hl
+	ld	hl, (_test_font)
+	ld	de, 0
+	push	de
+	push	hl
+	call	_fontlib_SetFont
+	pop	hl
+	pop	hl
+	ld	hl, -56
+	push	hl
+	ld	hl, 240
+	push	hl
+	ld	hl, 40
+	push	hl
+	ld	hl, 42
+	push	hl
+	call	_fontlib_SetWindow
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, 2
+	push	hl
+	push	hl
+	call	_fontlib_SetLineSpacing
+	pop	hl
+	pop	hl
+	scf
+	sbc	hl, hl
+	push	hl
+	ld	hl, 2
+	push	hl
+	call	_fontlib_SetColors
+	pop	hl
+	pop	hl
+	ld	hl, 1
+	push	hl
+	call	_fontlib_SetTransparency
+	pop	hl
+	ld	hl, 7
+	push	hl
+	call	_fontlib_SetNewlineOptions
+	pop	hl
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	ld	hl, 512
+	push	hl
+	ld	hl, _global_palette
+	push	hl
+	call	_gfx_SetPalette
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	bc, -2509
+	lea	hl, ix
+	add	hl, bc
+	ld	de, (hl)
+	ld	hl, _.str.2.9
+	ld	bc, 33
+	ldir
+	ld	bc, -2512
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	lea	de, iy
+	ld	hl, _.str.1
+	ld	bc, 10
+	ldir
+	ld	de, 150
+	ld	bc, -2509
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.4.11
+	ld	bc, 47
+	ldir
+	lea	de, iy + 100
+	ld	hl, _.str.3
+	ld	bc, 10
+	ldir
+	ld	de, 300
+	ld	bc, -2509
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.6.13
+	ld	bc, 30
+	ldir
+	ld	de, 200
+	ld	bc, -2512
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	add	iy, de
+	lea	de, iy
+	ld	hl, _.str.5
+	ld	bc, 6
+	ldir
+	ld	de, 450
+	ld	bc, -2509
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.8.14
+	ld	bc, 111
+	ldir
+	ld	bc, -2518
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	ld	hl, 7303792
+	ld	(iy), hl
+	ld	hl, 6386279
+	ld	(iy + 3), hl
+	ld.sis	hl, 109
+	ld	(iy + 6), l
+	ld	(iy + 7), h
+	ld	de, 600
+	ld	bc, -2509
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.10.15
+	ld	bc, 65
+	ldir
+	ld	de, 400
+	ld	bc, -2512
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	add	iy, de
+	lea	de, iy
+	ld	hl, _.str.11.16
+	ld	bc, 9
+	ldir
+	ld	de, 750
+	ld	bc, -2509
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.12.17
+	ld	bc, 112
+	ldir
+	ld	de, 500
+	ld	bc, -2512
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	add	iy, de
+	lea	de, iy
+	ld	hl, _.str.13
+	ld	bc, 12
+	ldir
+	ld	de, 900
+	ld	bc, -2509
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.14.18
+	ld	bc, 10
+	ldir
+	ld	bc, -2515
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	ld	hl, 6648937
+	ld	(iy), hl
+	ld	hl, 7627122
+	ld	(iy + 3), hl
+	ld.sis	hl, 101
+	ld	(iy + 6), l
+	ld	(iy + 7), h
+	ld	de, 1050
+	ld	bc, -2509
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.16.19
+	ld	bc, 110
+	ldir
+	ld	de, 700
+	ld	bc, -2512
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	add	iy, de
+	lea	de, iy
+	ld	hl, _.str.15
+	ld	bc, 10
+	ldir
+	ld	de, 1200
+	ld	bc, -2509
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.18.21
+	ld	bc, 135
+	ldir
+	ld	de, 800
+	ld	bc, -2512
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	add	iy, de
+	lea	de, iy
+	ld	hl, _.str.17
+	ld	bc, 11
+	ldir
+	ld	de, 1350
+	ld	bc, -2509
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.18
+	ld	bc, 20
+	ldir
+	ld	bc, -2512
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	ld	de, 900
+	add	iy, de
+	lea	de, iy
+	ld	hl, _.str.19
+	ld	bc, 58
+	ldir
+	ld	hl, 1
+	ld	bc, -2518
+	lea	iy, ix
+	add	iy, bc
+	ld	(iy), hl
+	dec	hl
+BB5_1:
+	ld	bc, -2515
+	lea	iy, ix
+	add	iy, bc
+	ld	(iy), hl
+	call	_kb_Scan
+	ld	de, -2515
+	lea	hl, ix
+	add	hl, de
+	ld	bc, (hl)
+	push	bc
+	pop	hl
+	ld	de, 9
+	or	a, a
+	sbc	hl, de
+	jr	nz, BB5_4
+	ld	hl, -720874
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld	a, l
+	cp	a, 8
+	jr	z, BB5_4
+	ld	hl, -720870
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld	a, l
+	cp	a, 8
+	jp	nz, BB5_25
+BB5_4:
+	ld	hl, -720874
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld	a, l
+	cp	a, 8
+	jp	nz, BB5_14
+	push	bc
+	pop	hl
+	ld	de, 2
+	or	a, a
+	sbc	hl, de
+	call	pe, __setflag
+	jp	p, BB5_7
+	ld	bc, 1
+BB5_7:
+	dec	bc
+BB5_8:
+	ld	de, -2515
+	lea	hl, ix
+	add	hl, de
+	ld	(hl), bc
+	ld	hl, 1
+BB5_9:
+	ld	bc, -2518
+	lea	iy, ix
+	add	iy, bc
+	ld	(iy), hl
+BB5_10:
+	call	_ClearKeyboardBuffer
+BB5_11:
+	ld	hl, 3
+	push	hl
+	call	_gfx_FillScreen
+	pop	hl
+	ld	hl, 55
+	push	hl
+	ld	hl, 35
+	push	hl
+	ld	hl, _FlashCardSprite_data
+	push	hl
+	call	_gfx_Sprite_NoClip
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	bc, -2518
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	ld	de, -2515
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jp	nz, BB5_17
+	lea	hl, ix
+	add	hl, de
+	ld	hl, (hl)
+	ld	bc, 100
+	call	__imulu
+	push	hl
+	pop	de
+	ld	(ix - 3), bc
+	ld	bc, -2512
+	lea	iy, ix
+	add	iy, bc
+	ld	hl, (iy)
+	add	hl, de
+	push	hl
+	ld	bc, (ix - 3)
+	call	_PrintCentered
+	pop	hl
+	ld	bc, -2515
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	ld	de, 9
+	or	a, a
+	sbc	hl, de
+	jp	nz, BB5_18
+	call	_os_GetCSC
+	or	a, a
+	jp	z, BB5_26
+	jr	BB5_18
+BB5_14:
+	ld	hl, -720872
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld	a, l
+	cp	a, 8
+	jp	nz, BB5_19
+	ld	bc, -2518
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	ld	hl, 1
+	lea	iy, ix
+	push	af
+	add	iy, bc
+	pop	af
+	ld	(iy), hl
+	jp	z, BB5_10
+	ld	hl, 0
+	jp	BB5_9
+BB5_17:
+	lea	hl, ix
+	add	hl, de
+	ld	hl, (hl)
+	ld	bc, 150
+	call	__imulu
+	push	hl
+	pop	de
+	ld	(ix - 3), bc
+	ld	bc, -2509
+	lea	iy, ix
+	add	iy, bc
+	ld	hl, (iy)
+	add	hl, de
+	push	hl
+	ld	bc, (ix - 3)
+	call	_PrintCentered
+	pop	hl
+	ld	bc, -2515
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	ld	de, 10
+	or	a, a
+	sbc	hl, de
+	jr	z, BB5_23
+BB5_18:
+	call	_gfx_SwapDraw
+	ld	hl, -720878
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld	a, l
+	cp	a, 32
+	ld	bc, -2515
+	lea	hl, ix
+	push	af
+	add	hl, bc
+	pop	af
+	ld	hl, (hl)
+	jp	nz, BB5_1
+	jr	BB5_24
+BB5_19:
+	ld	hl, -720870
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld	a, l
+	cp	a, 8
+	jp	nz, BB5_11
+	push	bc
+	pop	hl
+	or	a, a
+	sbc	hl, de
+	call	pe, __setflag
+	jp	m, BB5_22
+	ld	bc, 9
+	jp	BB5_8
+BB5_22:
+	inc	bc
+	jp	BB5_8
+BB5_23:
+	call	_os_GetCSC
+	or	a, a
+	jr	z, BB5_23
+	jr	BB5_26
+BB5_24:
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	call	_exit
+	pop	hl
+BB5_25:
+	call	_os_GetCSC
+	or	a, a
+	jr	z, BB5_25
+BB5_26:
+	ld	sp, ix
+	pop	ix
+	ret
+	section	.text,"ax",@progbits
+
+	section	.text,"ax",@progbits
+	public	_PrintCentered
+_PrintCentered:
+	ld	hl, -3
+	call	__frameset
+	ld	hl, (ix + 6)
+	ld	(ix - 3), hl
+	push	hl
+	call	_gfx_GetStringWidth
+	push	hl
+	pop	de
+	pop	hl
+	ld	hl, 320
+	or	a, a
+	sbc	hl, de
+	ld	c, 1
+	call	__ishru
+	ld	de, 116
+	push	de
+	push	hl
+	call	_fontlib_SetCursorPosition
+	pop	hl
+	pop	hl
+	ld	hl, (ix - 3)
+	ld	(ix + 6), hl
+	pop	hl
+	pop	ix
+	jp	_fontlib_DrawString
+	section	.text,"ax",@progbits
+
+	section	.text,"ax",@progbits
+	public	_Trivia
+_Trivia:
+	ld	hl, -4681
+	call	__frameset
+	ld	bc, -3117
+	lea	hl, ix
+	add	hl, bc
+	ld	bc, -4662
+	lea	iy, ix
+	add	iy, bc
+	ld	(iy), hl
+	ld	bc, -3885
+	lea	hl, ix
+	add	hl, bc
+	push	ix
+	ld	bc, -4665
+	add	ix, bc
+	ld	(ix), hl
+	pop	ix
+	lea	hl, ix - 36
+	push	ix
+	ld	bc, -4675
+	add	ix, bc
+	ld	(ix), hl
+	pop	ix
+	call	_gfx_Begin
+	ld	hl, 1
+	push	hl
+	call	_gfx_SetDraw
+	pop	hl
+	ld	hl, (_test_font)
+	ld	de, 0
+	push	de
+	push	hl
+	call	_fontlib_SetFont
+	pop	hl
+	pop	hl
+	ld	hl, 2
+	push	hl
+	push	hl
+	call	_fontlib_SetLineSpacing
+	pop	hl
+	pop	hl
+	ld	hl, -66
+	push	hl
+	ld	hl, 280
+	push	hl
+	ld	hl, 30
+	push	hl
+	ld	hl, 10
+	push	hl
+	call	_fontlib_SetWindow
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	scf
+	sbc	hl, hl
+	push	hl
+	inc	hl
+	push	hl
+	call	_fontlib_SetColors
+	pop	hl
+	pop	hl
+	ld	hl, 1
+	push	hl
+	call	_fontlib_SetTransparency
+	pop	hl
+	ld	hl, 7
+	push	hl
+	call	_fontlib_SetNewlineOptions
+	pop	hl
+	ld	bc, -2349
+	lea	iy, ix
+	add	iy, bc
+	ld	bc, -4656
+	lea	hl, ix
+	add	hl, bc
+	ld	(hl), iy
+	ld	bc, -4653
+	lea	hl, ix
+	add	hl, bc
+	push	ix
+	ld	bc, -4659
+	add	ix, bc
+	ld	(ix), hl
+	pop	ix
+	lea	de, iy
+	ld	hl, _.str.2.9
+	ld	bc, 33
+	ldir
+	ld	bc, -4659
+	lea	hl, ix
+	add	hl, bc
+	ld	de, (hl)
+	ld	hl, _.str.3.10
+	ld	bc, 10
+	ldir
+	ld	de, 256
+	add	iy, de
+	lea	de, iy
+	ld	hl, _.str.4.11
+	ld	bc, 47
+	ldir
+	ld	bc, -4659
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	lea	hl, iy
+	ld	de, 256
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.5.12
+	ld	bc, 10
+	ldir
+	ld	de, 512
+	ld	bc, -4656
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.6.13
+	ld	bc, 30
+	ldir
+	ld	de, 512
+	add	iy, de
+	lea	de, iy
+	ld	hl, _.str.7
+	ld	bc, 6
+	ldir
+	ld	de, 768
+	ld	bc, -4656
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.8.14
+	ld	bc, 111
+	ldir
+	ld	bc, -4665
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	ld	hl, 7303792
+	ld	(iy), hl
+	ld	hl, 6386279
+	ld	(iy + 3), hl
+	ld.sis	hl, 109
+	ld	(iy + 6), l
+	ld	(iy + 7), h
+	ld	de, 1024
+	ld	bc, -4656
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.10.15
+	ld	bc, 65
+	ldir
+	ld	bc, -4659
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	lea	hl, iy
+	ld	de, 1024
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.11.16
+	ld	bc, 9
+	ldir
+	ld	de, 1280
+	ld	bc, -4656
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.12.17
+	ld	bc, 112
+	ldir
+	lea	hl, iy
+	ld	de, 1280
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.13
+	ld	bc, 12
+	ldir
+	ld	de, 1536
+	ld	bc, -4656
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.14.18
+	ld	bc, 10
+	ldir
+	ld	bc, -4662
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	ld	hl, 6648937
+	ld	(iy), hl
+	ld	hl, 7627122
+	ld	(iy + 3), hl
+	ld.sis	hl, 101
+	ld	(iy + 6), l
+	ld	(iy + 7), h
+	ld	de, 1792
+	ld	bc, -4656
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	lea	hl, iy
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.16.19
+	ld	bc, 110
+	ldir
+	ld	bc, -4659
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	ld	de, 1792
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.17.20
+	ld	bc, 10
+	ldir
+	ld	de, 2048
+	lea	hl, iy
+	add	hl, de
+	push	de
+	pop	iy
+	ex	de, hl
+	ld	hl, _.str.18.21
+	ld	bc, 135
+	ldir
+	ld	bc, -4659
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	lea	de, iy
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.19.22
+	ld	bc, 11
+	ldir
+	ld	iy, 0
+BB7_1:
+	ld	bc, 9
+	lea	hl, iy
+	or	a, a
+	sbc	hl, bc
+	jp	z, BB7_19
+	scf
+	sbc	hl, hl
+	push	hl
+	ld	bc, -4665
+	lea	hl, ix
+	add	hl, bc
+	ld	(hl), iy
+	call	_gfx_FillScreen
+	pop	hl
+	ld	hl, -116
+	push	hl
+	call	_gfx_SetColor
+	pop	hl
+	ld	hl, 4
+	push	hl
+	ld	hl, 320
+	push	hl
+	ld	hl, 20
+	push	hl
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	call	_gfx_FillRectangle
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	call	_gfx_SetColor
+	pop	hl
+	ld	de, -4665
+	lea	hl, ix
+	add	hl, de
+	ld	hl, (hl)
+	inc	hl
+	ld	de, -4668
+	lea	iy, ix
+	add	iy, de
+	ld	(iy), hl
+	ld	bc, 320
+	call	__imulu
+	push	hl
+	pop	bc
+	push	bc
+	pop	iy
+	add	iy, iy
+	sbc	hl, hl
+	ld	a, l
+	call	__ltof
+	ld	hl, 1048576
+	ld	e, 65
+	call	__fdiv
+	call	__ftol
+	ld	hl, 4
+	push	hl
+	push	bc
+	ld	hl, 20
+	push	hl
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	call	_gfx_FillRectangle
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, 26
+	push	hl
+	call	_gfx_SetColor
+	pop	hl
+	ld	hl, 4
+	push	hl
+	ld	hl, 300
+	push	hl
+	ld	hl, 210
+	push	hl
+	ld	hl, 10
+	push	hl
+	call	_gfx_FillRectangle
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, 10
+	push	hl
+	ld	hl, 160
+	push	hl
+	call	_gfx_SetTextXY
+	pop	hl
+	pop	hl
+	ld	hl, 1
+	push	hl
+	ld	bc, -4668
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	_gfx_PrintInt
+	pop	hl
+	pop	hl
+	ld	hl, 47
+	push	hl
+	call	_gfx_PrintChar
+	pop	hl
+	ld	hl, 1
+	push	hl
+	ld	hl, 9
+	push	hl
+	call	_gfx_PrintInt
+	pop	hl
+	pop	hl
+	ld	hl, -116
+	push	hl
+	call	_gfx_SetTextFGColor
+	pop	hl
+	ld	hl, 220
+	push	hl
+	ld	hl, 10
+	push	hl
+	ld	hl, _.str.20
+	push	hl
+	call	_gfx_PrintStringXY
+	pop	hl
+	pop	hl
+	pop	hl
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	call	_gfx_SetTextFGColor
+	pop	hl
+	ld	hl, 120
+	push	hl
+	ld	hl, 10
+	push	hl
+	call	_gfx_SetTextXY
+	pop	hl
+	pop	hl
+	ld	hl, 30
+	push	hl
+	ld	hl, 10
+	push	hl
+	call	_fontlib_SetCursorPosition
+	pop	hl
+	pop	hl
+	ld	de, -4665
+	lea	hl, ix
+	add	hl, de
+	ld	hl, (hl)
+	ld	c, 8
+	call	__ishl
+	push	hl
+	pop	de
+	ld	(ix - 3), bc
+	ld	bc, -4656
+	lea	iy, ix
+	add	iy, bc
+	ld	hl, (iy)
+	add	hl, de
+	push	hl
+	ld	bc, (ix - 3)
+	call	_fontlib_DrawString
+	pop	hl
+	ld	hl, 200
+	push	hl
+	ld	hl, 10
+	push	hl
+	call	_gfx_SetTextXY
+	pop	hl
+	pop	hl
+	call	_gfx_SwapDraw
+	or	a, a
+	sbc	hl, hl
+	ld	(ix - 39), hl
+	dec	hl
+	ld	(ix - 42), hl
+	ld	(ix - 45), hl
+	xor	a, a
+	ld	bc, -4662
+	lea	hl, ix
+	add	hl, bc
+	ld	(hl), a
+BB7_3:
+	call	_os_GetCSC
+	ld	bc, -4669
+	lea	hl, ix
+	add	hl, bc
+	ld	(hl), a
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	pop	de
+	ld	bc, -4662
+	lea	iy, ix
+	add	iy, bc
+	ld	e, (iy)
+	push	ix
+	ld	bc, -4672
+	add	ix, bc
+	ld	(ix), de
+	pop	ix
+	push	hl
+	call	_gfx_Blit
+	ld	de, -4669
+	lea	hl, ix
+	add	hl, de
+	ld	b, (hl)
+	pop	hl
+	ld	a, b
+	cp	a, 9
+	ld	de, -4662
+	lea	hl, ix
+	push	af
+	add	hl, de
+	pop	af
+	ld	c, (hl)
+	jp	z, BB7_13
+	ld	a, c
+	cp	a, 30
+	jp	nc, BB7_13
+	ld	iy, (ix - 42)
+	lea	hl, iy
+	ld	de, -1
+	or	a, a
+	sbc	hl, de
+	jr	z, BB7_8
+	ld	hl, (ix - 45)
+	push	ix
+	ld	de, -4678
+	add	ix, de
+	ld	(ix), hl
+	pop	ix
+	ld	de, -1
+	or	a, a
+	sbc	hl, de
+	jr	z, BB7_8
+	scf
+	sbc	hl, hl
+	push	hl
+	ld	bc, -4681
+	lea	hl, ix
+	add	hl, bc
+	ld	(hl), iy
+	call	_gfx_SetColor
+	pop	hl
+	ld	de, -4681
+	lea	hl, ix
+	add	hl, de
+	ld	bc, (hl)
+	inc	bc
+	ld	de, -4678
+	lea	iy, ix
+	add	iy, de
+	ld	iy, (iy)
+	lea	hl, iy
+	ld	de, 8
+	add	hl, de
+	push	hl
+	push	bc
+	push	iy
+	push	bc
+	call	_gfx_Line
+	ld	de, -4669
+	lea	hl, ix
+	add	hl, de
+	ld	b, (hl)
+	ld	de, -4662
+	lea	iy, ix
+	add	iy, de
+	ld	c, (iy)
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+BB7_8:
+	ld	de, 0
+	ld	e, b
+	ld	hl, _.str.23
+	add	hl, de
+	ld	a, (hl)
+	or	a, a
+	jr	nz, BB7_11
+	ld	de, -4662
+	lea	hl, ix
+	add	hl, de
+	ld	(hl), c
+	ld	a, b
+	cp	a, 15
+	jr	nz, BB7_12
+	ld	hl, 200
+	push	hl
+	ld	hl, 10
+	push	hl
+	call	_gfx_SetTextXY
+	pop	hl
+	pop	hl
+	scf
+	sbc	hl, hl
+	push	hl
+	call	_gfx_SetColor
+	pop	hl
+	ld	de, 10
+	push	de
+	ld	hl, 310
+	push	hl
+	ld	hl, 200
+	push	hl
+	push	de
+	call	_gfx_FillRectangle
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	xor	a, a
+	ld	bc, -4662
+	lea	hl, ix
+	add	hl, bc
+	ld	(hl), a
+	jr	BB7_12
+BB7_11:
+	ld	hl, _.str.1.24
+	add	hl, de
+	ld	a, (hl)
+	inc	c
+	ld	de, -4662
+	lea	hl, ix
+	add	hl, de
+	ld	(hl), c
+	ld	bc, -4675
+	lea	iy, ix
+	add	iy, bc
+	ld	hl, (iy)
+	push	ix
+	ld	bc, -4672
+	add	ix, bc
+	ld	de, (ix)
+	pop	ix
+	add	hl, de
+	ld	(hl), a
+	ld	l, a
+	push	hl
+	call	_gfx_PrintChar
+	pop	hl
+BB7_12:
+	pea	ix - 45
+	pea	ix - 42
+	pea	ix - 39
+	call	_blink_cursor_frame
+	pop	hl
+	pop	hl
+	pop	hl
+	call	_gfx_SwapDraw
+	jp	BB7_3
+BB7_13:
+	ld	bc, -4675
+	lea	hl, ix
+	add	hl, bc
+	ld	de, (hl)
+	push	de
+	pop	hl
+	ld	(ix - 3), de
+	ld	de, -4672
+	lea	iy, ix
+	add	iy, de
+	ld	bc, (iy)
+	add	hl, bc
+	ld	(hl), 0
+	ld	de, -4665
+	lea	hl, ix
+	add	hl, de
+	ld	hl, (hl)
+	ld	c, 8
+	call	__ishl
+	push	hl
+	pop	bc
+	push	ix
+	ld	de, -4659
+	add	ix, de
+	ld	hl, (ix)
+	pop	ix
+	add	hl, bc
+	push	hl
+	ld	de, (ix - 3)
+	push	de
+	call	_strcmp
+	pop	de
+	pop	de
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jr	nz, BB7_15
+	ld	hl, 6
+	push	hl
+	call	_gfx_SetColor
+	pop	hl
+	ld	hl, 205
+	push	hl
+	ld	hl, 290
+	push	hl
+	ld	hl, 200
+	push	hl
+	ld	hl, 280
+	push	hl
+	call	_gfx_Line
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, 190
+	push	hl
+	ld	hl, 305
+	jr	BB7_16
+BB7_15:
+	ld	hl, -96
+	push	hl
+	call	_gfx_SetColor
+	pop	hl
+	ld	hl, 205
+	push	hl
+	ld	hl, 300
+	push	hl
+	ld	hl, 195
+	push	hl
+	ld	hl, 290
+	push	hl
+	call	_gfx_Line
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, 195
+	push	hl
+	ld	hl, 300
+BB7_16:
+	push	hl
+	ld	hl, 205
+	push	hl
+	ld	hl, 290
+	push	hl
+	call	_gfx_Line
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	call	_gfx_SwapDraw
+BB7_17:
+	call	_os_GetCSC
+	or	a, a
+	jr	z, BB7_17
+	ld	de, -4668
+	lea	hl, ix
+	add	hl, de
+	ld	iy, (hl)
+	jp	BB7_1
+BB7_19:
+	call	_os_GetCSC
+	or	a, a
+	jr	z, BB7_19
+	ld	sp, ix
+	pop	ix
+	ret
+	section	.text,"ax",@progbits
+
+	section	.text,"ax",@progbits
+	public	_blink_cursor_frame
+_blink_cursor_frame:
+	ld	hl, -9
+	call	__frameset
+	ld	hl, (ix + 6)
+	ld	bc, 30
+	ld	hl, (hl)
+	call	__irems
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jr	z, BB8_2
+	ld	hl, 1
+	push	hl
+	call	_gfx_SetColor
+	pop	hl
+	call	_gfx_GetTextX
+	inc	hl
+	ld	(ix - 3), hl
+	call	_gfx_GetTextY
+	ld	(ix - 6), hl
+	call	_gfx_GetTextX
+	inc	hl
+	ld	(ix - 9), hl
+	call	_gfx_GetTextY
+	ld	de, 8
+	add	hl, de
+	push	hl
+	ld	hl, (ix - 9)
+	push	hl
+	ld	hl, (ix - 6)
+	push	hl
+	ld	hl, (ix - 3)
+	push	hl
+	call	_gfx_Line
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+BB8_2:
+	call	_gfx_GetTextX
+	ld	iy, (ix + 9)
+	ld	(iy), hl
+	call	_gfx_GetTextY
+	ld	iy, (ix + 12)
+	ld	(iy), hl
+	ld	hl, (ix + 6)
+	push	hl
+	pop	iy
+	ld	hl, (iy)
+	inc	hl
+	ld	(iy), hl
+	ld	sp, ix
+	pop	ix
+	ret
+	section	.text,"ax",@progbits
+
+	section	.rodata,"a",@progbits
+	private	___const.main.str
+___const.main.str:
+	db	"2. trivia quizzes", 0
+
+	section	.rodata,"a",@progbits
+	private	___const.main.opt1
+___const.main.opt1:
+	db	"1. flash cards", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.1
+_.str.1:
+	db	"Character", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.3
+_.str.3:
+	db	"Algorithm", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.5
+_.str.5:
+	db	"Debug", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.15
+_.str.15:
+	db	"Flowchart", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.17
+_.str.17:
+	db	"Pseudocode", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.18
+_.str.18:
+	db	"What is a protocol?", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.19
+_.str.19:
+	db	"An agreed-upon set of rules that specify system behavior.", 0
+
+	section	.data,"aw",@progbits
+	public	_FlashCardSprite_data
+_FlashCardSprite_data:
+	db	"ÿ™÷÷öóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóö÷÷÷óö÷øøø÷÷øø÷÷ø÷÷÷ø÷øøø÷øøøøøøø÷ø÷øøøøøøø÷ø÷÷øøø÷÷øøøøø÷÷øø÷øøø÷øø÷÷÷øøøø÷øøøøøøø÷÷øøø÷ø÷ø÷÷ø÷ø÷øø÷÷øøø÷øøøøøøøøøø÷øøøøøøøø÷÷øøø÷÷øø÷øøø÷÷øøøøøøø÷ø÷øø÷øøøøø÷÷øø÷øø÷øøøøøøø÷ø÷÷ø÷÷÷÷øø÷øøø÷øø÷÷øøøøøø÷øøø÷ø÷ø÷ø÷øø÷øøøøø÷ø÷÷ø÷øø÷øøøøøø÷ø÷øøøøøøøø÷ø÷÷øø÷øøø÷öö÷öóøøóöóööóóööóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóøøóóóóóøÿøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøøÿøóóóöóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóöööóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóóöö"
+
+	section	.data,"aw",@progbits
+	public	_QuizWizTxt_data
+_QuizWizTxt_data:
+	db	"–2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®®¸¸®¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸®", 0, 0, 0, 0, 0, 0, 0, "¸¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®¸¸", 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¹", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "®¸", 0, 0, 0, "®¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®", 0, 0, "®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®¸", 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®", 0, 0, "®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®", 0, 0, "¸", 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®", 0, 0, "®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, "¸¹", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "®", 0, 0, "¸", 0, 0, 0, 0, 0, "®¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®", 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, "®¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, "¸¸¸¸", 0, 0, 0, "®¸¸¸¸¸¸¸¸¸¸¸¸¸¸¸¸¹", 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, "®¸¸®", 0, 0, 0, 0, "¸¸¸¸¸¸¸¸¸¸¸¸¸¸¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, "®", 0, "®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¯", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, "®", 0, "®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, "®¸¸®", 0, 0, 0, 0, 0, 0, 0, 0, "®¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, "®®¸¸", 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "®¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¹¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, "¸¸¸", 0, 0, 0, "¸", 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¹", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, "¸¸¸", 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, "¸¸", 0, 0, "¸¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®", 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, "¸¸¸", 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, 0, 0, "®", 0, 0, 0, 0, "¸¸¸¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®", 0, 0, 0, 0, "¸", 0, 0, 0, 0, 0, "¸¸¸¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®", 0, 0, 0, 0, 0, "¸¹", 0, 0, 0, 0, 0, "¹¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, "¸", 0, 0, 0, 0, 0, "¸¸¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¯¸", 0, "®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, "®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, "®¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®¸¸", 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¹", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, 0, 0, "¸¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®¸¯¸", 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, "®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, "¸¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, "®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®", 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, 0, "¸¹¸", 0, 0, "®", 0, 0, 0, 0, "¸®", 0, 0, 0, 0, 0, "¸¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, "¸¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®", 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®¸¸®®", 0, 0, 0, 0, 0, 0, "¸¸¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸®¸¸¸", 0, 0, 0, "¸¸¸®", 0, 0, 0, 0, "¸¸¸®", 0, 0, 0, "®¸¸¸¸¸¸¸¸¸¸¸¸¸¸¸¸®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "¸", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "®¸¸¸", 0, 0, 0, 0, "¸¸¸¸¸¸¸¸¸¸¸¸¸¸¸¸¸"
+	db	2256 dup 0
+
+	section	.data,"aw",@progbits
+	public	_QuizWiz_back_compressed
+_QuizWiz_back_compressed:
+	db	"4˜", 0, "69…¸", 0, "#", 0, 0, ";>", 10, "Ïúú", 0, "û	", 26, 26, "A6L", 0, "7qÆ.c", 0, "X Q l", 0, "", 13, "6˜ĞŞäã", 0, "‡G¿‚F", 0, ":¿8À€>", 10, "ğùúèX¿0äsh¿¥c", 0, "¾¬", 0, "½Ls¦¼q½¡¿!Ğ4¡À‡“€À ûÀˆ", 10, "", 26, "±À¿ccCÀÈ½", 13, "€¼àäX", 0, "¼„¦yÂ¾A6Ğ¼ÈÀ;À", 13, "êÁ„ğ$€8´V§1ã¾p", 0, "<¾Œ¸ä", 0, "¼‰6*ÿh60ÅÁ©€", 13, "rú€ÏLƒ¿Â¢¿9@eêÀ&¸ÉØ¼Ğ¢c", 13, "5ĞÆÀ9öæı(-€A>Ô°Áôr	¶Á¾‘6í¾Â94¯ì¸Ş±¼lŞ·X¼ÂÃ¿8½Á„†	", 10, "ûÁÍè0¿Çìü#À°¸:˜Ê¸öŞ¼€áq¿F6Áj€*ºÂÔ¤¿(&À)³Èá¾àiú=¸Œ", 13, "túÖæ¼!˜c", 13, "4ˆ€˜óüƒ¿¡ÀÑğ¡€í;²Á94'", 13, "¿ÀÒ„:v5³‰1±Ø½qàô´·ã¼¿ı‚ÙÂ‹úˆ", 0, "Ï		&Áh)ôäc""¿02Àa¢ĞàææĞ·e5Ü±x¿ÎÀ(ó÷€", 10, "èØÁğˆ", 10, "HÁĞlür¾", 0, "Ã6", 13, "¸f§úæàÊŠdœú2¿(4øö¸2ÀfúÈè	ÆÀÒ", 13, "Æ¾a¿@e·Æ`95Š(¼à¼i·›ÇB–$ùrœÿãºÁ¸¾×‚PÀ”", 10, "ÏÀ,¤¿PF€|¾4", 0, "9i¸Œ™ÒúÇÒ§Œ¾k‡F¿Cÿàğ¿d€B", 10, "dïÂÈ´", 26, "ôƒ", 26, "ÄûP¿À­Ål²Ut³aæ±`Ù	ÔÁ¿£4NşàÕ€", 10, "	º€@Ô", 10, " ¨¿P6V¿=Œ»	˜ú6‚½Ø¸Òšlt·5‡Q*4#À¾ØÀÒ€>êÀ áºq;", 13, 26, "c`Á", 0, 0, "¿Ü", 10, "¿	×ÅÀösšÌúØ¨8€6ÿ±‘‚‘¿¸", 0, "<¾:² Ç¿ÀôíèÏ¤rÄÅ*ÅS~²È(¾l¿`WÀ€±ì²½+cï`…Ú%»¸€ƒá¿H9¿!ríúôj", 0, "ú", 0, "ùğêÅ""~`9ÆÅÓŠ	ˆ|gƒSş)ÃbÍèïšu5`Ë:¸T6¿Ç¿€™l", 0, "ÃRù–", 10, "ğìÅ#a", 26, "Ä•n]î|fÆ¿¡À*³Åà²EôÉœü¿À0%ˆ¿", 10, "è¡º3ìğş¶Ä˜ÆSú%‹H–‡9{bâ", 0, "{¸", 0, "BÅ¿cÁı³•3³aÊ:²·b`ÿ¼¿R;‰¿xğˆªè", 10, ";q‡¤ºáèÇ‘‚ù:ŒT–İÜŸ9Ÿ", 26, 26, "hÏ7", 0, " ¿ cÌÿê", 0, "wñ³°ÊÊ¨u'3ÃØ,¿FÀ?ÌàÒ¿ş€(	¤¤C ", 0, "T", 13, "ó", 0, "`~ºÏèê1íğ¼", 0, "4ÅE", 26, "Š¸>aÁc;Ÿb¿cƒ–ÃÌú", 13, "±Å±À’5Œ´Ã¿Š½9´ÿbáí", 26, "ÜrUZ¸İº‚q ºÔ‘ùÅ,ÔÅCf", 10, "6J", 26, "ÂË;‚H{şPe ¿Á¨À€", 13, "a™½½™?xÁA¨¿ÈÀ0|¾$b:¬¾ràìûÔÍûÙ¨w", 0, "c_±ÆÜÛ`‡¤ÏáÄ›¢ŒfÃt‹¡¯cbˆ£¿Á", 0, "³š½§8Ïfôh¿6À1P7m½tş{¾^ı±‡¾Ìÿ4¡½“\h`4µ­Rnæqr~İ™Ö¥–šÜ¼ÅMˆfÀ", 26, ";£´B¿cƒ9„", 0, "", 13, "`˜¨§e.k¡¿ƒXı¦¾Ç¾ÿ:ıÓê¿‰¾4", 0, "x±Æ", 26, "a~‡$íÖ?¢~r;”iŠ:c:b‚±¿‚¦ÃÔs˜§™uºóa„õ", 13, "¿", 10, "À6xB9½¼¿Jf…º„¿", 26, "††¾#", 0, "ÄëÌøvÖ©ÓÆû1", 0, "úÅPİÅÕÜ¥‹MÒ°ã‚Q¿ÇÀe‚0÷", 0, "3uzbO6ë0|ÿP›zşt€—ş", 10, "ºırÂı<¿a€ØÏêìeŠ", 0, "`q–İÆ%ôû¬", 0, "ñÅNq;Ğ‹eb©—‚!¿à", 10, "„õ", 0, "33azƒƒs5úpC¿l¾êÍşè%½ã¾ÁT0¿Ò", 0, "´", 0, "’œ", 26, "Mb¬ÅíõÄíéÔ¥x;", 26, "Ê–bÆ ", 26, "¿¸$„œ‡1½‚t956Œ¼	C¿ô€µ¾‰¿	f˜şú¤	g²šû	†¾Æ¿e", 0, "…½+«°", 0, "9q‡rºé1ñõ", 0, "ìéÇÅ–-", 26, "X;ÓiÏ!c¡¿‡¤„9f(u<ã-¸ J¿", 26, "ÀE¾;l¾íY9şÇŒ¿;–Œ½j", 0, "^¬", 26, 26, "r~Çéìëâ¡Åx:‹‘£·Á8ÀØ¸Î·Ğ&¿ÜÀ1¾	ğ™şá", 10, "2¾6", 13, "", 0, "`", 0, "¥§åà~¥ÇÕ", 0, "âéâÕ»¥‹xÇ¤Æ;u8½ÎÀ0ì„Ç„³	Ã¿¾¯Ñb¾uÌşô ", 10, "½¸?¾áÈñ`ÆL", 26, "ÕÂ¡¥»", 0, "¡Œ‹gfÜv~x¿ğ", 0, "^½6ø<Œ¿¦ş>)Ô¾™şˆ", 26, "á¿@6‹", 0, "(Ö\€", 26, "7qx‹–¡Â", 0, "ŒxxfÑ", 0, "<ÂÀ9„ :]¿4‹¿", 0, "1ú¿gÏşc¿qşÆŒŠ¯", 0, "ó bags¡½´„Ï¸ÿª}‚ñ¿A6˜¿Á°¾¶;>ş`", 10, "xûùô r_¾Bæâãc(ÅÈ9‹@c¾¿8À 4çüV:şv¾Áûê	8¿ÀÌ¾0€éYëËÓrğ	â¿9³ş	¾À 	q", 26, "şH¿ÂQâÊ	c¥eN¾0/", 10, "¿6¿¾fˆ¾Áù", 10, 26, "ÀÜ½", 13, "ã¿", 10, "’í¼¿p0n¿(7¿:¶½", 10, "lè¾İ3	ı@ÚşpĞ‘Ï 8¿Á´şH¾Ø¹¶ù¿3r", 10, "ı³şªı!ñ&d¿Rc³¾ ş2íQ¿‹WÔ½d", 26, "áø,d¿P6b¿8êA°¾‹9>>¾`úüº¶¾–ü ŒÑ9Ğ2ú®AØ¿ß€A¼ş1>", 0, 10, ";ñšÿSş@6B¾ÁT¬Î·r¿(6;¿¤ûüêfş@Ä¾ĞD‰ÓA<=í¾ ¿ğş>)	¾ˆ~@¿`y½`", 10, "›Dƒñ¿ƒ›À];¾€", 10, "fíüú»ıP¾ÇÃ¢¿6€ˆ¿:Ù¾", 10, "º°¾Ïà", 0, "^ş8lºc®ŸXqH6¿#c::ş0;é	üûb¾ñ¿‰à¸¿nÆ¿»€½:Y½	x°¾ê¿", 26, "Æ¼£", 10, "¡", 26, "ÆÀ‹B‡î¾Á¿¦¾Ò€Ù¾¤)şÅ´¿â¾6†Æ¾h""L±Àƒñ¿ƒ~€J;¾Áèüñ9!şèC†¾6Ö¸nMxG¿¾`ñüáÄ¿güa“ùœ½`ü¿bG64¿¾Ø¿›	¾û¾Ä4S¾@´üp¥„ÃãÀÃ", 10, "ã¿<K", 10, "¿", 13, "¿V¾Sí¾1¿Z½ã t¨½x", 0, "øDx¿`äÿĞd¿): şxõ6üÏ¾@°şpØ½Ãâ¾9„áFñ¿¸0¿€6l¾Á»üú~!şÅÀMª¾1÷", 10, "ã¿C+0^¿(46¾`êüê«½v", 26, "½´¾n", 10, "ÆÀDt¿dıĞuüûQ¤ş£Ú¾ü‚#ı‚/¿cÀ²¿3oı½ar", 26, "V¼ˆKı»¡sÂ‚ñ¿¾", 0, "	Å¿6-¾‹¿", 10, "¾aáGşŒ¾", 10, "ıİ¶„ÛC¿$fŒ¿ÚÀ:àş", 10, "xûü ãş@4¬ıqâ¾cƒô€‚a¿…EÂ4ı€Pş>	Çıì;¾û4‚x¾b#Nš¿6·¿¿#cee0¿eş€îüİGŒ¿C¾Çœ˜>¿0øÀÁ ¿ÊÁ.e", 26, "¿4ˆ¿	xıõˆıTI", 10, "qû	œü°", 0, "|À0V¿?ÀŒ¿8¾à", 0, "İşì8", 26, "ÿBı!ö»‚‘À†gYR‚¤€æ", 0, "Èkè=€êş¾Åòüºœş[½ 4]¾Ê,Àj[Æ¿_", 0, 13, "Á?€ìşÍˆ¾‰d!ı6±şÇ", 10, "¾c", 0, "ŠîF¿8ÀPe~¿8¾‚9", 10, "Õıéöüóşûˆe»¢†ÀDe", 13, "À J6ô¿t", 0, "4ò€bÄÀ", 26, "	òıÆ¿x", 13, "e»£…ÆuŒ¿~ŒA`ÀÀ’¿6¾ b	‹şğ'¾h¾:·ÎŒ¼gAz€ÆÌĞŒ¿hÀ ï€:0¾âşÔGœş", 10, "±ûDúB×Ğ:5zAu%ÁÅÜbZ""€9<¿`ìÿÁıü9L¾E¿	Ñü<>½7‘´dƒfŒ¿dd¿ŒÀ†ÿ:¹‚		–ıí­½áşÃC¾Ó^şhƒP­!â¥‡BêoöïD¿9	éş¤9	Í¾d<", 13, "", 13, "½b", 0, "(ƒz5	Æ¿", 10, "ët„Nÿ", 10, "YÀ:@bòşî½q¾<¿P6ø¾ÇFÕ", 0, "8ue5@:ĞÀ1çÿPX¿ ¡ıá@", 26, "°şwÜ¸oÎâÀ8,ƒ™şà`¿…ÂÁ", 0, "Ø¿Û¾1‡¿»¼@ªşwPjJ¾8Ğ9<šz:Œ¿ŒÀ/Æÿxüî¾4½¢6 DM½n÷Ø±¿y¨g8+¿>Àr€\]À@ş»ıºşp+¾9âğğ½Ğ¾‚d5šà;P€HXÀQ4í¾""¿:ÔÔ", 26, "ëı`½p,", 13, "¿P£Î¦8°Ãâ¿9", 10, "f½€Ò¸+€DfÀ°6€n¿4¾Çè»}¼À—ı±ƒ¾qcÃÇà", 26, "5ƒÃ86B:Áş", 10, "„n4:@6ŠÀ`ÿ46Àşºş¡H¾(Å¾6¢3ŒÁ.¿;¾±›c.ú²€3@@3:", 13, "ÄÀÆ³", 13, "Ä¿:", 26, ";ëï7ã¾‘şÂC½<‰ğ˜uÍuÆ¿õ]À‚zA1", 13, "ÅÀ´½ÿ:", 0, "‹ıÏQ¿O6ù¨ÀÂc¾„›Ã", 13, "2ó9\ri ?5ØÀBqq3$ü&Ë'¾gı«½¸", 26, "¾£Ú»<Áa@5Î™Cc!ït1j<µ`Ò„K6s³2¿", 26, "ş0", 26, "<ëìm5ÿ¼h4ı»iï©„", 0, "fƒÜ:5Cc+ì €36j 56Ó†œ4S~şğLÀÀ", 26, "ˆò» O¿ü;¾DÀpÅ²†õ¬9 €hD2ƒAÀ¹¾ş4IÇòq#ş‡üq¹ã€59Üƒcœä °¿qÀii25Ác:¯C¿€‹b;ëé¾Ü", 0, "	ƒ¿füc‚1¿%Ø¾‘%Ü5¾dc-", 0, "ˆx43D*À9¿Ó", 0, "¾#¥Ïş", 0, "¾q‹‚CşŒ	 ", 10, "93Î²ÎşpÜ‚ô€©‚;h1Ã‚ñÂ¸:ñ¿Æƒ,;Ïî`'Œ¿=ùˆµÆ[½zıÛ×3¿Ágv?39”", 0, "l6‹€HÈ‚A=;ïâW½p.%²¾e", 10, "Æ¾,92³Ü8e¿60BQF¾At", 0, "4¿0ğK‹òS–¾h,şcÃ¾Ë`zÜ±œ¾`Æ€lÀDjj2Œ¿ãÀÇ1QÑ-!ÕîM¾QÿÙüÁx¾óˆÀ¨Ü!‚ñ¿C9¢Àv D2è¿Q#…œüPïÏ£ş@6”¿(c2¾‡À5gÍÆŒ½¿15…B1<""¿/.º ‹şs", 13, "³ş¿lüàè¿AÜgşLÀ90=|b2:¿ÆÀ„¿béëù G¿9Œ¾˜8:²Îz|¿8…/B}06:÷¿¿ş–6ñ¾à", 0, "\ü;ªX¿A2ƒÆÅ5c½ŒÀ6<.F|.ÿ»Ï", 0, ",¾¡ò¿ÀÚ¾0¨¿ÛÁ95Ü›", 10, "©€˜û.L{A/R€M6¿( ¿ëâW½4şaÿâ¿56zÅ¾³ÿƒñ¿¡ÀQv/<3¿QÿÃÚşb", 10, "şx6!ÿÑAà¾ÖşcÎ´G@:‚ÀØ", 0, "33ni0<^¿8½ÁX¿c–şÀ", 0, "…ş9G¾", 0, "5g²À›şb¿61Amu1ŒÀğ4Z¿!bï»W½ÿØó eA¿ÆÆ;¾AûÀ`", 0, "/Dl:1@:¤¿<&Æşbşš¾ J¤¿PcÆ(F›9À²ÎşÓ€ÀIQ53A:p¿ ¨¿EÇëÄıµ¾„ïb¿8h´Î¾@’¿ 36QL1A6`¿ÈÀ1C‰¿6ë=¤ıA6éÿ 9¾~¿d6›Î Í‚™¾ºpx‡Àš0@nF1x¿(6h¿v¾(ïşĞ4Œ", 0, "ü>¿<°¾u©Î²c5Jw", 0, "ÅP@›/imi“‚3""¿bÕÇ¿ğ""x¿6ìø¿Á3Ù5ƒ½ ™¾ªnM…‡À.Fo@2:+¿4¿9ë8~/J", 0, "A¾d9Îµ¾×M", 13, "À""À/Lo26:", 10, "¿4	D¿b–é<¾9YÁğ¾æşy ÆÍ¥¾§¿xÀ@91/nQ\‡îÃ2Eÿsşâº<ş<šP9$‰¿<2V½› 39¤ÿàÀ@:03pO\A<P¿ 4”¿@bgâqA4È¿£9¢OıÎ€fÍÍµƒb9/¿|À@/h$F.<‚‘¿Ò8i¾‚¡ÕF¿ªÀ<¾`ğ¿BÎ¿", 10, "š¾{À‚!À.C)i/<H(1¿60¿À", 26, "Ç ƒq¿89e@ş¿ªı¤‘½}dY:6%€ÀL&hÀx#¿6¿¾ÀsÕq4ƒa¿±¾5¾ƒzÀ´¾d>şqhjc&€L@0QYg1:–(a¿l9¾»îé", 13, "F¿pã,¿@Æµ9#5eá[»f¿$À36XT._3'àE¿9»œş", 26, "¿Å::	â¿8gÀ³¾ĞNús¿ˆÀ90B[M25±¿A~Çac¿Ã:áÙŒ¾Î´¿z6şh9A[<€60jpI06)¿§… ?ˆ¿B", 26, "–ºÚ¾Âà¿Ìš¿Æ¶©55)û8Ù€‚Á30M$j]H$æ†A6¨¿„:»‡", 13, "şÈ*¿ƒÆØ¾Îşl_ü ˜À@16S[B1†-À6MÀ`B", 26, "x»`Ax¿àÆ9P¿@92²¶³·8z2+]çÃ8#Â`0@$?1%¿B‹¡", 13, "Ç¿6ü NÿĞ5y¿´Ù¾2¯›<€Á8À/CpT43p%Wÿ°°¿9¥qı`µ¿¸3¿2‘¾ ªZy€‚À]H$Q/Ã%Úÿ4‡Æ¿s»½ĞX¿(9D¿5gÌıµÀ!c5!¿ápÉ9ÚÀ	lÃ]O&P.«ÁGŒ¶<¿ ‹", 13, "6‚±¿á2ñ¿ƒ¡À2¿µÆ©	#[9Icì€ÃâÀ911T(F.<ó?Í¨4\¾x", 0, "L¿N¥½ĞT¿Ñ(<cS€T¶´À‚‰UÖ", 0, ":ÌP€€:/;&i.:ã¿¨1õ ¬¿]s½ 6¨¿b<c(¡€5ƒş¾Ëb¾h&S‹€D9ˆÀ.B(A/54“‚3•æjõTÿab—~C¿Á1ÑÿÁÀŒd5şÂ·ªb", 10, "aR‰€áñÀI'n;0Ö530_AInÂö	ç€", 26, "¥¾ĞJ¿3t°À5)z´¾‘ûıpP(¿", 0, ".P(Q5ğû5õ·€^@FQ[!Bl&ÿ6†¬À~g‡şÃ¿À-À¿/üBµ·<5ı [¼¿v¬V'O13€*_0eEPY!YPCĞ€„Åqş„`4ğÑã¾ã¿Â‹F·¾Şıb9üN?€0JÁ&1hïfI10", 0, "`BMV![nIA3_cfõh¿cŒÎ9á,¨", 0, "F·àü¿~", 0, " ½µªY½2Œ‰?L´À 0D$", 0, "!j]AFTp", 0, "pQj<_bffì5÷L¿;¾~H¿(9|¿`¸±á1!b`‘˜ş¶·gE6 J9œ½tQcH4/K", 0, "&VP#$M$A6½", 26, "rG4À'0‹‚3ÿà(c¿9u©¶ª·2bÇñã¿º€", 0, "34P!!#VI?^¸&eõä4xÀÔ',¿""6d~†¾5ãè©xÄ¿d96·¾l­¾c‰¿+½", 26, "€˜06/j$VEe1b<q½œ¿fÀ#†„¿s6‚!¿C9#¿Yÿ€9f©·ª¶«^gıÁ¾ÛÀXAp¿‚F(O/6¢9Qt4#À'¿¬0í", 0, "Ã&gÿÀc„ï½¾¾Ÿ`>FÈT90À0H(Máø:gü¿4À0ø¿ğ^@¿<#{ÔÀˆÀ0ˆ<5±¿59üD5€0^ÁÀ30M(KÙ½c", 10, "¿À1P)©ÿ „¾`g¿5zı¾‡©u5<c¿¨€3b1¿F\1p(¿(4x¿aóı² c¿2‘ÀFş¶¾ƒa¾c<b„®˜ÿO(D^9:B¿(6H¿P6ø¾ÁÀ¿ØüAh¿Œ9bªşÂª¬i5<ıà\€@34S'C^bÁÿÃi€", 10, "¿6>²àLÀ@SÀ¾’@µ¾Á?¨¿ÁZ€lºW&B1cd¿P4Ø¿Ãã¾`¿í»FşÛ9>!¿0? !h_¾¸d¿P4ÃÀpYH½0lÀØÁ`¿•5yı«¶ûıƒ¿BÀ1=  =_e¿", 0, "¿<¯xÀ<J¿¬£ıÔeşŒÀH0@#9`56¿0±ÿğWø¾Áú€ 9¤¿xõU·¾§¬ıØ5¾c¿h$S!``†¿ŠÀ¢à< ¾l ]À2Ø¾·A›½E ,cµÀ0C'R3Œ¿ğ", 0, "H¿6˜#¿8†1", 26, "`¼4¿#£y2", 10, "÷", 0, "/ƒ©0E)M^b¿±©‡Æ¾A¿+2ƒüv¾]½Áp¿ còÁÀ/G*K0bàq ÿáÑ¿àÄ¿x{4Á±9_fş¶;", 10, "ÿ89½", 26, "K‚ÁÀ0J)FÑ¿à|˜¿a„", 26, "9ŒÀ¿5z¶±¿%Ÿ=ıÔ9¾b¿4/K+G0p­Bb¿6Ø¿g“x¿T‘¾Í£¾œ,¾-X8±Á ¿ƒ0N(C^qŒ©Pÿø*|¿x¿ÁÁb92c©˜ş£ª­ i¬şø?Ä¿R'0B^‚Œ¥5¿hTnîÁÀí85v©u", 10, "zz‘¶ş=¾–c¾×-C½¿0èÀ‚31U$@Æ¿/²1¶‚1¿ƒ¡¿‚À‰î:;µL", 0, "fsu‚‘", 10, "©µ½¾g¾h%¿&", 26, "‚¤€33""=_–‚-@C¸Ã¿T9)€%Œ", 26, "²A88Ä·zƒ", 0, "›±²²³³I¿", 0, "C¼ ¿–­¾Ğ~¾0ZÀÁ39""Z÷ü1?`¼0¨¿Ì«1ğ&%€Jãª:V8", 0, "˜Àgt€ƒ™™§²½ÃÓÅ(", 0, "Ã³´ò", 0, "ªµQ¾«¬`R¾Ü#	""¿6#`<ANëÇ3", 13, "bÂ‚A¿SƒÄ€¶©Ò:", 26, "í6ÜÔx‹", 0, "—˜°¨È½½ÌÓÛÓ", 0, "ËÓÃÌ", 0, "ÓÄÄ´±½b³½µœşÈG¾E–", 0, "Ä¿0?'S_`àOq¥ÕÇ»‡4Â0D¿1ğRkÁr‚Ö:F¤¡¸Ù¥yb·ÉÁÖÙÙÛÚC", 0, "ÙË", 0, "bÃÄÃğ", 0, "ÅÄ³Ää¿", 26, "Á¾", 0, "“cîğH~¾0V¿ 1@&R0Gb", 0, "?6e‹¥»q3ÉÿÆÁ", 13, "Ø¿Ùôİ5¤˜îŒ——°°ÑÖÑßA", 0, "ÛßÙa", 0, "×Ì×Ë""", 0, "Ãf", 0, "ÄÁ6€‘Fş£Ÿ­›$ş8!!„Â¯ÿ1B)Mˆ¿9b66Ê~|¿nÚÀ°åcb²", 26, "„·fg¡·¢ÁÁ·±å³Hç¹(Ù¥", 0, "Ëûö", 0, "¾ÙşÙ", 0, "³µV»«×¶", 0, "C¾„", 0, "­ƒ2eŒ¿ €/C*!K]", 26, ">9ÄÂ", 26, "6aa", 10, "(¿1P", 10, "VÿwçÒ‹¶", 26, 0, "Û¦”¹#İ·Ö·8¸Üä", 0, "×Ù¦ÿÚÑÚ=", 0, 10, "½ÌÅ½²2", 0, "ƒ", 0, "›‘‘", 0, "’«Ÿ±", 0, "AÀAbø¾Áh¿„E*j^|RO= $8""À3ÁHÀı‹µU;”©‹¥”É¶(ç©", 0, "ÍùåM°–", 26, "ÖÁ", 0, "¨aÁ'™š¢€", 0, "‰€‚zzuussga¼–d5/5â", 0, "‚¬±¾“’r5|Ÿ`ŞĞ<R¿!j+E]", 10, "Œ¿l9h¿Íã¿)afµ¤Š¶ÁA·³åØÑ¡ë°", 0, "˜˜—", 0, "‰ŒyÌ", 0, "xt¢Eca:Øx¬ n!", 0, "3Œ¹xoƒ­¡¾Ÿ”`Àè>¾", 0, 10, "D¿K* C^Œ¿cn²¾ytÀA9ò", 13, "¼q", 0, "çØ¢ÌÃk@ŸÜŠ`‡£cEÀbÀ“”‘5àÀÇÁ", 26, "ûÀ.K+B¿‰Â8¿ÁÔ\)J(A§®ï", 0, " ", 0, "‘X­¿†…i5<Ï4¿/R'!?_á¿9†N˜á[îŒ", 0, "(­“ÀL„hÀHcc=¾'	„¿40U%9\¿76<±", 13, "ğ", 0, ":ˆ¿4X•À¹’‚ƒóşà", 0, " ¿BZ _`Å¿4²+€†¿6Öc„”“•v3eY€c'ˆ¿30""]b\¿8’Ãçô¨¿Š61gÀ…”À0fc£¾¿0¸À33'S.b", 10, "Â<Ò9“´¾ˆÀ˜2hÀà", 0, "…•i0?Acè¿ <˜¿A9)O\ec¿c»w ¿:i†¿:", 26, "s2Aà¿Á3À1?(N\W‚a¿ìc“8¿pĞ1j†¾”|•_5$À<	â¿0A,J](¿Œ¦À,¿pÑ1v•À…}{^BÕ®ñ¿/B,E]f	¿98¸ÇŒ”h¿Œ3{ÀA|”wv1‡şÁ,(¿ˆC,C$¿", 26, "E3şp”ÀEÀ91", 0, "{|††|}j0ƒ±¾à", 0, "”¿BE+A^F¿§:‰X”`""P€90g=şˆÁ||B°Øx¿A.K+<_Qÿˆ0È”ÀC‰¿6:ŠÀ}}…0u5Ùƒá¿Âù¿N'_", 13, "¿DA›B†B£”", 10, "¿8ÀŠ/=wÁw{3`ÂÚ¿e‚¿R%]bñÿÅ½×", 10, "9bÀ6¼ÀF.Cwÿa}wH2Û", 10, "b¿U4 \ce8ÿh)¿à!~¿ô", 13, "/D(ÀKD_·Ä¿""WB\Ò9ã=¾3Œ0•0C¿Z˜v¦ÂÁh5<cc£¾Á", 0, "¿ˆ%R\FZ$½süâ", 0, "†„0a‘–€‚À", 0, "Im|lmQ d6Üşş", 0, "D¿3/(K!\fq¿ì0¼b†¿4aÁ•€€€A36kˆÀ}ok^9c-¿0'J†¿ƒ¾d¿aÑÀ@6ü¿8Û1:ÀlloH/gcí¿À19,!E]a¿ù&C6ã¿ À 0@Qwl0wXà ?cÔ¿Pcø¿áb?+B0", 10, "DÿU·È6ƒ¿¸!Ç¿Ã²ilÄÀA0´àÆ", 0, "¿f3aB*?^ŒZ`¾É	", 10, "Œ–c¿›D¿ÃÂw8_fú„¿Á.C)__Œ¿X½È¿(68¿", 0, "¡¿ÍŸFÈ‚nmk 5`Ğşø4 ¿E(]Ç[£5ev¼q¿„¢Í	F—±ÀHXnnXL„äe", 26, "A", 0, 0, "¿„K'\bx¾ğğ¾ğ\À(6¿4.POÀˆoj^„¿N%!\eÑ¿b¿6ƒñ¿ä", 0, "93", 0, "/lXTowi^Afœ", 0, "=ş¸¿„WW\<kšÜ", 13, ">¾0#¿BÀ0Ø¿woQ@_f¿(ct¿@:.ZR\f‡†¿q¾€·À1?˜ÿYk9A`˜ÀÃæÿ""GN¿‘ã¾¿(6", 10, "±¿Ì¤/AoomI2bs€Aÿ)G¿^ÃÀ[À9/iÄÀXYF^c'¿‚(E]¿ü„48¾7@", 0, "01FYÀ BÊ‚aÑ¿b3¿A!0e‘¿»¸P¿`(‡ÀÃ°I[one6e€(6h¿A03-7_Œ®.¿8¾Â½ÀWÀ„Ç3MÄa[T^bÀˆ¿`-4C`B¿6€Æ¿", 0, "16fQÿ!O\?&¿/h&!]b†¿Šş4h¾ 4B¿9", 13, "¨0?TXn$G]s€èşC%\Beçÿc¾", 10, "¿6>ÂŞ„@YX!BÅÀcÃ:ş:(.J¿Pc¨¿Å	¾6À3œô¥€”Ú", 13, "bÀi2Y", 0, "?^", 13, "Ñ€6	¿KW\Bf£¿¾(4ñ¿ô8:¿", 26, "‡Áí", 0, "E!X[__j¿0¡QRRÌÑ(¿8¯Æşx¿Î´0zÀÓ„™è.1F$ÀO_bZ¿3¦""O3Ä¿UK¿À®ãş€™`E€J", 0, "¡", 0, "M!Y!H]‚Ş€†W¦O6ZG¿…¿8¾aA¿àF€H", 26, "DÁ.P$YE*‚œPcÍ¦hĞ%eCŒ	¿şh6á¿ÀiáÁÀ 9a ¿`fÁ41Q¡VA‚cŒA¥%h^¿¾Ñ¿¸he€gs5ŒÀ‚Â19!!S<`", 10, "2ªcŠ", 0, "–", 0, "54.+!4_-F¿‘6—¼À1ûû", 13, "Àtt5‡Æ¿áÁ0@!$MÃ¸Dô'Íd”3ÿ4`˜¿¡6±¿¬46¿!€yÜÁ", 13, "ÂÁ/C[[$F0Æ„Hî‹!4%\", 10, "GE´¾p¿Æ¢€4Á»À}€ mÁ0j[!;#BÃAcGCI:%.1‹ş8ñ¿€HxÀBŠ€¿DÁ4/lHÁ<_<c?¿.BZŒ¿'Elc¿", 26, "À3Œ±¶ÁÀ!˜‰:´À", 13, "‚Á3", 0, "/L!&]6e‡ÆÀÀ`9.CUB.‰Æşqã¿¬0ëÁ¢€c€H", 26, "ÄÂ910S!'P\", 10, "€†,¿DGO\:¿(3‘¾‰!A¬”˜Á¡¨‰7>€6ˆÀ3p,(HÀ`íÀ±¿!KKÓÿÆ³¿óÿ¸)i€9±Š¤€", 13, "‚Â9", 0, "03p&D\?AcĞ¿ÑÿˆNG]x¿P4°¿ÁR€P âÀ™Cã¿`Á€:/<'$!h¾„ƒ³ÿ}UÆ", 10, "$Ã|ıF", 10, "¿9Æ¿€¬Ä±CãÀ`Á€:.A($:A_-ÃÃ¿A‡¿0şçÀz4	Œ¿{ÔGØ", 0, "ÀÁ ¿ğ", 0, "+ÀEAP_`BÀc…Ó€¿€¡±ïBB¿,6sêà´Àqƒ7½¿", 0, "¨ÀG'(K0bŒ°À4/Wá>H/Pşæ¿7u…¿Ò”¥°<½˜‡ÆÀáÂô¾)$mj€i", 10, "ØÀ0W/AcP¿Şat43°«ğÖå”gÀ(9N rÁÄ", 0, "40R) A¹‚ƒY€07R/V<¾D¿syO3ì°XÀ!:gÊÀŠ¿cÑÁc3À…S*gÌ‚", 26, "0À0=R!\<‘¿Æ­¿Æ¿ÄÀuÒ!˜ñ¿±ƒ", 0, "0:,P1¹‚ƒA¿!AN¡¿ş9†Àq¿…†À>1¥€zÒ:‡ÆÀ±Á/A *I]’€¿CK\?…!:Sş”¿EtyŒ§:€ˆò^tàÌ", 13, "‚Á/i#)C]…0d¿ 9.EG]†", 13, "ÿ4Š¿¿", 26, "…‚ôñÀhà™>¿06Â.D)&@^ÀÁ‹Àb¿GCE#¿	¾", 0, "3€¿JèpXÀ2ĞÀ„‚àš!9p;ˆÁ.H,&\`<xÀPc ¿B^¬7,şv†‰ÿpí«Ã)€X", 0, "À‚ƒÂ™5À", 26, "„Á4.L-U\:¡0^¿8ùˆGh_\¿aQ¾Á5˜t1èÁ`ÀÏÎƒÀ(šñÀî5qÁ.U-ˆfca€!/J?`!,4¿6˜s¿ÁÒ€f", 0, "À(2|¿`kÁ3.,âÉÀ9""í0Jbb", 10, "Ù4şÃã¿ãÀ>bšÀC5÷ÁHÁ903()BcÀŒÀ4Å¿3Á2p¿‚7¢sxA6€D9‚À3‡æ€Á", 0, "39/=(%9^‡FÀ6C4¿4†D¿s¢#ràI¼Àqš¾š¤€", 13, "ˆƒ/B)U_`9Ãp€f3:Gp3b¿$`ˆ¿:59›¾›ÄÀŒÀ(c„Â/E*M]bÀ`¨¿C0?E1…!1xü¡¿Nt¿0zÀ ;œ¾‘‡ÚÁ¤„3/K+G]<ŒÀÈ€0@C‚Á¿ñ", 0, "¿", 13, "€¦6Œ¿âÀÅÀ:€<Á4/N(B_<cc", 10, "¿1ASB¿8c(¿", 26, "Á", 13, "‰¦ƒ¿Àœ.JàzÁ10%s>‚‚¿6¡¿„ÆÀ", 0, ""
+
+	section	.rodata,"a",@progbits
+	private	_.str.23
+_.str.23:
+	db	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, """WRMH", 0, 0, "?[VQLG", 0, 0, ":ZUPKFC", 0, " YTOJEB", 0, 0, "XSNIDA", 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.1.24
+_.str.1.24:
+	db	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, """wrmh", 0, 0, "?[vqlg", 0, 0, ":zupkfc", 0, " ytojeb", 0, 0, "xsnida", 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.2.9
+_.str.2.9:
+	db	"A string in C is an array of ___", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.3.10
+_.str.3.10:
+	db	"character", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.4.11
+_.str.4.11:
+	db	"a step-by-step procedure for solving a problem", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.5.12
+_.str.5.12:
+	db	"algorithm", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.6.13
+_.str.6.13:
+	db	"finding and correcting errors", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.7
+_.str.7:
+	db	"debug", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.8.14
+_.str.8.14:
+	db	"provide a computer or other machine with coded instructions for the automatic performance of a particular task", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.10.15
+_.str.10.15:
+	db	"the programs and other operating information used by a computer.", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.11.16
+_.str.11.16:
+	db	"software", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.12.17
+_.str.12.17:
+	db	"identify the most relevant information needed to solve the problem and eliminate or hide the extraneous details", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.13
+_.str.13:
+	db	"abstraction", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.14.18
+_.str.14.18:
+	db	"to repeat", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.16.19
+_.str.16.19:
+	db	"a diagram that shows step-by-step progression through a procedure using connecting lines and a set of symbols", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.17.20
+_.str.17.20:
+	db	"flowchart", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.18.21
+_.str.18.21:
+	db	"a high-level description of the actions of a program or algorithm, using a mixture of English and informal programming language syntax", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.19.22
+_.str.19.22:
+	db	"pseudocode", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.20
+_.str.20:
+	db	"TYPE THE TERM", 0
+
+	section	.rodata,"a",@progbits
+	private	_test_font_data
+_test_font_data:
+	db	0, "", 0, 0, "", 0, 0, "", 0, 0, "À", 0, "																									", 10, "													", 10, "", 10, "																										-Ie¹Õñ", 13, ")Ea}™µÑí	%A]y•°¾ÌÛö .<JYt‚¬ºÈÖäò", 0, "*8FTbp~Œš¨¶ÄÒàîı&4BP^m‰¤²ÀÎİù	0	?	Z	h	w	“	®	½	Ù	õ	", 10, ",", 10, ":", 10, "H", 10, "V", 10, "d", 10, "r", 10, "€", 10, "", 10, "œ", 10, "ª", 10, "¸", 10, "Æ", 10, "Ô", 10, "â", 10, "ğ", 10, "ş", 10, "", 26, ")DR`n|Š˜¦´ÃŞìú$2A\jx†”¢°¾ÌÛö", 13, "", 13, ".", 13, "=", 13, "Y", 13, "t", 13, "‚", 13, "", 13, "", 13, "¬", 13, "º", 13, "È", 13, "×", 13, "ò", 13, 0, "+FTc~Œš©Åáı&4BP^lzˆ–¤²ÀÎÜë""0>Mi… ®¼ÊØæô,:HVdr€¹Õñ", 13, ")E`o‹§Ãßû$2@N\jx‡¢°¾ÌÚèö .<JXft‚‘¬ºÈÖäò", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ª", 0, "U", 0, "ª", 0, "U", 0, "ª", 0, "U", 0, "ª", 0, "U", 0, "ª", 0, "U", 0, "ª", 0, "U", 0, "ª", 0, 0, 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, "`", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ÿ", 0, "ÿ", 0, "ÿ", 0, 0, 0, "ÿ", 0, "ÿ", 0, "ÿ", 0, "ÿ", 0, "ÿ", 0, "ÿ", 0, "ÿ", 0, "ÿ", 0, "ÿ", 0, "ÿ", 0, "ÿ", 0, "ÿ", 0, "ÿ", 0, 0, 0, "ÿ", 0, "ÿ", 0, "ç", 0, "Ã", 0, "", 0, "ç", 0, "ç", 0, "ç", 0, "ç", 0, "ç", 0, "ç", 0, "ÿ", 0, "ÿ", 0, 0, 0, "ÿ", 0, "ÿ", 0, "ç", 0, "Ã", 0, "™", 0, "™", 0, "", 0, "™", 0, "™", 0, "™", 0, "™", 0, "ÿ", 0, "ÿ", 0, 0, 0, "ÿ", 0, "ÿ", 0, "ÿ", 0, "ÿ", 0, "Ã", 0, "ù", 0, "Á", 0, "™", 0, "™", 0, "™", 0, "Á", 0, "ÿ", 0, "ÿ", 0, 0, 0, "ÿ", 0, "Ã", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Ã", 0, "ÿ", 0, 0, 0, "ÿ", 0, "Ã", 0, "", 0, "<", 0, "~", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "Ã", 0, "ÿ", 0, 0, 0, "ÿ", 0, "Ã", 0, "", 0, "<", 0, "f", 0, "f", 0, "~", 0, "f", 0, "f", 0, "f", 0, 0, 0, "Ã", 0, "ÿ", 0, 0, 0, "ÿ", 0, "Ã", 0, 0, 0, 0, 0, "<", 0, "", 0, ">", 0, "f", 0, "f", 0, ">", 0, 0, 0, "Ã", 0, "ÿ", 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, ">", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, ">", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "", 0, "", 0, "?", 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "`", 0, "p", 0, "x", 0, "|", 0, "~", 0, "|", 0, "x", 0, "p", 0, "`", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "<", 0, "~", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "~", 0, "<", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "0", 0, "", 0, "0", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "$", 0, "f", 0, "ÿ", 0, "f", 0, "$", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, """", 0, "A", 0, "A", 0, "A", 0, """", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, ">", 0, "", 0, "", 0, "", 0, ">", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "Ø", 0, "Ø", 0, "p", 0, 0, "ş~ş", 0, 0, 0, 0, 0, "ÆÆÆşlll88", 0, 0, 0, 0, 0, 0, 0, "00", 0, 0, "ÌÌ", 0, 0, 0, 0, 0, 0, "À", 0, "À", 0, "€€€", 0, "", 0, "ã", 0, "ã", 0, "6", 0, "6", 0, "", 0, "", 0, 0, 0, 0, 0, 0, "pÀp", 0, "ü", 0, 0, 0, 0, 0, 0, 0, "`´`´", 0, 0, 0, 0, 0, 0, 0, 0, "à88à", 0, "ü", 0, 0, 0, 0, 0, 0, "ü00ü``", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ÀÀÀÀÀÀ", 0, "ÀÀ", 0, 0, 0, 0, "ØØØP", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "€", 0, "6", 0, "6", 0, "6", 0, "ÿ", 0, "l", 0, "l", 0, 0, 0, 0, 0, 0, "|ÖÒĞ|–Ö|00", 0, 0, 0, "ÌÌ0``ÌÌ", 0, 0, 0, 0, 0, "8ll8vÜÌÌv", 0, 0, 0, 0, "```À", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "0``ÀÀÀÀ``0", 0, 0, 0, 0, "À``0000``À", 0, 0, 0, " ¨øpø¨ ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "00ü00", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "```À", 0, 0, 0, 0, 0, 0, 0, 0, "ğ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ÀÀ", 0, 0, 0, 0, 0, "0``ÀÀ", 0, 0, 0, 0, 0, "xÌÌÜüìÌÌx", 0, 0, 0, 0, 0, "0pğ00000ü", 0, 0, 0, 0, 0, "xÌ0`ÀÌü", 0, 0, 0, 0, 0, "xÌ8Ìx", 0, 0, 0, 0, 0, "8xØØü", 0, 0, 0, 0, 0, "üÀÀÀøÌx", 0, 0, 0, 0, 0, "8`ÀÀøÌÌÌx", 0, 0, 0, 0, 0, "ü000", 0, 0, 0, 0, 0, "xÌÌÌxÌÌÌx", 0, 0, 0, 0, 0, "xÌÌÌ|p", 0, 0, 0, 0, 0, 0, "ÀÀ", 0, 0, 0, "ÀÀ", 0, 0, 0, 0, 0, 0, 0, 0, "``", 0, 0, "``À", 0, 0, 0, 0, 0, 0, 0, 0, "pÀp", 0, 0, 0, 0, 0, 0, 0, 0, 0, "ü", 0, 0, "ü", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "à88à", 0, 0, 0, 0, 0, 0, "|ÆÆ", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, "~", 0, "Ã", 0, "Ã", 0, "Ï", 0, "Û", 0, "Û", 0, "Î", 0, "À", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, "88lllşÆÆÆ", 0, 0, 0, 0, 0, "üÆÆÆüÆÆÆü", 0, 0, 0, 0, 0, "<fÂÀÀÀÂf<", 0, 0, 0, 0, 0, "øÌÆÆÆÆÆÌø", 0, 0, 0, 0, 0, "şÀÀÀüÀÀÀş", 0, 0, 0, 0, 0, "şÀÀÀüÀÀÀÀ", 0, 0, 0, 0, 0, 0, 0, 0, ">", 0, "c", 0, "À", 0, "À", 0, "Ï", 0, "Ã", 0, "Ã", 0, "c", 0, "=", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "ÿ", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, 0, 0, 0, 0, 0, 0, 0, "ü0000000ü", 0, 0, 0, 0, 0, "ÌÌx", 0, 0, 0, 0, 0, "ÆÆÌÌøÌÌÆÆ", 0, 0, 0, 0, 0, "ÀÀÀÀÀÀÀÀş", 0, 0, 0, 0, 0, 0, 0, "ÀÀÀáÀáÀóÀÒÀŞÀÌÀÌÀÀ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Ã", 0, "Ã", 0, "ã", 0, "ó", 0, "Û", 0, "Ï", 0, "Ç", 0, "Ã", 0, "Ã", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<", 0, "f", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, 0, "üÆÆÆüÀÀÀÀ", 0, 0, 0, 0, 0, 0, 0, 0, "<", 0, "f", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ó", 0, "Û", 0, "n", 0, "<", 0, "", 0, "", 0, 0, 0, 0, "üÆÆÆüÌÆÆÆ", 0, 0, 0, 0, 0, "|ÆÆ`8ÆÆ|", 0, 0, 0, 0, 0, 0, 0, 0, "ÿ", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, 0, "ÆÆÆÆlll88", 0, 0, 0, 0, 0, 0, 0, "ÀÀÀÀÀÌ€m€m€m", 0, "?", 0, "3", 0, "3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Ã", 0, "Ã", 0, "f", 0, "<", 0, "", 0, "<", 0, "f", 0, "Ã", 0, "Ã", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Ã", 0, "Ã", 0, "f", 0, "f", 0, "<", 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ÿ", 0, "", 0, "", 0, "", 0, "", 0, "0", 0, "`", 0, "À", 0, "ÿ", 0, 0, 0, 0, 0, 0, 0, 0, "ğÀÀÀÀÀÀÀÀğ", 0, 0, 0, 0, "ÀÀ``0", 0, 0, 0, 0, 0, "ğ00000000ğ", 0, 0, "8lÆ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ş", 0, "ÀÀ`", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "x|ÌÌ|", 0, 0, 0, 0, 0, "ÀÀÀğØÌÌÌø", 0, 0, 0, 0, 0, 0, 0, 0, "xÌÀÀÌx", 0, 0, 0, 0, 0, "<lÌÌÌ|", 0, 0, 0, 0, 0, 0, 0, 0, "xÌüÀÌx", 0, 0, 0, 0, 0, "8l``ğ````", 0, 0, 0, 0, 0, 0, 0, 0, "lÜÌÌÌ|Ìx", 0, 0, "ÀÀÀØìÌÌÌÌ", 0, 0, 0, 0, 0, "ÀÀ", 0, "ÀÀÀÀÀÀ", 0, 0, 0, 0, 0, "", 0, "8ØØp", 0, 0, 0, "ÀÀÀÌØğØÌÌ", 0, 0, 0, 0, 0, "ÀÀÀÀÀÀÀÀÀ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "æ", 0, "ÿ", 0, "Û", 0, "Û", 0, "Û", 0, "Û", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ØìÌÌÌÌ", 0, 0, 0, 0, 0, 0, 0, 0, "xÌÌÌÌx", 0, 0, 0, 0, 0, 0, 0, 0, "ØìÌÌÌøÀÀÀ", 0, 0, 0, 0, 0, "lÜÌÌÌ|", 0, 0, 0, 0, 0, "ØìÌÀÀÀ", 0, 0, 0, 0, 0, 0, 0, 0, "xÌ`Ìx", 0, 0, 0, 0, 0, "```ğ````0", 0, 0, 0, 0, 0, 0, 0, 0, "ÌÌÌÌÜl", 0, 0, 0, 0, 0, 0, 0, 0, "ÆÆll8", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Ã", 0, "Ã", 0, "Û", 0, "Û", 0, "ÿ", 0, "f", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Æl88lÆ", 0, 0, 0, 0, 0, 0, 0, 0, "ÌÌÌÌÌ|p", 0, 0, 0, 0, 0, "ø0`Àø", 0, 0, 0, 0, "8````À````8", 0, 0, 0, 0, "ÀÀÀÀÀÀÀÀÀÀ", 0, 0, 0, "à00000000à", 0, 0, 0, 0, 0, 0, 0, "vÜ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "w€Í€Ù", 0, "w", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "2`ø`ø`2", 0, 0, 0, 0, 0, 0, 0, "şllllll", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "à``À", 0, 0, 0, 0, 0, 0, "xÄpÀÌx", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "üllØ", 0, 0, 0, 0, 0, 0, "vÌÌÌÌv", 0, 0, 0, 0, "00ü00000", 0, 0, 0, 0, 0, 0, "00ü00ü00", 0, 0, 0, 0, 0, 0, 0, "şÀÀÀÀÀÀÀÀ", 0, 0, 0, 0, 0, 0, 0, 0, "Ì", 0, "Ì", 0, "", 0, "", 0, "0", 0, "`", 0, "`€Í€Í", 0, 0, 0, 0, 0, 0, "l8|ÆÆpÆÆ|", 0, 0, 0, 0, 0, 0, 0, "0`À`0", 0, 0, 0, 0, 0, 0, 0, 0, 0, "à?", 0, "f", 0, "Æ", 0, "ÆÀÇ", 0, "Æ", 0, "Æ", 0, "fà?", 0, 0, 0, 0, 0, 0, 0, 0, "şÀ`00`Àş", 0, 0, 0, 0, "6", 0, "", 0, "", 0, "ÿ", 0, "", 0, "", 0, "", 0, "", 0, "0", 0, "`", 0, "ÿ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Î", 0, "Û", 0, "Û", 0, "Û", 0, "Û", 0, "~", 0, "", 0, "", 0, "", 0, 0, "şÆÆÆÆÆÆÆÆ", 0, 0, 0, 0, "`ÀÀà", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "à``À", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "lØØü", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "üllØ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "`ğğ`", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ø", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ÿ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ÆÆll88000", 0, 0, "ø`ÀÀxÀÀÀx8", 0, "Ìx0", 0, "xÌ`Ìx", 0, 0, 0, 0, 0, 0, 0, "À`0`À", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "€ÀÌÀÏ", 0, "ÌÀÌ€", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ÌÌÌÌx", 0, 0, 0, 0, "Øp ", 0, "ø0`Àø", 0, 0, 0, 0, "f", 0, "f", 0, 0, 0, "Ã", 0, "Ã", 0, "f", 0, "f", 0, "<", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ÀÀ", 0, "ÀÀÀÀÀÀ", 0, 0, 0, 0, 0, "|ÖĞĞÖ|00", 0, 0, 0, 0, "<", 0, "f", 0, "b", 0, "`", 0, "ğ", 0, "`", 0, "`", 0, "`", 0, "ó", 0, "Ş", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Ã", 0, "~", 0, "$", 0, "$", 0, "~", 0, "Ã", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<", 0, "f", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "f", 0, "f", 0, "ç", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "f", 0, "Ã", 0, "Û", 0, "Û", 0, "ÿ", 0, "f", 0, 0, 0, 0, 0, 0, 0, "|Æ`8lÆÆl8Æ|", 0, 0, 0, "88lllÆÆÆÆ", 0, 0, 0, 0, 0, 0, 0, 0, "ØìÌÌÌÌ", 0, "x|Ì|", 0, "ü", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "6lØl6", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ü", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ü", 0, 0, 0, 0, 0, 0, 0, 0, 0, "88lllÆÆÆş", 0, 0, 0, 0, 0, "ü`0xÌÌÌÌx", 0, 0, 0, 0, "xÌÌÌx", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "00ü00", 0, "ü", 0, 0, 0, 0, "à0`Àğ", 0, 0, 0, 0, 0, 0, 0, 0, 0, "à0à0à", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "|ÆÆÆşÆÆÆ|", 0, 0, 0, 0, 0, 0, 0, 0, "ÌÌÌÌÌúÀÀÀ", 0, 0, 0, 0, 0, "", 0, "Û", 0, "Û", 0, "Û", 0, "{", 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ÀÀ", 0, 0, 0, 0, 0, 0, 0, 0, "pp<llÆÆ", 0, 0, 0, 0, "`à``ğ", 0, 0, 0, 0, 0, 0, 0, 0, 0, "xÌÌÌx", 0, "ü", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Øl6lØ", 0, 0, 0, 0, 0, 0, 0, 0, "`", 0, "à", 0, "c", 0, "f", 0, "l", 0, "", 0, "0", 0, "{", 0, "Û", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, "`", 0, "à", 0, "c", 0, "f", 0, "l", 0, "", 0, "0", 0, "n", 0, "Ã", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, "à", 0, "0", 0, "c", 0, "6", 0, "ì", 0, "", 0, "0", 0, "{", 0, "Û", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, "00", 0, "00`ÆÆ|", 0, 0, "0", 0, "88llÆşÆÆ", 0, 0, 0, "0", 0, "88llÆşÆÆ", 0, 0, 0, "8lÆ88llÆşÆÆ", 0, 0, 0, "vÜ", 0, "88llÆşÆÆ", 0, 0, 0, "ll", 0, "88llÆşÆÆ", 0, 0, 0, "8l88llÆşÆÆ", 0, 0, 0, 0, 0, 0, 0, "à", 0, "6", 0, "6", 0, "fÀg", 0, "~", 0, "Æ", 0, "ÆàÇ", 0, 0, 0, 0, 0, 0, 0, 0, "<fÂÀÀÀÂf<8`0", 0, "şÀÀüÀÀş", 0, 0, 0, "0`", 0, "şÀÀüÀÀş", 0, 0, 0, "0xÌ", 0, "şÀÀüÀÀş", 0, 0, 0, "ÆÆ", 0, "şÀÀüÀÀÀş", 0, 0, 0, "`0", 0, "ü00000ü", 0, 0, 0, "0`", 0, "ü00000ü", 0, 0, 0, "0xÌ", 0, "ü00000ü", 0, 0, 0, 0, "ÌÌ", 0, "ü00000ü", 0, 0, 0, 0, 0, 0, 0, 0, "|", 0, "f", 0, "c", 0, "c", 0, "ó", 0, "c", 0, "c", 0, "f", 0, "|", 0, 0, 0, 0, 0, 0, 0, "s", 0, "Î", 0, 0, 0, "Ã", 0, "ã", 0, "ó", 0, "Û", 0, "Ï", 0, "Ç", 0, "Ã", 0, "Ã", 0, 0, 0, 0, 0, 0, 0, "0", 0, "", 0, 0, 0, "<", 0, "f", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, 0, 0, "<", 0, "f", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "", 0, "<", 0, "f", 0, "<", 0, "f", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "s", 0, "Î", 0, 0, 0, "<", 0, "f", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "f", 0, "f", 0, 0, 0, "<", 0, "f", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Æl8lÆ", 0, 0, 0, 0, 0, 0, 0, 0, 0, "€", 0, "€=", 0, "c", 0, "g", 0, "o", 0, "{", 0, "s", 0, "c", 0, "Ş", 0, "€", 0, 0, 0, 0, 0, "0", 0, "", 0, "Ë", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "Ó", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "", 0, "<", 0, "f", 0, 0, 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "Ã", 0, "Ã", 0, 0, 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "Ã", 0, "f", 0, "<", 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "Ó", 0, "Ã", 0, "f", 0, "f", 0, "<", 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, "ÀüÆÆÆÆÆüÀ", 0, 0, 0, 0, 0, "xÌÆÆÜÌÆæÜÀ", 0, 0, 0, "`0", 0, "x|ÌÌ|", 0, 0, 0, 0, "0`", 0, "x|ÌÌ|", 0, 0, 0, 0, "0xÌ", 0, "x|ÌÌ|", 0, 0, 0, 0, 0, "vÜ", 0, "x|ÌÌ|", 0, 0, 0, 0, 0, "ÌÌ", 0, "x|ÌÌ|", 0, 0, 0, 0, "8l8", 0, "x|ÌÌ|", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "€ÀÀ", 0, "ÌÀÌ€", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "xÌÀÀÌxx", 0, "`0", 0, "xÌüÀÌx", 0, 0, 0, 0, "0`", 0, "xÌüÀÌx", 0, 0, 0, 0, "0xÌ", 0, "xÌüÀÌx", 0, 0, 0, 0, 0, "ÌÌ", 0, "xÌüÀÌx", 0, 0, 0, 0, "€À`", 0, "ÀÀÀÀÀÀ", 0, 0, 0, 0, " `À", 0, "ÀÀÀÀÀÀ", 0, 0, 0, 0, "`ğ", 0, "``````", 0, 0, 0, 0, 0, "ÌÌ", 0, "000000", 0, 0, 0, 0, "Ğ`°xÌÌÌÌx", 0, 0, 0, 0, 0, "vÜ", 0, "ØìÌÌÌÌ", 0, 0, 0, 0, "`0", 0, "xÌÌÌÌx", 0, 0, 0, 0, "0`", 0, "xÌÌÌÌx", 0, 0, 0, 0, "0xÌ", 0, "xÌÌÌÌx", 0, 0, 0, 0, 0, "vÜ", 0, "xÌÌÌÌx", 0, 0, 0, 0, 0, "ÌÌ", 0, "xÌÌÌÌx", 0, 0, 0, 0, 0, 0, "00", 0, "ü", 0, "00", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "€", 0, ";", 0, "g", 0, "o", 0, "{", 0, "s", 0, "n", 0, "À", 0, 0, 0, 0, 0, "`0", 0, "ÌÌÌÌÜl", 0, 0, 0, 0, "0`", 0, "ÌÌÌÌÜl", 0, 0, 0, 0, "0xÌ", 0, "ÌÌÌÌÜl", 0, 0, 0, 0, 0, "ÌÌ", 0, "ÌÌÌÌÜl", 0, 0, 0, 0, "0`", 0, "ÌÌÌÌÌ|p", 0, 0, "ÀÀøÌÌÌøÀÀ", 0, 0, 0, 0, 0, "ÌÌ", 0, "ÌÌÌÌÌ|p"
+
+	section	.data,"aw",@progbits
+	public	_test_font
+_test_font:
+	dl	_test_font_data
+
+	section	.data,"aw",@progbits
+	public	_global_palette
+_global_palette:
+	db	0, 0, "ÿÿ", 0, 0, "@€a", 0, "a€€", 0, "", 0, "‚", 0, "‚€¢", 0, "¡€@„A„bb„ƒƒ„ ˆ@AˆBˆCˆbcbˆcˆƒƒˆšŠ½ŠßŠû", 10, "‹‹?<‹__‹ŸŸ‹¿ßÿ", 0, " !ŒAAŒBŒCŒbcdbŒcŒdŒƒ„…ƒŒ…Œ¦Çè", 10, "K", 13, "o", 13, "m‘", 13, "’®", 13, "Ğ", 13, "Õ", 13, "ô", 13, ":Tw{–œ·¿¿Ùÿ", 0, " ABcdcdƒ„„…§ëN÷<’}’Ÿÿ’dd”e”g”†”R^–…‡¨–™", 26, "šegœ‰’©œÊ»Úûe e j k ‡ ˆ Ì î f$í$¥w¥º¥Û¥&h¨Š¨Œ¨Í(ï())2©T)™©F¬h,¬˜-F°i00Ğ°ñ°w1x±™1š±¼±<4<´Í4ó´4µWµw5xµ™5šµ<8<¸G¸j8“8õ¸¹y¹¼9Ğ¼==6½V=X½š=KÀÏÀÑÀøÀ6A6ÁyA›AHD—ÄÒÄ", 26, "Å6EHHLÈÓÈôÈûÈI6I7I½IHL»LõÌM)ĞLP^Ğ¾ĞÔĞQõT)ØLX*`.à,ä+l/l0ìôô0tŞwøøŞ{Şûÿ{||", 13, "||||ÿ"
+
+	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 5f8512f22751066573aa48ac848a6d2195838ac3)"
+	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 5f8512f22751066573aa48ac848a6d2195838ac3)"
+	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 5f8512f22751066573aa48ac848a6d2195838ac3)"
+	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 5f8512f22751066573aa48ac848a6d2195838ac3)"
+	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 5f8512f22751066573aa48ac848a6d2195838ac3)"
+	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 5f8512f22751066573aa48ac848a6d2195838ac3)"
+	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 5f8512f22751066573aa48ac848a6d2195838ac3)"
+	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 5f8512f22751066573aa48ac848a6d2195838ac3)"
+	extern	__Unwind_SjLj_Register
+	extern	_gfx_PrintChar
+	extern	_fontlib_SetTransparency
+	extern	__frameset
+	extern	_kb_AnyKey
+	extern	_gfx_SetTransparentColor
+	extern	_gfx_SetTextFGColor
+	extern	_gfx_Begin
+	extern	_gfx_Line
+	extern	_kb_Scan
+	extern	_fontlib_SetNewlineOptions
+	extern	_fontlib_DrawString
+	extern	_strcmp
+	extern	_gfx_GetStringWidth
+	extern	_gfx_SetPalette
+	extern	_fontlib_SetColors
+	extern	_fontlib_SetFont
+	extern	__ishru
+	extern	_gfx_SwapDraw
+	extern	__ishl
+	extern	_fontlib_SetWindow
+	extern	__ftol
+	extern	_gfx_PrintInt
+	extern	_gfx_SetDraw
+	extern	__setflag
+	extern	_gfx_FillScreen
+	extern	__Unwind_SjLj_Unregister
+	extern	_gfx_GetTextY
+	extern	_exit
+	extern	_gfx_FillRectangle
+	extern	_gfx_Blit
+	extern	__irems
+	extern	_fontlib_SetLineSpacing
+	extern	__fdiv
+	extern	__imulu
+	extern	_gfx_SetColor
+	extern	_gfx_GetTextX
+	extern	_zx7_Decompress
+	extern	__ltof
+	extern	_fontlib_SetCursorPosition
+	extern	_gfx_TransparentSprite_NoClip
+	extern	_gfx_End
+	extern	_os_GetCSC
+	extern	_gfx_Sprite_NoClip
+	extern	_gfx_PrintStringXY
+	extern	__frameset0
+	extern	_gfx_SetTextXY

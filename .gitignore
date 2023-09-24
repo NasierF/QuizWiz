@@ -3,5 +3,9 @@ bin/
 src/gfx/*.c
 src/gfx/*.h
 src/gfx/*.8xv
+<<<<<<< HEAD
 .DS_Store
+=======
+*/.DS_Store
+>>>>>>> 9048ae00d214d3985b5f8f768dd563bae67b8d50
 convimg.out

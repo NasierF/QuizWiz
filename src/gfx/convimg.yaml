@@ -1,6 +1,9 @@
 palettes:
   - name: global_palette
     images: automatic
+    fixed-entries:
+      - color: {index: 0, r: 0, g: 0, b: 0}
+      - color: {index: 1, r: 255, g: 255, b: 255}
 
 converts:
   - name: QuizWiz_back
@@ -9,11 +12,16 @@ converts:
     width-and-height: false
     images:
       - QuizWiz_back.png
-  - name: Flash_cards_button
+  - name: QuizWizTxt
     palette: global_palette
     transparent-color-index: 0
     images:
-      - Flash_cards_button
+      - QuizWizTxt.png
+  - name: sprites
+    palette: global_palette
+    transparent-color-index: 0
+    images:
+      - FlashCardSprite.png
 
 
 outputs:
@@ -22,6 +30,7 @@ outputs:
     palettes:
       - global_palette
     converts:
-      - Flash_cards_button
+      - QuizWizTxt
       - QuizWiz_back
+      - sprites
   

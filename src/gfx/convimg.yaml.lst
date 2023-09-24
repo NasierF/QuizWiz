@@ -1,7 +1,9 @@
 global_palette.h
 global_palette.c
-Flash_cards_button.h
-Flash_cards_button.c
+QuizWizTxt.h
+QuizWizTxt.c
 QuizWiz_back.h
 QuizWiz_back.c
+FlashCardSprite.h
+FlashCardSprite.c
 gfx.h
