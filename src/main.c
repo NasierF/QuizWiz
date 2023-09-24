@@ -4,9 +4,10 @@
 #include <ti/getcsc.h>
 #include <ti/screen.h>
 #include <stdlib.h>
+#include <graphx.h>
+#include <debug.h>
 
 /* Function Prototypes */
-void FillScreen(uint8_t color);
 struct question 
 {
     char myQuestion[100];
@@ -15,12 +16,16 @@ struct answer
 {
     char myAnswer[100];
 };
-
+void PrintedCentered(const char *star);
 int main(void)
 {
+    int displayQuestion = 1;
+    int numQuestion = 2;
+    gfx_Begin();
+    gfx_SetDrawBuffer();
     int count = 0;
-    struct question questions[2];
-    struct answer answers[2];
+    struct question questions[5];
+    struct answer answers[5];
     
     // Set the initial questions and answers
     strcpy(questions[0].myQuestion, "What day is today?");
@@ -28,15 +33,13 @@ int main(void)
     
     strcpy(questions[1].myQuestion, "What is your name?");
     strcpy(answers[1].myAnswer, "Tom");
-
     
-    os_ClrHome();
-    os_PutStrFull("Test");
-    os_NewLine();
-    os_PutStrFull("Hello World.");
-    /* Key variable */
-    // kb_key_t key;
-    /* Loop until 2nd is pressed */
+    // strcpy(questions[2].myQuestion, "a(n) ___ bond is formed when atoms share electrons");
+    // strcpy(answers[2].myAnswer, "Covalent");
+
+    // strcpy(questions[3].myQuestion, "water molecules 'stick' to each other by means of");
+    // strcpy(answers[3].myAnswer, "Hydrogen (Bonds)");
+    dbg_printf("test");
     do
     {
         /* Update kb_Data */
@@ -48,40 +51,42 @@ int main(void)
         {
             count = 0;
         }
-        os_ClrHome();
-        os_PutStrFull("The question is:");
-        os_NewLine();
-        os_PutStrFull(questions[count].myQuestion);
+        displayQuestion = 1;
     }
     else if(kb_Data[4] == kb_8)
     {
-        os_ClrHome();
-        os_PutStrFull("The answer is:");
-        os_NewLine();
-        os_PutStrFull(answers[count].myAnswer);
+        displayQuestion = !displayQuestion;
     }
     else if(kb_Data[5]== kb_9)
     {
         count++;
-        if(count >=2)
+        if(count >= numQuestion)
         {
-            count = 1;
+            count = numQuestion - 1;
         }
-        os_ClrHome();
-        os_PutStrFull("The question is:");
-        os_NewLine();
-        os_PutStrFull(questions[count].myQuestion);
-        
+        displayQuestion = 1;
     }
+    gfx_FillScreen(255);
 
+    if(displayQuestion)
+    {
+        PrintedCentered(questions[count].myQuestion);
+        dbg_printf("Initialized some things...\n");
+    }
+    else
+    {
+        PrintedCentered(answers[count].myAnswer);
+        dbg_printf("Initialized test\n");
+    }
+    gfx_SwapDraw();
 
     } while (kb_Data[1] != kb_2nd);
-
+    gfx_End();
     return 0;
 }
 
-/* Simple way to fill the screen with a given color */
-void FillScreen(uint8_t color)
+
+void PrintedCentered(const char *str)
 {
-    memset((void*)lcd_Ram, color, LCD_SIZE);
+    gfx_PrintStringXY(str, (GFX_LCD_WIDTH - gfx_GetStringWidth(str))/2, (GFX_LCD_HEIGHT - 8)/2);
 }
