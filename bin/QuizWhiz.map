@@ -7,9 +7,9 @@ Section          Base   Top    High   Length
 .init.reruncheck D1A96F D1A96F             0h
 .init            D1A96F D1A98F            20h
 .fini            D1A98F D1A9C3            34h
-.text            D1A9C3 D1B0EA           727h
-.data            D1B0EA D1B0ED             3h
-.rodata          D1B0ED D1C970          1883h
+.text            D1A9C3 D1B121           75Eh
+.data            D1B121 D1B124             3h
+.rodata          D1B124 D1C9A7          1883h
 .init_array      000000 000000             0h
 .ctors           000000 000000             0h
 .dtors           000000 000000             0h
@@ -39,10 +39,10 @@ _os_DisableHomeTextBuffer   = D1AA4E
 _os_EnableHomeTextBuffer    = D1AA60
 _os_GetCSC                  = 021D3C
 _strcmp                     = 0000C8
-.missingappvar              = D1B0ED
-.libloadname                = D1B0F2
+.missingappvar              = D1B124
+.libloadname                = D1B129
 .libloadnamelen             = 000007
-.webaddress                 = D1B0FA
+.webaddress                 = D1B131
 __start                     = D1A96F
 ___exithl                   = D1A98F
 skip._exit                  = D1A98F
@@ -51,28 +51,28 @@ skip._abort                 = D1A98F
 _exit.sp                    = D1A990
 _exit.flash_wait_states     = D1A99A
 _main                       = D1AA72
-_blink_cursor_frame         = D1B06A
-_test_font_data             = D1B10F
-_.str                       = D1C61F
-_.str.1                     = D1C658
-_test_font                  = D1B0EA
-_.str.2                     = D1C691
-_.str.3                     = D1C6B2
-_.str.4                     = D1C6BC
-_.str.5                     = D1C6EB
-_.str.6                     = D1C6F5
-_.str.7                     = D1C713
-_.str.8                     = D1C719
-_.str.10                    = D1C788
-_.str.11                    = D1C7C9
-_.str.12                    = D1C7D2
-_.str.13                    = D1C842
-_.str.14                    = D1C84E
-_.str.16                    = D1C858
-_.str.17                    = D1C8C6
-_.str.18                    = D1C8D0
-_.str.19                    = D1C957
-_.str.20                    = D1C962
+_blink_cursor_frame         = D1B0A1
+_test_font_data             = D1B146
+_.str                       = D1C656
+_.str.1                     = D1C68F
+_test_font                  = D1B121
+_.str.2                     = D1C6C8
+_.str.3                     = D1C6E9
+_.str.4                     = D1C6F3
+_.str.5                     = D1C722
+_.str.6                     = D1C72C
+_.str.7                     = D1C74A
+_.str.8                     = D1C750
+_.str.10                    = D1C7BF
+_.str.11                    = D1C800
+_.str.12                    = D1C809
+_.str.13                    = D1C879
+_.str.14                    = D1C885
+_.str.16                    = D1C88F
+_.str.17                    = D1C8FD
+_.str.18                    = D1C907
+_.str.19                    = D1C98E
+_.str.20                    = D1C999
 lib.LibLoad                 = D1A8F1
 _#fontlib_SetWindow         = D1A906
 _#fontlib_SetCursorPosition = D1A90A

@@ -114,7 +114,14 @@ int main(void)
 				buffer[i++] = lower_chars[key];
 				gfx_PrintChar(lower_chars[key]);
 			}
+			else if (key == sk_Clear) {
+				gfx_SetTextXY(10, GFX_LCD_HEIGHT-40);
+				gfx_SetColor(0xff);
+				gfx_FillRectangle(10, GFX_LCD_HEIGHT-40, GFX_LCD_WIDTH-10, 10);
+				i=0;
+			}
 			blink_cursor_frame(&frame_ctr, &prev_cursor_x, &prev_cursor_y);
+
 
 			gfx_SwapDraw();
 

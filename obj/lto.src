@@ -258,7 +258,7 @@ BB0_1:
 	lea	hl, iy
 	or	a, a
 	sbc	hl, bc
-	jp	z, BB0_18
+	jp	z, BB0_20
 	scf
 	sbc	hl, hl
 	push	hl
@@ -435,10 +435,10 @@ BB0_3:
 	add	hl, de
 	pop	af
 	ld	c, (hl)
-	jp	z, BB0_12
+	jp	z, BB0_14
 	ld	a, c
 	cp	a, 30
-	jp	nc, BB0_12
+	jp	nc, BB0_14
 	ld	iy, (ix - 42)
 	lea	hl, iy
 	ld	de, -1
@@ -500,13 +500,41 @@ BB0_8:
 	add	hl, de
 	ld	a, (hl)
 	or	a, a
-	jr	nz, BB0_10
+	jr	nz, BB0_11
+	ld	a, b
+	cp	a, 15
 	ld	de, -4665
 	lea	hl, ix
+	push	af
 	add	hl, de
+	pop	af
 	ld	(hl), c
-	jr	BB0_11
-BB0_10:
+	jr	nz, BB0_13
+	ld	hl, 200
+	push	hl
+	ld	hl, 10
+	push	hl
+	call	_gfx_SetTextXY
+	pop	hl
+	pop	hl
+	scf
+	sbc	hl, hl
+	push	hl
+	call	_gfx_SetColor
+	pop	hl
+	ld	de, 10
+	push	de
+	ld	hl, 310
+	push	hl
+	ld	hl, 200
+	push	hl
+	push	de
+	call	_gfx_FillRectangle
+	pop	hl
+	pop	hl
+	pop	hl
+	jr	BB0_12
+BB0_11:
 	ld	hl, _.str.1
 	add	hl, de
 	ld	a, (hl)
@@ -529,8 +557,9 @@ BB0_10:
 	ld	l, a
 	push	hl
 	call	_gfx_PrintChar
+BB0_12:
 	pop	hl
-BB0_11:
+BB0_13:
 	pea	ix - 45
 	pea	ix - 42
 	pea	ix - 39
@@ -540,7 +569,7 @@ BB0_11:
 	pop	hl
 	call	_gfx_SwapDraw
 	jp	BB0_3
-BB0_12:
+BB0_14:
 	ld	bc, -4672
 	lea	hl, ix
 	add	hl, bc
@@ -577,7 +606,7 @@ BB0_12:
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
-	jr	nz, BB0_14
+	jr	nz, BB0_16
 	ld	hl, 6
 	push	hl
 	call	_gfx_SetColor
@@ -598,8 +627,8 @@ BB0_12:
 	ld	hl, 190
 	push	hl
 	ld	hl, 305
-	jr	BB0_15
-BB0_14:
+	jr	BB0_17
+BB0_16:
 	ld	hl, -96
 	push	hl
 	call	_gfx_SetColor
@@ -620,7 +649,7 @@ BB0_14:
 	ld	hl, 195
 	push	hl
 	ld	hl, 300
-BB0_15:
+BB0_17:
 	push	hl
 	ld	hl, 205
 	push	hl
@@ -632,20 +661,20 @@ BB0_15:
 	pop	hl
 	pop	hl
 	call	_gfx_SwapDraw
-BB0_16:
+BB0_18:
 	call	_os_GetCSC
 	or	a, a
-	jr	z, BB0_16
+	jr	z, BB0_18
 	ld	de, -4662
 	lea	hl, ix
 	add	hl, de
 	ld	iy, (hl)
 	inc	iy
 	jp	BB0_1
-BB0_18:
+BB0_20:
 	call	_os_GetCSC
 	or	a, a
-	jr	z, BB0_18
+	jr	z, BB0_20
 	call	_gfx_End
 	or	a, a
 	sbc	hl, hl
@@ -840,10 +869,10 @@ _.str.20:
 	extern	_gfx_GetTextY
 	extern	_gfx_Blit
 	extern	_gfx_FillScreen
-	extern	__Unwind_SjLj_Unregister
 	extern	__irems
 	extern	_gfx_FillRectangle
 	extern	_fontlib_SetLineSpacing
+	extern	__Unwind_SjLj_Unregister
 	extern	_gfx_SetColor
 	extern	_fontlib_SetCursorPosition
 	extern	_gfx_PrintStringXY
