@@ -9,11 +9,11 @@
 void FillScreen(uint8_t color);
 struct question 
 {
-    char myQuestion[100];
+    char myQuestion[200];
 };
 struct answer 
 {
-    char myAnswer[100];
+    char myAnswer[200];
 };
 
 int main(void)
@@ -23,15 +23,15 @@ int main(void)
     struct answer answers[2];
     
     // Set the initial questions and answers
-    strcpy(questions[0].myQuestion, "What day is today?");
-    strcpy(answers[0].myAnswer, "Saturday");
+    strcpy(questions[0].myQuestion, "A(n) ___ bond is formed when atoms share electrons?");
+    strcpy(answers[0].myAnswer, "Covalent");
     
-    strcpy(questions[1].myQuestion, "What is your name?");
-    strcpy(answers[1].myAnswer, "Tom");
+    strcpy(questions[1].myQuestion, "the process by which one molecule is separated into two by the addition of a water molecule is called ___?");
+    strcpy(answers[1].myAnswer, "Hydrolysis");
 
     
     os_ClrHome();
-    os_PutStrFull("Test");
+    os_PutStrFull("A(n) ___ bond is formed when atoms share electrons?");
     os_NewLine();
     os_PutStrFull("Hello World.");
     /* Key variable */
