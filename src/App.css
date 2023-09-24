@@ -1,0 +1,64 @@
+body {
+  background-color: rgb(243, 243, 243);
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  background-color: white;
+  padding: 100px 40px;
+}
+
+.calculator-container {
+  display: flex;
+  justify-content: center;
+}
+
+.calculator-image {
+  height: auto;
+  width: 40%;
+}
+
+.questions-container {
+  text-align: center;
+  font-size: 25px;
+  height: 630px;
+}
+
+.flashcard-container {
+  background-color: white;
+  margin-top: 70px;
+  padding: 40px;
+  height: 300px;
+}
+
+.flashcard-container-title {
+  font-size: 3rem;
+  margin-bottom: 60px;
+}
+
+.flash-card-button {
+  text-decoration: none;
+  background-color: #570069;
+  color: white;
+  padding: 20px 35px;
+  font-size: 2rem;
+  border-radius: 5px;
+}
+
+.flash-card-button:hover {
+  background-color: #723c7d;
+}
+
+@media(max-width: 850px) {
+  .calculator-image {
+    display: none;
+  }
+
+  .main-container {
+    padding: 40px 20px;
+    text-align: center;
+  }
+}

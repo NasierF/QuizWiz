@@ -1,0 +1,22 @@
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 32px;
+    background-color: #570069;
+  }
+  
+  .company-logo img {
+    height: 60px;
+    border-radius: 50px;
+  }
+  
+  .link {
+    text-decoration: none;
+    color: white;
+    margin: 20px;
+  }
+  
+  .link:hover {
+    color: grey;
+  }

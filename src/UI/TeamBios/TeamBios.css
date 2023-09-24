@@ -1,0 +1,66 @@
+.main-bio-container {
+    background-color: white;
+    display: flex;
+    flex-flow: column;
+}
+
+.bio-container {
+    display: flex;
+    padding: 30px;
+}
+
+.bio-one-container {
+    justify-content: flex-end;
+}
+
+.bio-two-container {
+    background-color: rgb(243, 243, 243);
+}
+
+.bio-content {
+    padding: 40px;
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+.bio-content h2 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.bio-img img {
+    width: 80%;
+}
+
+.bio {
+    border: 1px solid black;
+}
+@media (max-width: 1154px) {
+
+    .bio-container {
+        flex-flow: column;
+        align-items: center;
+    }
+
+    .bio-one-container, .bio-two-container {
+        justify-content: center; 
+    }
+
+    .bio-one-image {
+        order: -1;
+        margin-bottom: 20px; 
+    }
+
+    .bio-img img {
+        max-width: 100%; 
+    }
+
+    .bio-img {
+        width: 80%; 
+    }
+
+    .bio-content {
+        width: 80%; 
+    }
+    
+}

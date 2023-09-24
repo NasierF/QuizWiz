@@ -1,0 +1,40 @@
+
+.question-answer-container {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+}
+
+.question-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    flex-wrap: wrap;
+}
+
+.answer {
+    position: absolute;
+    opacity: 0;
+}
+
+.active {
+    opacity: 1;
+    z-index: 50;
+}
+
+@media (max-width: 1200px) {
+    .question-answer-container {
+        margin-top: 100px;
+        display: flex;
+        flex-direction: column;
+    }
+    .question-container {
+        margin-bottom: 40px;
+    }
+}
+
+
+
+
+
