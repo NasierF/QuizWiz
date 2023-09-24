@@ -7,7 +7,6 @@
 #include <graphx.h>
 #include <debug.h>
 #include <fontlibc.h>
-
 #include "fonts/fonts.h"
 
 /* Function Prototypes */
@@ -30,7 +29,7 @@ void PrintCentered(const char *string);
 int main(void)
 {
     int displayQuestion = 1;
-    int numQuestion = 3;
+    int numQuestion = 10;
     gfx_Begin();
     gfx_SetDrawBuffer();
 
@@ -50,21 +49,39 @@ int main(void)
 
 
     int count = 0;
-    struct question questions[5];
-    struct answer answers[5];
+    struct question questions[10];
+    struct answer answers[10];
     
     // Set the initial questions and answers
-    strcpy(questions[0].myQuestion, "What day is today?");
-    strcpy(answers[0].myAnswer, "Saturday");
+    strcpy(questions[0].myQuestion, "A string in C is an array of ___");
+    strcpy(answers[0].myAnswer, "Character");
     
-    strcpy(questions[1].myQuestion, "What is your name?");
-    strcpy(answers[1].myAnswer, "Tom");
+    strcpy(questions[1].myQuestion, "a step-by-step procedure for solving a problem");
+    strcpy(answers[1].myAnswer, "Algorithm");
     
-    strcpy(questions[2].myQuestion, "a(n) ___ bond is formed when atoms share electrons");
-    strcpy(answers[2].myAnswer, "Covalent");
+    strcpy(questions[2].myQuestion, "finding and correcting errors");
+    strcpy(answers[2].myAnswer, "Debug");
 
-    strcpy(questions[3].myQuestion, "water molecules 'stick' to each other by means of");
-    strcpy(answers[3].myAnswer, "Hydrogen (Bonds)");
+    strcpy(questions[3].myQuestion, "provide a computer or other machine with coded instructions for the automatic performance of a particular task");
+    strcpy(answers[3].myAnswer, "program");
+
+    strcpy(questions[4].myQuestion, "the programs and other operating information used by a computer.");
+    strcpy(answers[4].myAnswer, "software");
+
+    strcpy(questions[5].myQuestion, "identify the most relevant information needed to solve the problem and eliminate or hide the extraneous details");
+    strcpy(answers[5].myAnswer, "abstraction");
+
+    strcpy(questions[6].myQuestion, "to repeat");
+    strcpy(answers[6].myAnswer, "iterate");
+
+    strcpy(questions[7].myQuestion, "a diagram that shows step-by-step progression through a procedure using connecting lines and a set of symbols");
+    strcpy(answers[7].myAnswer, "Flowchart");
+
+    strcpy(questions[8].myQuestion, "a high-level description of the actions of a program or algorithm, using a mixture of English and informal programming language syntax");
+    strcpy(answers[8].myAnswer, "Pseudocode");
+
+    strcpy(questions[9].myQuestion, "What is a protocol?");
+    strcpy(answers[9].myAnswer, "An agreed-upon set of rules that specify system behavior.");
 
     do
     {
@@ -96,8 +113,6 @@ int main(void)
 			displayQuestion = 1;
 			ClearKeyboardBuffer();
 		}
-
-
 		gfx_FillScreen(255);
 
 		if(displayQuestion)
@@ -120,6 +135,6 @@ void PrintCentered(const char *string)
     /* We're just using some simple math to find the center of the text window.
     Then we find the center of the text to be displayed and use math to make
     sure it ends up in the center of the window. */
-    fontlib_SetCursorPosition(10, GFX_LCD_HEIGHT/3);
+    fontlib_SetCursorPosition((GFX_LCD_WIDTH - gfx_GetStringWidth(string))/2, (GFX_LCD_HEIGHT - 8)/2);
     fontlib_DrawString(string);
 }

@@ -1,11 +1,12 @@
-obj/src/main.c.src: src/main.c /home/jshin/CEdev/include/sys/lcd.h \
-  /home/jshin/CEdev/include/stdint.h /home/jshin/CEdev/include/cdefs.h \
-  /home/jshin/CEdev/include/keypadc.h \
-  /home/jshin/CEdev/include/stdbool.h /home/jshin/CEdev/include/string.h \
-  /home/jshin/CEdev/include/ti/getcsc.h \
-  /home/jshin/CEdev/include/ti/screen.h \
-  /home/jshin/CEdev/include/stddef.h /home/jshin/CEdev/include/ti/ui.h \
-  /home/jshin/CEdev/include/stdlib.h /home/jshin/CEdev/include/graphx.h \
-  /home/jshin/CEdev/include/debug.h /home/jshin/CEdev/include/stdio.h \
-  /home/jshin/CEdev/include/stdarg.h \
-  /home/jshin/CEdev/include/fontlibc.h src/fonts/fonts.h
+obj/src/main.c.bc: src/main.c /Users/malin/CEdev/include/sys/lcd.h \
+  /Users/malin/CEdev/include/stdint.h /Users/malin/CEdev/include/cdefs.h \
+  /Users/malin/CEdev/include/keypadc.h \
+  /Users/malin/CEdev/include/stdbool.h \
+  /Users/malin/CEdev/include/string.h \
+  /Users/malin/CEdev/include/ti/getcsc.h \
+  /Users/malin/CEdev/include/ti/screen.h \
+  /Users/malin/CEdev/include/stddef.h /Users/malin/CEdev/include/ti/ui.h \
+  /Users/malin/CEdev/include/stdlib.h \
+  /Users/malin/CEdev/include/graphx.h /Users/malin/CEdev/include/debug.h \
+  /Users/malin/CEdev/include/stdio.h /Users/malin/CEdev/include/stdarg.h \
+  /Users/malin/CEdev/include/fontlibc.h src/fonts/fonts.h
