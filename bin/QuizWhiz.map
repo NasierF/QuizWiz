@@ -7,9 +7,9 @@ Section          Base   Top    High   Length
 .init.reruncheck D1A96F D1A96F             0h
 .init            D1A96F D1A98F            20h
 .fini            D1A98F D1A9C3            34h
-.text            D1A9C3 D1B121           75Eh
-.data            D1B121 D1B124             3h
-.rodata          D1B124 D1C9A7          1883h
+.text            D1A9C3 D1B1BC           7F9h
+.data            D1B1BC D1B1BF             3h
+.rodata          D1B1BF D1CA42          1883h
 .init_array      000000 000000             0h
 .ctors           000000 000000             0h
 .dtors           000000 000000             0h
@@ -32,17 +32,23 @@ __stack                     = D1A87E
 __frameset                  = D1A9C3
 __idvrms                    = D1A9D1
 __idvrmu                    = D1A9FF
-__ineg                      = D1AA17
-__irems                     = D1AA20
-__ishl                      = D1AA28
-_os_DisableHomeTextBuffer   = D1AA4E
-_os_EnableHomeTextBuffer    = D1AA60
+__imulu                     = D1AA17
+__ineg                      = D1AA47
+__irems                     = D1AA50
+__ishl                      = D1AA58
+__fdiv                      = 000278
+__ftol                      = 00027C
+__ftoul                     = 00027C
+__ltof                      = 000284
+__ultof                     = 000280
+_os_DisableHomeTextBuffer   = D1AA7E
+_os_EnableHomeTextBuffer    = D1AA90
 _os_GetCSC                  = 021D3C
 _strcmp                     = 0000C8
-.missingappvar              = D1B124
-.libloadname                = D1B129
+.missingappvar              = D1B1BF
+.libloadname                = D1B1C4
 .libloadnamelen             = 000007
-.webaddress                 = D1B131
+.webaddress                 = D1B1CC
 __start                     = D1A96F
 ___exithl                   = D1A98F
 skip._exit                  = D1A98F
@@ -50,29 +56,29 @@ skip.__Exit                 = D1A98F
 skip._abort                 = D1A98F
 _exit.sp                    = D1A990
 _exit.flash_wait_states     = D1A99A
-_main                       = D1AA72
-_blink_cursor_frame         = D1B0A1
-_test_font_data             = D1B146
-_.str                       = D1C656
-_.str.1                     = D1C68F
-_test_font                  = D1B121
-_.str.2                     = D1C6C8
-_.str.3                     = D1C6E9
-_.str.4                     = D1C6F3
-_.str.5                     = D1C722
-_.str.6                     = D1C72C
-_.str.7                     = D1C74A
-_.str.8                     = D1C750
-_.str.10                    = D1C7BF
-_.str.11                    = D1C800
-_.str.12                    = D1C809
-_.str.13                    = D1C879
-_.str.14                    = D1C885
-_.str.16                    = D1C88F
-_.str.17                    = D1C8FD
-_.str.18                    = D1C907
-_.str.19                    = D1C98E
-_.str.20                    = D1C999
+_main                       = D1AAA2
+_blink_cursor_frame         = D1B13C
+_test_font_data             = D1B1E1
+_.str                       = D1C6F1
+_.str.1                     = D1C72A
+_test_font                  = D1B1BC
+_.str.2                     = D1C763
+_.str.3                     = D1C784
+_.str.4                     = D1C78E
+_.str.5                     = D1C7BD
+_.str.6                     = D1C7C7
+_.str.7                     = D1C7E5
+_.str.8                     = D1C7EB
+_.str.10                    = D1C85A
+_.str.11                    = D1C89B
+_.str.12                    = D1C8A4
+_.str.13                    = D1C914
+_.str.14                    = D1C920
+_.str.16                    = D1C92A
+_.str.17                    = D1C998
+_.str.18                    = D1C9A2
+_.str.19                    = D1CA29
+_.str.20                    = D1CA34
 lib.LibLoad                 = D1A8F1
 _#fontlib_SetWindow         = D1A906
 _#fontlib_SetCursorPosition = D1A90A

@@ -3,7 +3,7 @@
 	section	.text,"ax",@progbits
 	public	_main
 _main:
-	ld	hl, -4678
+	ld	hl, -4681
 	call	__frameset
 	ld	bc, -3117
 	lea	hl, ix
@@ -22,7 +22,7 @@ _main:
 	pop	ix
 	lea	hl, ix - 36
 	push	ix
-	ld	bc, -4672
+	ld	bc, -4675
 	add	ix, bc
 	ld	(ix), hl
 	pop	ix
@@ -258,11 +258,11 @@ BB0_1:
 	lea	hl, iy
 	or	a, a
 	sbc	hl, bc
-	jp	z, BB0_20
+	jp	z, BB0_19
 	scf
 	sbc	hl, hl
 	push	hl
-	ld	bc, -4662
+	ld	bc, -4665
 	lea	hl, ix
 	add	hl, bc
 	ld	(hl), iy
@@ -276,6 +276,47 @@ BB0_1:
 	push	hl
 	ld	hl, 320
 	push	hl
+	ld	hl, 20
+	push	hl
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	call	_gfx_FillRectangle
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	call	_gfx_SetColor
+	pop	hl
+	ld	de, -4665
+	lea	hl, ix
+	add	hl, de
+	ld	hl, (hl)
+	inc	hl
+	ld	de, -4668
+	lea	iy, ix
+	add	iy, de
+	ld	(iy), hl
+	ld	bc, 320
+	call	__imulu
+	push	hl
+	pop	bc
+	push	bc
+	pop	iy
+	add	iy, iy
+	sbc	hl, hl
+	ld	a, l
+	call	__ltof
+	ld	hl, 1048576
+	ld	e, 65
+	call	__fdiv
+	call	__ftol
+	ld	hl, 4
+	push	hl
+	push	bc
 	ld	hl, 20
 	push	hl
 	or	a, a
@@ -312,7 +353,7 @@ BB0_1:
 	pop	hl
 	ld	hl, 1
 	push	hl
-	ld	bc, -4662
+	ld	bc, -4668
 	lea	hl, ix
 	add	hl, bc
 	ld	hl, (hl)
@@ -326,7 +367,7 @@ BB0_1:
 	pop	hl
 	ld	hl, 1
 	push	hl
-	ld	hl, 8
+	ld	hl, 9
 	push	hl
 	call	_gfx_PrintInt
 	pop	hl
@@ -364,7 +405,7 @@ BB0_1:
 	call	_fontlib_SetCursorPosition
 	pop	hl
 	pop	hl
-	ld	de, -4662
+	ld	de, -4665
 	lea	hl, ix
 	add	hl, de
 	ld	hl, (hl)
@@ -397,13 +438,13 @@ BB0_1:
 	ld	(ix - 42), hl
 	ld	(ix - 45), hl
 	xor	a, a
-	ld	bc, -4665
+	ld	bc, -4662
 	lea	hl, ix
 	add	hl, bc
 	ld	(hl), a
 BB0_3:
 	call	_os_GetCSC
-	ld	bc, -4666
+	ld	bc, -4669
 	lea	hl, ix
 	add	hl, bc
 	ld	(hl), a
@@ -411,34 +452,34 @@ BB0_3:
 	sbc	hl, hl
 	push	hl
 	pop	de
-	inc	bc
+	ld	bc, -4662
 	lea	iy, ix
 	add	iy, bc
 	ld	e, (iy)
 	push	ix
-	ld	bc, -4669
+	ld	bc, -4672
 	add	ix, bc
 	ld	(ix), de
 	pop	ix
 	push	hl
 	call	_gfx_Blit
-	ld	de, -4666
+	ld	de, -4669
 	lea	hl, ix
 	add	hl, de
 	ld	b, (hl)
 	pop	hl
 	ld	a, b
 	cp	a, 9
-	inc	de
+	ld	de, -4662
 	lea	hl, ix
 	push	af
 	add	hl, de
 	pop	af
 	ld	c, (hl)
-	jp	z, BB0_14
+	jp	z, BB0_13
 	ld	a, c
 	cp	a, 30
-	jp	nc, BB0_14
+	jp	nc, BB0_13
 	ld	iy, (ix - 42)
 	lea	hl, iy
 	ld	de, -1
@@ -447,7 +488,7 @@ BB0_3:
 	jr	z, BB0_8
 	ld	hl, (ix - 45)
 	push	ix
-	ld	de, -4675
+	ld	de, -4678
 	add	ix, de
 	ld	(ix), hl
 	pop	ix
@@ -458,18 +499,18 @@ BB0_3:
 	scf
 	sbc	hl, hl
 	push	hl
-	ld	bc, -4678
+	ld	bc, -4681
 	lea	hl, ix
 	add	hl, bc
 	ld	(hl), iy
 	call	_gfx_SetColor
 	pop	hl
-	ld	de, -4678
+	ld	de, -4681
 	lea	hl, ix
 	add	hl, de
 	ld	bc, (hl)
 	inc	bc
-	ld	de, -4675
+	ld	de, -4678
 	lea	iy, ix
 	add	iy, de
 	ld	iy, (iy)
@@ -481,11 +522,11 @@ BB0_3:
 	push	iy
 	push	bc
 	call	_gfx_Line
-	ld	de, -4666
+	ld	de, -4669
 	lea	hl, ix
 	add	hl, de
 	ld	b, (hl)
-	inc	de
+	ld	de, -4662
 	lea	iy, ix
 	add	iy, de
 	ld	c, (iy)
@@ -501,15 +542,13 @@ BB0_8:
 	ld	a, (hl)
 	or	a, a
 	jr	nz, BB0_11
+	ld	de, -4662
+	lea	hl, ix
+	add	hl, de
+	ld	(hl), c
 	ld	a, b
 	cp	a, 15
-	ld	de, -4665
-	lea	hl, ix
-	push	af
-	add	hl, de
-	pop	af
-	ld	(hl), c
-	jr	nz, BB0_13
+	jr	nz, BB0_12
 	ld	hl, 200
 	push	hl
 	ld	hl, 10
@@ -533,22 +572,28 @@ BB0_8:
 	pop	hl
 	pop	hl
 	pop	hl
+	pop	hl
+	xor	a, a
+	ld	bc, -4662
+	lea	hl, ix
+	add	hl, bc
+	ld	(hl), a
 	jr	BB0_12
 BB0_11:
 	ld	hl, _.str.1
 	add	hl, de
 	ld	a, (hl)
 	inc	c
-	ld	de, -4665
+	ld	de, -4662
 	lea	hl, ix
 	add	hl, de
 	ld	(hl), c
-	ld	bc, -4672
+	ld	bc, -4675
 	lea	iy, ix
 	add	iy, bc
 	ld	hl, (iy)
 	push	ix
-	ld	bc, -4669
+	ld	bc, -4672
 	add	ix, bc
 	ld	de, (ix)
 	pop	ix
@@ -557,9 +602,8 @@ BB0_11:
 	ld	l, a
 	push	hl
 	call	_gfx_PrintChar
-BB0_12:
 	pop	hl
-BB0_13:
+BB0_12:
 	pea	ix - 45
 	pea	ix - 42
 	pea	ix - 39
@@ -569,21 +613,21 @@ BB0_13:
 	pop	hl
 	call	_gfx_SwapDraw
 	jp	BB0_3
-BB0_14:
-	ld	bc, -4672
+BB0_13:
+	ld	bc, -4675
 	lea	hl, ix
 	add	hl, bc
 	ld	de, (hl)
 	push	de
 	pop	hl
 	ld	(ix - 3), de
-	ld	de, -4669
+	ld	de, -4672
 	lea	iy, ix
 	add	iy, de
 	ld	bc, (iy)
 	add	hl, bc
 	ld	(hl), 0
-	ld	de, -4662
+	ld	de, -4665
 	lea	hl, ix
 	add	hl, de
 	ld	hl, (hl)
@@ -606,7 +650,7 @@ BB0_14:
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
-	jr	nz, BB0_16
+	jr	nz, BB0_15
 	ld	hl, 6
 	push	hl
 	call	_gfx_SetColor
@@ -627,8 +671,8 @@ BB0_14:
 	ld	hl, 190
 	push	hl
 	ld	hl, 305
-	jr	BB0_17
-BB0_16:
+	jr	BB0_16
+BB0_15:
 	ld	hl, -96
 	push	hl
 	call	_gfx_SetColor
@@ -649,7 +693,7 @@ BB0_16:
 	ld	hl, 195
 	push	hl
 	ld	hl, 300
-BB0_17:
+BB0_16:
 	push	hl
 	ld	hl, 205
 	push	hl
@@ -661,20 +705,19 @@ BB0_17:
 	pop	hl
 	pop	hl
 	call	_gfx_SwapDraw
-BB0_18:
+BB0_17:
 	call	_os_GetCSC
 	or	a, a
-	jr	z, BB0_18
-	ld	de, -4662
+	jr	z, BB0_17
+	ld	de, -4668
 	lea	hl, ix
 	add	hl, de
 	ld	iy, (hl)
-	inc	iy
 	jp	BB0_1
-BB0_20:
+BB0_19:
 	call	_os_GetCSC
 	or	a, a
-	jr	z, BB0_20
+	jr	z, BB0_19
 	call	_gfx_End
 	or	a, a
 	sbc	hl, hl
@@ -863,6 +906,7 @@ _.str.20:
 	extern	_gfx_SwapDraw
 	extern	__ishl
 	extern	_fontlib_SetWindow
+	extern	__ftol
 	extern	_gfx_PrintInt
 	extern	_gfx_SetDraw
 	extern	_gfx_GetTextX
@@ -872,8 +916,11 @@ _.str.20:
 	extern	__irems
 	extern	_gfx_FillRectangle
 	extern	_fontlib_SetLineSpacing
+	extern	__fdiv
 	extern	__Unwind_SjLj_Unregister
+	extern	__imulu
 	extern	_gfx_SetColor
+	extern	__ltof
 	extern	_fontlib_SetCursorPosition
 	extern	_gfx_PrintStringXY
 	extern	_os_GetCSC

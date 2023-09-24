@@ -71,18 +71,23 @@ int main(void)
 	char buffer[30];
 
 	for (; curr_question < num_questions; curr_question++) {
+
 		/* Clear the screen */
 		gfx_FillScreen(0xff);
 
 		gfx_SetColor(0x8c);
-		gfx_FillRectangle(0, 20, 320, 4);
+		gfx_FillRectangle(0, 20, GFX_LCD_WIDTH, 4);
+
+		gfx_SetColor(0x0);
+		gfx_FillRectangle(0, 20, (int) ((curr_question+1) * GFX_LCD_WIDTH/(1.0 * (num_questions))), 4);
+
 		gfx_SetColor(0x1A);
 		gfx_FillRectangle(10, GFX_LCD_HEIGHT - 30, GFX_LCD_WIDTH-20, 4);
 
 		gfx_SetTextXY(GFX_LCD_WIDTH/2, 10);
-		gfx_PrintInt(curr_question, 1);
+		gfx_PrintInt(curr_question + 1, 1);
 		gfx_PrintChar('/');
-		gfx_PrintInt(num_questions - 1, 1);
+		gfx_PrintInt(num_questions, 1);
 
 		gfx_SetTextFGColor(0x8c);
 		gfx_PrintStringXY("TYPE THE TERM", 10, GFX_LCD_HEIGHT-20);
