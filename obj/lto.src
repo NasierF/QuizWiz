@@ -3,8 +3,29 @@
 	section	.text,"ax",@progbits
 	public	_main
 _main:
-	ld	hl, -2333
+	ld	hl, -4678
 	call	__frameset
+	ld	bc, -3117
+	lea	hl, ix
+	add	hl, bc
+	ld	bc, -4662
+	lea	iy, ix
+	add	iy, bc
+	ld	(iy), hl
+	ld	bc, -3885
+	lea	hl, ix
+	add	hl, bc
+	push	ix
+	ld	bc, -4665
+	add	ix, bc
+	ld	(ix), hl
+	pop	ix
+	lea	hl, ix - 36
+	push	ix
+	ld	bc, -4672
+	add	ix, bc
+	ld	(ix), hl
+	pop	ix
 	call	_gfx_Begin
 	ld	hl, 1
 	push	hl
@@ -52,87 +73,199 @@ _main:
 	push	hl
 	call	_fontlib_SetNewlineOptions
 	pop	hl
-	ld	bc, -2319
+	ld	bc, -2349
 	lea	iy, ix
 	add	iy, bc
+	ld	bc, -4656
+	lea	hl, ix
+	add	hl, bc
+	ld	(hl), iy
+	ld	bc, -4653
+	lea	hl, ix
+	add	hl, bc
+	push	ix
+	ld	bc, -4659
+	add	ix, bc
+	ld	(ix), hl
+	pop	ix
 	lea	de, iy
 	ld	hl, _.str.2
 	ld	bc, 33
 	ldir
+	ld	bc, -4659
+	lea	hl, ix
+	add	hl, bc
+	ld	de, (hl)
+	ld	hl, _.str.3
+	ld	bc, 10
+	ldir
 	ld	de, 256
-	lea	hl, iy
-	add	hl, de
-	ex	de, hl
+	add	iy, de
+	lea	de, iy
 	ld	hl, _.str.4
 	ld	bc, 47
 	ldir
-	ld	de, 512
+	ld	bc, -4659
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
 	lea	hl, iy
+	ld	de, 256
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.5
+	ld	bc, 10
+	ldir
+	ld	de, 512
+	ld	bc, -4656
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
 	add	hl, de
 	ex	de, hl
 	ld	hl, _.str.6
 	ld	bc, 30
 	ldir
+	ld	de, 512
+	add	iy, de
+	lea	de, iy
+	ld	hl, _.str.7
+	ld	bc, 6
+	ldir
 	ld	de, 768
-	lea	hl, iy
+	ld	bc, -4656
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
 	add	hl, de
 	ex	de, hl
 	ld	hl, _.str.8
 	ld	bc, 111
 	ldir
+	ld	bc, -4665
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	ld	hl, 7303792
+	ld	(iy), hl
+	ld	hl, 6386279
+	ld	(iy + 3), hl
+	ld.sis	hl, 109
+	ld	(iy + 6), l
+	ld	(iy + 7), h
 	ld	de, 1024
-	lea	hl, iy
+	ld	bc, -4656
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
 	add	hl, de
 	ex	de, hl
 	ld	hl, _.str.10
 	ld	bc, 65
 	ldir
-	ld	de, 1280
+	ld	bc, -4659
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
 	lea	hl, iy
+	ld	de, 1024
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.11
+	ld	bc, 9
+	ldir
+	ld	de, 1280
+	ld	bc, -4656
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
 	add	hl, de
 	ex	de, hl
 	ld	hl, _.str.12
 	ld	bc, 112
 	ldir
-	ld	de, 1536
 	lea	hl, iy
+	ld	de, 1280
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.13
+	ld	bc, 12
+	ldir
+	ld	de, 1536
+	ld	bc, -4656
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
 	add	hl, de
 	ex	de, hl
 	ld	hl, _.str.14
 	ld	bc, 10
 	ldir
+	ld	bc, -4662
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
+	ld	hl, 6648937
+	ld	(iy), hl
+	ld	hl, 7627122
+	ld	(iy + 3), hl
+	ld.sis	hl, 101
+	ld	(iy + 6), l
+	ld	(iy + 7), h
 	ld	de, 1792
+	ld	bc, -4656
+	lea	hl, ix
+	add	hl, bc
+	ld	iy, (hl)
 	lea	hl, iy
 	add	hl, de
 	ex	de, hl
 	ld	hl, _.str.16
 	ld	bc, 110
 	ldir
-	ld	de, 2048
-	ld	bc, -2325
+	ld	bc, -4659
 	lea	hl, ix
 	add	hl, bc
-	ld	(hl), iy
-	add	iy, de
-	lea	de, iy
+	ld	hl, (hl)
+	ld	de, 1792
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.17
+	ld	bc, 10
+	ldir
+	ld	de, 2048
+	lea	hl, iy
+	add	hl, de
+	push	de
+	pop	iy
+	ex	de, hl
 	ld	hl, _.str.18
 	ld	bc, 135
 	ldir
-	ld	de, 9
-	ld	bc, 0
+	ld	bc, -4659
+	lea	hl, ix
+	add	hl, bc
+	ld	hl, (hl)
+	lea	de, iy
+	add	hl, de
+	ex	de, hl
+	ld	hl, _.str.19
+	ld	bc, 11
+	ldir
+	ld	iy, 0
 BB0_1:
-	push	bc
-	pop	hl
+	ld	bc, 9
+	lea	hl, iy
 	or	a, a
-	sbc	hl, de
-	jp	z, BB0_12
+	sbc	hl, bc
+	jp	z, BB0_18
 	scf
 	sbc	hl, hl
 	push	hl
-	ld	de, -2322
+	ld	bc, -4662
 	lea	hl, ix
-	add	hl, de
-	ld	(hl), bc
+	add	hl, bc
+	ld	(hl), iy
 	call	_gfx_FillScreen
 	pop	hl
 	ld	hl, -116
@@ -179,7 +312,7 @@ BB0_1:
 	pop	hl
 	ld	hl, 1
 	push	hl
-	ld	bc, -2322
+	ld	bc, -4662
 	lea	hl, ix
 	add	hl, bc
 	ld	hl, (hl)
@@ -231,7 +364,7 @@ BB0_1:
 	call	_fontlib_SetCursorPosition
 	pop	hl
 	pop	hl
-	ld	de, -2322
+	ld	de, -4662
 	lea	hl, ix
 	add	hl, de
 	ld	hl, (hl)
@@ -240,7 +373,7 @@ BB0_1:
 	push	hl
 	pop	de
 	ld	(ix - 3), bc
-	ld	bc, -2325
+	ld	bc, -4656
 	lea	iy, ix
 	add	iy, bc
 	ld	hl, (iy)
@@ -259,44 +392,65 @@ BB0_1:
 	call	_gfx_SwapDraw
 	or	a, a
 	sbc	hl, hl
-	ld	(ix - 9), hl
+	ld	(ix - 39), hl
 	dec	hl
-	ld	(ix - 12), hl
-	ld	(ix - 15), hl
+	ld	(ix - 42), hl
+	ld	(ix - 45), hl
 	xor	a, a
-	ld	bc, -2326
+	ld	bc, -4665
 	lea	hl, ix
 	add	hl, bc
 	ld	(hl), a
 BB0_3:
 	call	_os_GetCSC
-	ld	l, a
-	cp	a, 9
-	jp	z, BB0_11
-	ld	bc, -2326
-	lea	iy, ix
-	add	iy, bc
-	ld	a, (iy)
-	cp	a, 30
-	jp	nc, BB0_11
-	ld	bc, -2327
-	lea	iy, ix
-	add	iy, bc
-	ld	(iy), l
+	ld	bc, -4666
+	lea	hl, ix
+	add	hl, bc
+	ld	(hl), a
 	or	a, a
 	sbc	hl, hl
 	push	hl
+	pop	de
+	inc	bc
+	lea	iy, ix
+	add	iy, bc
+	ld	e, (iy)
+	push	ix
+	ld	bc, -4669
+	add	ix, bc
+	ld	(ix), de
+	pop	ix
+	push	hl
 	call	_gfx_Blit
+	ld	de, -4666
+	lea	hl, ix
+	add	hl, de
+	ld	b, (hl)
 	pop	hl
-	ld	bc, (ix - 12)
-	push	bc
-	pop	hl
+	ld	a, b
+	cp	a, 9
+	inc	de
+	lea	hl, ix
+	push	af
+	add	hl, de
+	pop	af
+	ld	c, (hl)
+	jp	z, BB0_12
+	ld	a, c
+	cp	a, 30
+	jp	nc, BB0_12
+	ld	iy, (ix - 42)
+	lea	hl, iy
 	ld	de, -1
 	or	a, a
 	sbc	hl, de
 	jr	z, BB0_8
-	ld	iy, (ix - 15)
-	lea	hl, iy
+	ld	hl, (ix - 45)
+	push	ix
+	ld	de, -4675
+	add	ix, de
+	ld	(ix), hl
+	pop	ix
 	ld	de, -1
 	or	a, a
 	sbc	hl, de
@@ -304,23 +458,18 @@ BB0_3:
 	scf
 	sbc	hl, hl
 	push	hl
-	ld	de, -2333
+	ld	bc, -4678
 	lea	hl, ix
-	add	hl, de
-	ld	(hl), bc
-	push	ix
-	ld	bc, -2330
-	add	ix, bc
-	ld	(ix), iy
-	pop	ix
+	add	hl, bc
+	ld	(hl), iy
 	call	_gfx_SetColor
 	pop	hl
-	ld	de, -2333
+	ld	de, -4678
 	lea	hl, ix
 	add	hl, de
 	ld	bc, (hl)
 	inc	bc
-	ld	de, -2330
+	ld	de, -4675
 	lea	iy, ix
 	add	iy, de
 	ld	iy, (iy)
@@ -332,58 +481,171 @@ BB0_3:
 	push	iy
 	push	bc
 	call	_gfx_Line
+	ld	de, -4666
+	lea	hl, ix
+	add	hl, de
+	ld	b, (hl)
+	inc	de
+	lea	iy, ix
+	add	iy, de
+	ld	c, (iy)
 	pop	hl
 	pop	hl
 	pop	hl
 	pop	hl
 BB0_8:
 	ld	de, 0
-	ld	bc, -2327
-	lea	hl, ix
-	add	hl, bc
-	ld	e, (hl)
+	ld	e, b
 	ld	hl, _.str
 	add	hl, de
 	ld	a, (hl)
 	or	a, a
-	jr	z, BB0_10
+	jr	nz, BB0_10
+	ld	de, -4665
+	lea	hl, ix
+	add	hl, de
+	ld	(hl), c
+	jr	BB0_11
+BB0_10:
 	ld	hl, _.str.1
 	add	hl, de
-	ld	bc, -2326
+	ld	a, (hl)
+	inc	c
+	ld	de, -4665
+	lea	hl, ix
+	add	hl, de
+	ld	(hl), c
+	ld	bc, -4672
 	lea	iy, ix
 	add	iy, bc
-	ld	a, (iy)
-	inc	a
+	ld	hl, (iy)
 	push	ix
+	ld	bc, -4669
 	add	ix, bc
-	ld	(ix), a
+	ld	de, (ix)
 	pop	ix
-	ld	l, (hl)
+	add	hl, de
+	ld	(hl), a
+	ld	l, a
 	push	hl
 	call	_gfx_PrintChar
 	pop	hl
-BB0_10:
-	pea	ix - 15
-	pea	ix - 12
-	pea	ix - 9
+BB0_11:
+	pea	ix - 45
+	pea	ix - 42
+	pea	ix - 39
 	call	_blink_cursor_frame
 	pop	hl
 	pop	hl
 	pop	hl
 	call	_gfx_SwapDraw
 	jp	BB0_3
-BB0_11:
-	ld	de, -2322
+BB0_12:
+	ld	bc, -4672
+	lea	hl, ix
+	add	hl, bc
+	ld	de, (hl)
+	push	de
+	pop	hl
+	ld	(ix - 3), de
+	ld	de, -4669
+	lea	iy, ix
+	add	iy, de
+	ld	bc, (iy)
+	add	hl, bc
+	ld	(hl), 0
+	ld	de, -4662
 	lea	hl, ix
 	add	hl, de
-	ld	bc, (hl)
-	inc	bc
-	ld	de, 9
-	jp	BB0_1
-BB0_12:
+	ld	hl, (hl)
+	ld	c, 8
+	call	__ishl
+	push	hl
+	pop	bc
+	push	ix
+	ld	de, -4659
+	add	ix, de
+	ld	hl, (ix)
+	pop	ix
+	add	hl, bc
+	push	hl
+	ld	de, (ix - 3)
+	push	de
+	call	_strcmp
+	pop	de
+	pop	de
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jr	nz, BB0_14
+	ld	hl, 6
+	push	hl
+	call	_gfx_SetColor
+	pop	hl
+	ld	hl, 205
+	push	hl
+	ld	hl, 290
+	push	hl
+	ld	hl, 200
+	push	hl
+	ld	hl, 280
+	push	hl
+	call	_gfx_Line
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, 190
+	push	hl
+	ld	hl, 305
+	jr	BB0_15
+BB0_14:
+	ld	hl, -96
+	push	hl
+	call	_gfx_SetColor
+	pop	hl
+	ld	hl, 205
+	push	hl
+	ld	hl, 300
+	push	hl
+	ld	hl, 195
+	push	hl
+	ld	hl, 290
+	push	hl
+	call	_gfx_Line
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, 195
+	push	hl
+	ld	hl, 300
+BB0_15:
+	push	hl
+	ld	hl, 205
+	push	hl
+	ld	hl, 290
+	push	hl
+	call	_gfx_Line
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	call	_gfx_SwapDraw
+BB0_16:
 	call	_os_GetCSC
 	or	a, a
-	jr	z, BB0_12
+	jr	z, BB0_16
+	ld	de, -4662
+	lea	hl, ix
+	add	hl, de
+	ld	iy, (hl)
+	inc	iy
+	jp	BB0_1
+BB0_18:
+	call	_os_GetCSC
+	or	a, a
+	jr	z, BB0_18
 	call	_gfx_End
 	or	a, a
 	sbc	hl, hl
@@ -476,14 +738,29 @@ _.str.2:
 	db	"A string in C is an array of ___", 0
 
 	section	.rodata,"a",@progbits
+	private	_.str.3
+_.str.3:
+	db	"character", 0
+
+	section	.rodata,"a",@progbits
 	private	_.str.4
 _.str.4:
 	db	"a step-by-step procedure for solving a problem", 0
 
 	section	.rodata,"a",@progbits
+	private	_.str.5
+_.str.5:
+	db	"algorithm", 0
+
+	section	.rodata,"a",@progbits
 	private	_.str.6
 _.str.6:
 	db	"finding and correcting errors", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.7
+_.str.7:
+	db	"debug", 0
 
 	section	.rodata,"a",@progbits
 	private	_.str.8
@@ -496,9 +773,19 @@ _.str.10:
 	db	"the programs and other operating information used by a computer.", 0
 
 	section	.rodata,"a",@progbits
+	private	_.str.11
+_.str.11:
+	db	"software", 0
+
+	section	.rodata,"a",@progbits
 	private	_.str.12
 _.str.12:
 	db	"identify the most relevant information needed to solve the problem and eliminate or hide the extraneous details", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.13
+_.str.13:
+	db	"abstraction", 0
 
 	section	.rodata,"a",@progbits
 	private	_.str.14
@@ -511,9 +798,19 @@ _.str.16:
 	db	"a diagram that shows step-by-step progression through a procedure using connecting lines and a set of symbols", 0
 
 	section	.rodata,"a",@progbits
+	private	_.str.17
+_.str.17:
+	db	"flowchart", 0
+
+	section	.rodata,"a",@progbits
 	private	_.str.18
 _.str.18:
 	db	"a high-level description of the actions of a program or algorithm, using a mixture of English and informal programming language syntax", 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.19
+_.str.19:
+	db	"pseudocode", 0
 
 	section	.rodata,"a",@progbits
 	private	_.str.20
@@ -531,6 +828,7 @@ _.str.20:
 	extern	_gfx_Line
 	extern	_fontlib_DrawString
 	extern	_fontlib_SetNewlineOptions
+	extern	_strcmp
 	extern	_fontlib_SetColors
 	extern	_fontlib_SetFont
 	extern	_gfx_SwapDraw
@@ -540,9 +838,9 @@ _.str.20:
 	extern	_gfx_SetDraw
 	extern	_gfx_GetTextX
 	extern	_gfx_GetTextY
+	extern	_gfx_Blit
 	extern	_gfx_FillScreen
 	extern	__Unwind_SjLj_Unregister
-	extern	_gfx_Blit
 	extern	__irems
 	extern	_gfx_FillRectangle
 	extern	_fontlib_SetLineSpacing

@@ -70,7 +70,7 @@ int main(void)
 	int curr_question = 0;
 	char buffer[30];
 
-	for (; curr_question < 9; curr_question++) {
+	for (; curr_question < num_questions; curr_question++) {
 		/* Clear the screen */
 		gfx_FillScreen(0xff);
 
@@ -120,9 +120,31 @@ int main(void)
 
 			key = os_GetCSC();
 		}
+
+		gfx_BlitScreen();
+
+		buffer[i] = '\0';
+
+		// If they're equal
+		if (strcmp(buffer, answers[curr_question].myAnswer) == 0) {
+			// Show that the answer correct (e.g. check mark green)
+			gfx_SetColor(0x06);
+			gfx_Line(GFX_LCD_WIDTH-40, GFX_LCD_HEIGHT-40, GFX_LCD_WIDTH-30, GFX_LCD_HEIGHT-35);
+			gfx_Line(GFX_LCD_WIDTH-30, GFX_LCD_HEIGHT-35, GFX_LCD_WIDTH-15, GFX_LCD_HEIGHT-50);
+		} else {
+			// Red X mark
+			gfx_SetColor(0xA0);
+			gfx_Line(GFX_LCD_WIDTH-30, GFX_LCD_HEIGHT-45, GFX_LCD_WIDTH-20, GFX_LCD_HEIGHT-35);
+			gfx_Line(GFX_LCD_WIDTH-30, GFX_LCD_HEIGHT-35, GFX_LCD_WIDTH-20, GFX_LCD_HEIGHT-45);
+		}
+		gfx_SwapDraw();
+		while (!os_GetCSC());
+
+		
 	}
 
     while (!os_GetCSC());
+
 
     /* End graphics drawing */
     gfx_End();
