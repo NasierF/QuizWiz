@@ -2,14 +2,14 @@ Section          Base   Top    High   Length
 ---------------- ------ ------ ------ -------
 .icon            D1A882 D1A99D           11Bh
 .init.libs       D1A99D D1A9F5            58h
-.libs            D1A9F5 D1AA5D            68h
-.init.clock      D1AA5D D1AA5D             0h
-.init.reruncheck D1AA5D D1AA5D             0h
-.init            D1AA5D D1AA7D            20h
-.fini            D1AA7D D1AAB1            34h
-.text            D1AAB1 D1AFF1           540h
-.data            D1AFF1 D1AFF4             3h
-.rodata          D1AFF4 D1C845          1851h
+.libs            D1A9F5 D1AA65            70h
+.init.clock      D1AA65 D1AA65             0h
+.init.reruncheck D1AA65 D1AA65             0h
+.init            D1AA65 D1AA85            20h
+.fini            D1AA85 D1AAB9            34h
+.text            D1AAB9 D1B028           56Fh
+.data            D1B028 D248AA          9882h
+.rodata          D248AA D260FB          1851h
 .init_array      000000 000000             0h
 .ctors           000000 000000             0h
 .dtors           000000 000000             0h
@@ -29,50 +29,52 @@ ___ctors_count              = 000000
 ___dtors_count              = 000000
 ___fini_array_count         = 000000
 __stack                     = D1A87E
-__frameset                  = D1AAB1
-__imulu                     = D1AABF
-__ishru                     = D1AAEF
+__frameset                  = D1AAB9
+__imulu                     = D1AAC7
+__ishru                     = D1AAF7
 __ftol                      = 00027C
 __ftoul                     = 00027C
 __ltof                      = 000284
 __setflag                   = 000218
 __ultof                     = 000280
-_os_DisableHomeTextBuffer   = D1AB30
-_os_EnableHomeTextBuffer    = D1AB42
-.missingappvar              = D1AFF4
-.libloadname                = D1AFF9
+_os_DisableHomeTextBuffer   = D1AB38
+_os_EnableHomeTextBuffer    = D1AB4A
+.missingappvar              = D248AA
+.libloadname                = D248AF
 .libloadnamelen             = 000007
-.webaddress                 = D1B001
-__start                     = D1AA5D
-___exithl                   = D1AA7D
-skip._exit                  = D1AA7D
-skip.__Exit                 = D1AA7D
-skip._abort                 = D1AA7D
-_exit.sp                    = D1AA7E
-_exit.flash_wait_states     = D1AA88
-_ClearKeyboardBuffer        = D1AB54
-_main                       = D1AB62
-_PrintCentered              = D1AFB5
-_test_font_data             = D1B016
-_test_font                  = D1AFF1
-_.str                       = D1C526
-_.str.1                     = D1C547
-_.str.2                     = D1C551
-_.str.3                     = D1C580
-_.str.4                     = D1C58A
-_.str.5                     = D1C5A8
-_.str.6                     = D1C5AE
-_.str.8                     = D1C61D
-_.str.9                     = D1C65E
-_.str.10                    = D1C667
-_.str.11                    = D1C6D7
-_.str.12                    = D1C6E3
-_.str.14                    = D1C6ED
-_.str.15                    = D1C75B
-_.str.16                    = D1C765
-_.str.17                    = D1C7EC
-_.str.18                    = D1C7F7
-_.str.19                    = D1C80B
+.webaddress                 = D248B7
+__start                     = D1AA65
+___exithl                   = D1AA85
+skip._exit                  = D1AA85
+skip.__Exit                 = D1AA85
+skip._abort                 = D1AA85
+_exit.sp                    = D1AA86
+_exit.flash_wait_states     = D1AA90
+_ClearKeyboardBuffer        = D1AB5C
+_main                       = D1AB6A
+_PrintCentered              = D1AFEC
+_test_font_data             = D248CC
+_test_font                  = D1B028
+_global_palette             = D1B02B
+_.str                       = D25DDC
+_.str.1                     = D25DFD
+_.str.2                     = D25E07
+_.str.3                     = D25E36
+_.str.4                     = D25E40
+_.str.5                     = D25E5E
+_.str.6                     = D25E64
+_.str.8                     = D25ED3
+_.str.9                     = D25F14
+_.str.10                    = D25F1D
+_.str.11                    = D25F8D
+_.str.12                    = D25F99
+_.str.14                    = D25FA3
+_.str.15                    = D26011
+_.str.16                    = D2601B
+_.str.17                    = D260A2
+_.str.18                    = D260AD
+_.str.19                    = D260C1
+_FlashCardSprite_data       = D1B041
 lib.LibLoad                 = D1A9F5
 _#fontlib_SetWindow         = D1AA0A
 _#fontlib_SetCursorPosition = D1AA0E
@@ -84,9 +86,11 @@ _#fontlib_DrawString        = D1AA22
 _#fontlib_SetNewlineOptions = D1AA26
 _#gfx_Begin                 = D1AA33
 _#gfx_End                   = D1AA37
-_#gfx_FillScreen            = D1AA3B
-_#gfx_SetDraw               = D1AA3F
-_#gfx_SwapDraw              = D1AA43
-_#gfx_GetStringWidth        = D1AA47
-_#kb_Scan                   = D1AA55
-_#kb_AnyKey                 = D1AA59
+_#gfx_SetPalette            = D1AA3B
+_#gfx_FillScreen            = D1AA3F
+_#gfx_SetDraw               = D1AA43
+_#gfx_SwapDraw              = D1AA47
+_#gfx_GetStringWidth        = D1AA4B
+_#gfx_Sprite_NoClip         = D1AA4F
+_#kb_Scan                   = D1AA5D
+_#kb_AnyKey                 = D1AA61

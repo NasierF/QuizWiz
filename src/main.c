@@ -8,7 +8,7 @@
 #include <debug.h>
 #include <fontlibc.h>
 #include "fonts/fonts.h"
-
+#include "gfx/gfx.h"
 /* Function Prototypes */
 struct question 
 {
@@ -41,12 +41,12 @@ int main(void)
     fontlib_SetWindow(25, 40, 240, 200);
     fontlib_SetLineSpacing(2, 2);
     /* Set some random (and ugly) colors */
-    fontlib_SetColors(0x0, 0xFF);
+    fontlib_SetColors(0x2, 0xFF);
     /* This is a crazy combination of settings that you probably don't want to use in any real program, but we're using
     it here for testing purposes. */
     fontlib_SetTransparency(true);
     fontlib_SetNewlineOptions(FONTLIB_ENABLE_AUTO_WRAP | FONTLIB_AUTO_CLEAR_TO_EOL | FONTLIB_PRECLEAR_NEWLINE);
-
+    gfx_SetPalette(global_palette, sizeof_global_palette, 0);
 
     int count = 0;
     struct question questions[10];
@@ -113,14 +113,16 @@ int main(void)
 			displayQuestion = 1;
 			ClearKeyboardBuffer();
 		}
-		gfx_FillScreen(255);
+		gfx_FillScreen(0x3);
 
 		if(displayQuestion)
 		{
+            gfx_Sprite_NoClip(FlashCardSprite, 35, 40);
 			PrintCentered(questions[count].myQuestion);
 		}
 		else
 		{
+            gfx_Sprite_NoClip(FlashCardSprite, 35, 40);
 			PrintCentered(answers[count].myAnswer);
 		}
 		gfx_SwapDraw();
