@@ -1,0 +1,27 @@
+palettes:
+  - name: global_palette
+    images: automatic
+
+converts:
+  - name: QuizWiz_back
+    palette: global_palette
+    compress: zx7
+    width-and-height: false
+    images:
+      - QuizWiz_back.png
+  - name: Flash_cards_button
+    palette: global_palette
+    transparent-color-index: 0
+    images:
+      - Flash_cards_button
+
+
+outputs:
+  - type: c
+    include-file: gfx.h
+    palettes:
+      - global_palette
+    converts:
+      - Flash_cards_button
+      - QuizWiz_back
+  
